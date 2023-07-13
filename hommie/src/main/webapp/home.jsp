@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -196,55 +196,94 @@
 
 	<!-- Search Start -->
 	<form action="search">
-	<div class="container-fluid booking pb-5 wow fadeIn"
-		data-wow-delay="0.1s">
-		<div class="container">
-			<div class="bg-white shadow" style="padding: 35px;">
-				<div class="row g-2">
-					<div class="col-md-10">
-						<div class="row g-2">
-							<div class="col-md-3">
-								<div class="date" id="date1" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input"
-										placeholder="Available date" data-target="#date1"
-										data-toggle="datetimepicker" name="availableDate"/>
+		<div class="container-fluid booking pb-5 wow fadeIn"
+			data-wow-delay="0.1s">
+			<div class="container">
+				<div class="bg-white shadow" style="padding: 35px;">
+					<div class="row g-2">
+						<div class="col-md-10">
+							<div class="row g-2">
+								<div class="col-md-3">
+									<div class="date" id="date1" data-target-input="nearest">
+										<input type="text" class="form-control datetimepicker-input"
+											placeholder="Available date" data-target="#date1"
+											data-toggle="datetimepicker" name="availableDate"
+											value="${availableDate != null ? availableDate : 'Available date'}"/>
+									</div>
+								</div>
+
+								<div class="col-md-3">
+									<select class="form-select" name="state" id="stateSelect">
+										<option selected disabled>State</option>
+										<option value="NSW">New South Wales</option>
+										<option value="VIC">Victoria</option>
+										<option value="QLD">Queensland</option>
+										<option value="WA">Western Australia</option>
+										<option value="SA">South Australia</option>
+										<option value="NT">Northern Territory</option>
+										<option value="TAS">Tasmania</option>
+									</select>
+								</div>
+
+								<script>
+									const stateSelect = document
+											.getElementById('stateSelect');
+									const selectedState = '${state}'; // Replace with the actual selected state from the server-side
+
+									// Set the selected state based on the value from the server-side
+									if (selectedState) {
+										for (let i = 0; i < stateSelect.options.length; i++) {
+											if (stateSelect.options[i].value === selectedState) {
+												stateSelect.selectedIndex = i;
+												break;
+											}
+										}
+									}
+								</script>
+
+								<div class="col-md-3">
+									<select class="form-select" name="weeklyPrice"
+										id="weeklyPriceSelect">
+										<option value="0" selected disabled>Weekly price</option>
+										<option value="200">$100-$200</option>
+										<option value="300">$200-$300</option>
+										<option value="400">$300-$400</option>
+										<option value="2000">over $400</option>
+									</select>
+								</div>
+
+								<script>
+									const weeklyPriceSelect = document
+											.getElementById('weeklyPriceSelect');
+									const selectedWeeklyPrice = '${weeklyPrice}'; // Replace with the actual selected weekly price from the server-side
+
+									// Set the selected weekly price based on the value from the server-side
+									if (selectedWeeklyPrice) {
+										for (let i = 0; i < weeklyPriceSelect.options.length; i++) {
+											if (weeklyPriceSelect.options[i].value === selectedWeeklyPrice) {
+												weeklyPriceSelect.selectedIndex = i;
+												break;
+											}
+										}
+									}
+								</script>
+
+
+								<div class="col-md-3">
+									<input class="form-control" placeholder="pet, bill included..."
+										name="searchInput" value="${searchInput != null ? searchInput : 'pet, uni,...'}"/>
 								</div>
 							</div>
-
-							<div class="col-md-3">
-								<select class="form-select" name="state">
-									<option selected >State</option>
-									<option value="NSW">New South Wales</option>
-									<option value="VIC">Victoria</option>
-									<option value="QLD">Queensland</option>
-									<option value="WA">Western Australia</option>
-									<option value="SA">South Australia</option>
-									<option value="NT">Northern Territory</option>
-									<option value="TAS">Tasmania</option>
-									<option value="ACT">Australia Capital Territory</option>
-								</select>
-							</div>
-							<div class="col-md-3">
-								<select class="form-select" name="weeklyPrice">
-									<option selected >Weekly price</option>
-									<option value="$100-$200">$100-$200</option>
-									<option value="$200-$300">$200-$300</option>
-									<option value="over $300">over $300</option>
-								</select>
-							</div>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="pet, bill included..." name="searchInput" />
-							</div>
 						</div>
-					</div>
-					<div class="col-md-2">
-						<button class="btn btn-primary w-100">Search</button>
+						<div class="col-md-2">
+							<button class="btn btn-primary w-100">Search</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	</form>
+	<!-- Search end -->
 
 	<!-- About Start -->
 	<div class="container-xxl py-5">
@@ -365,156 +404,159 @@
 	</div>
 	<!-- Room List End -->
 
-			<!-- Testimonial Start -->
-		<div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn"
-			data-wow-delay="0.1s" style="margin-bottom: 90px;">
-			<div class="container">
-				<div class="owl-carousel testimonial-carousel py-5">
-					<div
-						class="testimonial-item position-relative bg-white rounded overflow-hidden">
-						<p>Hommie is a game-changer for student housing! From seamless
-							roommate matching to hassle-free rental agreements, it's the
-							ultimate solution for stress-free living.</p>
-						<div class="d-flex align-items-center">
-							<img class="img-fluid flex-shrink-0 rounded"
-								src="img/testimonial-1.jpg" style="width: 45px; height: 45px;">
-							<div class="ps-3">
-								<h6 class="fw-bold mb-1">Rose' W.</h6>
-								<small>Monash University</small>
-							</div>
+	<!-- Testimonial Start -->
+	<div class="container-xxl testimonial mt-5 py-5 bg-dark wow zoomIn"
+		data-wow-delay="0.1s" style="margin-bottom: 90px;">
+		<div class="container">
+			<div class="owl-carousel testimonial-carousel py-5">
+				<div
+					class="testimonial-item position-relative bg-white rounded overflow-hidden">
+					<p>Hommie is a game-changer for student housing! From seamless
+						roommate matching to hassle-free rental agreements, it's the
+						ultimate solution for stress-free living.</p>
+					<div class="d-flex align-items-center">
+						<img class="img-fluid flex-shrink-0 rounded"
+							src="img/testimonial-1.jpg" style="width: 45px; height: 45px;">
+						<div class="ps-3">
+							<h6 class="fw-bold mb-1">Rose' W.</h6>
+							<small>Monash University</small>
 						</div>
-						<i
-							class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
 					</div>
-					<div
-						class="testimonial-item position-relative bg-white rounded overflow-hidden">
-						<p>Thanks to Hommie, finding a compatible roommate and
-							securing a great living space has never been easier. It's the
-							go-to app for students looking for a convenient and reliable
-							housing experience.</p>
-						<div class="d-flex align-items-center">
-							<img class="img-fluid flex-shrink-0 rounded"
-								src="img/testimonial-2.jpg" style="width: 45px; height: 45px;">
-							<div class="ps-3">
-								<h6 class="fw-bold mb-1">Cam B.</h6>
-								<small>Victoria University</small>
-							</div>
+					<i
+						class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+				</div>
+				<div
+					class="testimonial-item position-relative bg-white rounded overflow-hidden">
+					<p>Thanks to Hommie, finding a compatible roommate and securing
+						a great living space has never been easier. It's the go-to app for
+						students looking for a convenient and reliable housing experience.</p>
+					<div class="d-flex align-items-center">
+						<img class="img-fluid flex-shrink-0 rounded"
+							src="img/testimonial-2.jpg" style="width: 45px; height: 45px;">
+						<div class="ps-3">
+							<h6 class="fw-bold mb-1">Cam B.</h6>
+							<small>Victoria University</small>
 						</div>
-						<i
-							class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
 					</div>
-					<div
-						class="testimonial-item position-relative bg-white rounded overflow-hidden">
-						<p>I have always strived to find reliable and responsible
-							tenants for my properties. Hommie has made my life so much easier
-							by providing a platform that connects me with trustworthy
-							students seeking housing.</p>
-						<div class="d-flex align-items-center">
-							<img class="img-fluid flex-shrink-0 rounded"
-								src="img/testimonial-3.jpg" style="width: 45px; height: 45px;">
-							<div class="ps-3">
-								<h6 class="fw-bold mb-1">Elon M.</h6>
-								<small>Landlord</small>
-							</div>
+					<i
+						class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
+				</div>
+				<div
+					class="testimonial-item position-relative bg-white rounded overflow-hidden">
+					<p>I have always strived to find reliable and responsible
+						tenants for my properties. Hommie has made my life so much easier
+						by providing a platform that connects me with trustworthy students
+						seeking housing.</p>
+					<div class="d-flex align-items-center">
+						<img class="img-fluid flex-shrink-0 rounded"
+							src="img/testimonial-3.jpg" style="width: 45px; height: 45px;">
+						<div class="ps-3">
+							<h6 class="fw-bold mb-1">Elon M.</h6>
+							<small>Landlord</small>
 						</div>
-						<i
-							class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
 					</div>
+					<i
+						class="fa fa-quote-right fa-3x text-primary position-absolute end-0 bottom-0 me-4 mb-n1"></i>
 				</div>
 			</div>
 		</div>
-		<!-- Testimonial End -->
-		<br> <br> <br> <br> <br>
+	</div>
+	<!-- Testimonial End -->
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
-		<!-- Footer Start -->
-		<div class="container-fluid bg-dark text-light footer wow fadeIn"
-			data-wow-delay="0.1s">
-			<div class="container pb-5">
-				<div class="row g-5">
-					<div class="col-md-6 col-lg-4">
-						<div class="bg-primary rounded p-4">
-							<a href="index.html"><h1
-									class="text-white text-uppercase mb-3">Hommie</h1></a>
-							<p class="text-white mb-0">
-								Download <a class="text-dark fw-medium"
-									href="https://htmlcodex.com/hotel-html-template-pro">Hommie</a>,
-								ultimate platform for students in search of their ideal living
-								companion. Find harmony in shared living and unlock the doors to
-								lifelong friendships.
-							</p>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<h6
-							class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
-						<p class="mb-2">
-							<i class="fa fa-map-marker-alt me-3"></i>123 Beauty Street,
-							Sydney, NSW
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer wow fadeIn"
+		data-wow-delay="0.1s">
+		<div class="container pb-5">
+			<div class="row g-5">
+				<div class="col-md-6 col-lg-4">
+					<div class="bg-primary rounded p-4">
+						<a href="index.html"><h1
+								class="text-white text-uppercase mb-3">Hommie</h1></a>
+						<p class="text-white mb-0">
+							Download <a class="text-dark fw-medium"
+								href="https://htmlcodex.com/hotel-html-template-pro">Hommie</a>,
+							ultimate platform for students in search of their ideal living
+							companion. Find harmony in shared living and unlock the doors to
+							lifelong friendships.
 						</p>
-						<p class="mb-2">
-							<i class="fa fa-phone-alt me-3"></i>+61 2 8123 4567
-						</p>
-						<p class="mb-2">
-							<i class="fa fa-envelope me-3"></i>info@hommie.com.au
-						</p>
-						<div class="d-flex pt-2">
-							<a class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-twitter"></i></a> <a
-								class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-facebook-f"></i></a> <a
-								class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-youtube"></i></a> <a
-								class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-linkedin-in"></i></a>
-						</div>
-					</div>
-					<div class="col-lg-5 col-md-12">
-						<div class="row gy-5 g-4">
-							<div class="col-md-6">
-								<h6
-									class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
-								<a class="btn btn-link" href="">About Us</a> <a
-									class="btn btn-link" href="">Contact Us</a> <a
-									class="btn btn-link" href="">Privacy Policy</a> <a
-									class="btn btn-link" href="">Terms & Condition</a> <a
-									class="btn btn-link" href="">Support</a>
-							</div>
-							<div class="col-md-6">
-								<h6
-									class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
-								<a class="btn btn-link" href="">Landlords</a> <a
-									class="btn btn-link" href="">Students</a>
-							</div>
-						</div>
 					</div>
 				</div>
-			</div>
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Hommie Australia</a>,
-							All Right Reserved.
-
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							</a>
+				<div class="col-md-6 col-lg-3">
+					<h6
+						class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
+					<p class="mb-2">
+						<i class="fa fa-map-marker-alt me-3"></i>123 Beauty Street,
+						Sydney, NSW
+					</p>
+					<p class="mb-2">
+						<i class="fa fa-phone-alt me-3"></i>+61 2 8123 4567
+					</p>
+					<p class="mb-2">
+						<i class="fa fa-envelope me-3"></i>info@hommie.com.au
+					</p>
+					<div class="d-flex pt-2">
+						<a class="btn btn-outline-light btn-social" href=""><i
+							class="fab fa-twitter"></i></a> <a
+							class="btn btn-outline-light btn-social" href=""><i
+							class="fab fa-facebook-f"></i></a> <a
+							class="btn btn-outline-light btn-social" href=""><i
+							class="fab fa-youtube"></i></a> <a
+							class="btn btn-outline-light btn-social" href=""><i
+							class="fab fa-linkedin-in"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-12">
+					<div class="row gy-5 g-4">
+						<div class="col-md-6">
+							<h6
+								class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
+							<a class="btn btn-link" href="">About Us</a> <a
+								class="btn btn-link" href="">Contact Us</a> <a
+								class="btn btn-link" href="">Privacy Policy</a> <a
+								class="btn btn-link" href="">Terms & Condition</a> <a
+								class="btn btn-link" href="">Support</a>
 						</div>
-						<div class="col-md-6 text-center text-md-end">
-							<div class="footer-menu">
-								<a href="">Home</a> <a href="">Cookies</a> <a href="">Help</a> <a
-									href="">FQAs</a>
-							</div>
+						<div class="col-md-6">
+							<h6
+								class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
+							<a class="btn btn-link" href="">Landlords</a> <a
+								class="btn btn-link" href="">Students</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Footer End -->
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Hommie Australia</a>, All
+						Right Reserved.
+
+						<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+						</a>
+					</div>
+					<div class="col-md-6 text-center text-md-end">
+						<div class="footer-menu">
+							<a href="">Home</a> <a href="">Cookies</a> <a href="">Help</a> <a
+								href="">FQAs</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
 
 
-		<!-- Back to Top -->
-		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
+	<!-- Back to Top -->
+	<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
+		class="bi bi-arrow-up"></i></a>
 	</div>
 
 	<!-- JavaScript Libraries -->

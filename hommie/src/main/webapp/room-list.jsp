@@ -104,8 +104,9 @@
 										<a href="register.jsp" class="dropdown-item">Register</a> <a
 											href="login.jsp" class="dropdown-item">Login</a> <a
 											href="logout" class="dropdown-item">Logout</a> <a
-											href="wish-list?command=VIEW_WISH_LIST" class="dropdown-item">Wish-list (${empty sessionScope.wishList? 0 : sessionScope.wishList.size()})</a>
-											
+											href="wish-list?command=VIEW_WISH_LIST" class="dropdown-item">Wish-list
+											(${empty sessionScope.wishList? 0 : sessionScope.wishList.size()})</a>
+
 									</div>
 								</div>
 							</div>
@@ -123,65 +124,104 @@
 			<div class="container-fluid page-header-inner py-5">
 				<div class="container text-center pb-5">
 					<h1 class="display-3 text-white mb-3 animated slideInDown">Rooms</h1>
-					<nav aria-label="breadcrumb">
-					</nav>
+					<nav aria-label="breadcrumb"></nav>
 				</div>
 			</div>
 		</div>
 		<!-- Page Header End -->
 
 
-			<!-- Search Start -->
-	<form action="search">
-	<div class="container-fluid booking pb-5 wow fadeIn"
-		data-wow-delay="0.1s">
-		<div class="container">
-			<div class="bg-white shadow" style="padding: 35px;">
-				<div class="row g-2">
-					<div class="col-md-10">
+		<!-- Search Start -->
+		<form action="search">
+			<div class="container-fluid booking pb-5 wow fadeIn"
+				data-wow-delay="0.1s">
+				<div class="container">
+					<div class="bg-white shadow" style="padding: 35px;">
 						<div class="row g-2">
-							<div class="col-md-3">
-								<div class="date" id="date1" data-target-input="nearest">
-									<input type="text" class="form-control datetimepicker-input"
-										placeholder="Available date" data-target="#date1"
-										data-toggle="datetimepicker" name="availableDate"/>
+							<div class="col-md-10">
+								<div class="row g-2">
+									<div class="col-md-3">
+										<div class="date" id="date1" data-target-input="nearest">
+											<input type="text" class="form-control datetimepicker-input"
+												placeholder="Available date" data-target="#date1"
+												data-toggle="datetimepicker" name="availableDate"
+												value=${availableDate}/>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<select class="form-select" name="state" id="stateSelect">
+											<option selected disabled>State</option>
+											<option value="NSW">New South Wales</option>
+											<option value="VIC">Victoria</option>
+											<option value="QLD">Queensland</option>
+											<option value="WA">Western Australia</option>
+											<option value="SA">South Australia</option>
+											<option value="NT">Northern Territory</option>
+											<option value="TAS">Tasmania</option>
+										</select>
+									</div>
+
+									<script>
+										const stateSelect = document
+												.getElementById('stateSelect');
+										const selectedState = '${state}'; // Replace with the actual selected state from the server-side
+
+										// Set the selected state based on the value from the server-side
+										if (selectedState) {
+											for (let i = 0; i < stateSelect.options.length; i++) {
+												if (stateSelect.options[i].value === selectedState) {
+													stateSelect.selectedIndex = i;
+													break;
+												}
+											}
+										}
+									</script>
+
+									<div class="col-md-3">
+										<select class="form-select" name="weeklyPrice"
+											id="weeklyPriceSelect">
+											<option value="0" selected disabled>Weekly price</option>
+											<option value="200">$100-$200</option>
+											<option value="300">$200-$300</option>
+											<option value="400">$300-$400</option>
+											<option value="2000">over $400</option>
+										</select>
+									</div>
+
+									<script>
+										const weeklyPriceSelect = document
+												.getElementById('weeklyPriceSelect');
+										const selectedWeeklyPrice = '${weeklyPrice}'; // Replace with the actual selected weekly price from the server-side
+
+										// Set the selected weekly price based on the value from the server-side
+										if (selectedWeeklyPrice) {
+											for (let i = 0; i < weeklyPriceSelect.options.length; i++) {
+												if (weeklyPriceSelect.options[i].value === selectedWeeklyPrice) {
+													weeklyPriceSelect.selectedIndex = i;
+													break;
+												}
+											}
+										}
+									</script>
+
+
+									<div class="col-md-3">
+										<input class="form-control"
+											placeholder="pet, bill included..." name="searchInput"
+											value=${searchInput} />
+									</div>
 								</div>
 							</div>
-
-							<div class="col-md-3">
-								<select class="form-select" name="state">
-									<option selected >State</option>
-									<option value="NSW">New South Wales</option>
-									<option value="VIC">Victoria</option>
-									<option value="QLD">Queensland</option>
-									<option value="WA">Western Australia</option>
-									<option value="SA">South Australia</option>
-									<option value="NT">Northern Territory</option>
-									<option value="TAS">Tasmania</option>
-								</select>
-							</div>
-							<div class="col-md-3">
-								<select class="form-select" name="weeklyPrice">
-									<option selected >Weekly price</option>
-									<option value="$100-$200">$100-$200</option>
-									<option value="$200-$300">$200-$300</option>
-									<option value="over $300">over $300</option>
-								</select>
-							</div>
-							<div class="col-md-3">
-								<input class="form-control" placeholder="pet, bill included..." name="searchInput" />
+							<div class="col-md-2">
+								<button class="btn btn-primary w-100">Search</button>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-2">
-						<button class="btn btn-primary w-100">Search</button>
-					</div>
 				</div>
 			</div>
-		</div>
-	</div>
-	</form>
-	<!-- Search End -->
+		</form>
+		<!-- Search End -->
 
 		<!-- Room List Start -->
 		<div class="container-xxl py-5">
@@ -209,17 +249,19 @@
 									</div>
 									<div class="d-flex mb-3">
 										<small class="border-end me-3 pe-3"><i
-											class="fa fa-bed text-primary me-2"></i>${room.countBed} Bed</small> <small
-											class="border-end me-3 pe-3"><i
-											class="fa fa-bath text-primary me-2"></i>${room.countBath} Bath</small> <small><i
-											class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+											class="fa fa-bed text-primary me-2"></i>${room.countBed} Bed</small>
+										<small class="border-end me-3 pe-3"><i
+											class="fa fa-bath text-primary me-2"></i>${room.countBath}
+											Bath</small> <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
 									</div>
 									<p class="text-body mb-3">${room.description}</p>
 									<div class="d-flex justify-content-between">
 										<a class="btn btn-sm btn-primary rounded py-2 px-4"
-											href="room?roomId=${room.id}">View Detail</a>
-										<input type="button" value="Add" onclick="window.location.href='wish-list?command=ADD_TO_WISH_LIST&roomId=${room.id}'" class="btn btn-sm btn-primary rounded py-2 px-4"/>
-											
+											href="room?roomId=${room.id}">View Detail</a> <input
+											type="button" value="Add"
+											onclick="window.location.href='wish-list?command=ADD_TO_WISH_LIST&roomId=${room.id}'"
+											class="btn btn-sm btn-primary rounded py-2 px-4" />
+
 									</div>
 								</div>
 							</div>

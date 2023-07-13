@@ -1,8 +1,8 @@
 package coding.servlet;
 
 import java.io.IOException;
-
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -39,13 +39,22 @@ public class SearchServlet extends HttpServlet {
             String state = request.getParameter("state");
             String availableDate = request.getParameter("availableDate");
 
-            System.out.println(searchInput);
-            System.out.println(weeklyPrice);
-            System.out.println(availableDate);
-            System.out.println(state);
+            System.out.println("search: " + searchInput);
+            System.out.println("price: " + weeklyPrice);
+            System.out.println("date: " + availableDate);
+            System.out.println("state: " + state);
 
             RoomService roomService = new RoomService();
-            List<Room> roomList = roomService.getRoomsBySearch(searchInput, weeklyPrice, state, availableDate);
+            
+            List<Room> roomList;
+
+            if (state != null) {
+                roomList = roomService.getRoomsBySearchWithState(searchInput, weeklyPrice, state, availableDate);
+            } else {
+                roomList = roomService.getRoomsBySearchWithoutState(searchInput, weeklyPrice, availableDate);
+            }
+
+
 
             request.setAttribute("roomList", roomList);
             request.setAttribute("searchInput", searchInput);

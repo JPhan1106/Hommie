@@ -36,7 +36,6 @@ public class RoomService {
 				room = new Room(id, title, description, price, countBed, countBath, image1Url);
 
 				list.add(room);
-				System.out.println(list.get(0).getId());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -79,7 +78,6 @@ public class RoomService {
 				room = new Room(id, title, description, price, countBed, countBath, image1Url);
 
 				list.add(room);
-				System.out.println(list.get(0).getId());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -132,10 +130,11 @@ public class RoomService {
 				String image2Url = rs.getString("image2_url");
 				String image3Url = rs.getString("image3_url");
 				String image4Url = rs.getString("image4_url");
+				String mapURL = rs.getString("mapURL");
 
 				room = new Room( id,  title,  description,  price, bond,  squareArea,  capacity,  countBed,
 						 countBath,  availableDate,  landlordId,  lat,  lng,  address,
-						 state,  postcode,  image1Url,  image2Url,  image3Url,  image4Url);
+						 state,  postcode,  image1Url,  image2Url,  image3Url,  image4Url, mapURL);
 
 			}
 		} catch (Exception e) {
@@ -156,8 +155,7 @@ public class RoomService {
 
 	}
 	
-	
-	public List<Room> getRoomsBySearch(String searchInput, String weeklyPrice, String state, String availableDate) throws SQLException {
+	public List<Room> getRoomsBySearchWithState(String searchInput, String weeklyPrice, String state, String availableDate) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -167,13 +165,13 @@ public class RoomService {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
 			ps = conn.prepareStatement("SELECT * FROM room "
-				    + "WHERE MATCH (title, description, address, state) AGAINST (?) "
+				    + "WHERE ((MATCH (title, description, address, state) AGAINST (?) "
 				    + "OR available_date LIKE ? "
-				    + "OR price LIKE ? "
-				    + "OR state LIKE ?;");
+				    + "AND price <= ? ))"
+				    + "AND state LIKE ?;");
 				ps.setString(1, searchInput);
 				ps.setString(2, "%" + availableDate + "%");
-				ps.setString(3, "%" + weeklyPrice + "%");
+				ps.setString(3, weeklyPrice);
 				ps.setString(4, "%" + state + "%");
 
 			rs = ps.executeQuery();
@@ -204,7 +202,60 @@ public class RoomService {
 				conn.close();
 			}
 		}
+		System.out.println("List with state: " + list);
 
+		return list;
+	}
+
+
+	public List<Room> getRoomsBySearchWithoutState(String searchInput, String weeklyPrice, String availableDate) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Room room = null;
+		List<Room> list = new ArrayList<Room>();
+		try {
+//			make connection to mySQL
+			conn = DBUtil.makeConnection();
+			ps = conn.prepareStatement("SELECT * FROM room "
+				    + "WHERE MATCH (title, description, address, state) AGAINST (?) "
+				    + "OR available_date LIKE ? "
+				    + "OR price LIKE ? ");
+				ps.setString(1, searchInput);
+				ps.setString(2, "%" + availableDate + "%");
+				ps.setString(3, "%" + weeklyPrice + "%");
+
+
+
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String title = rs.getString("title");
+				String description = rs.getString("description");
+				int price = rs.getInt("price");
+				int countBed = rs.getInt("count_bed");
+				int countBath = rs.getInt("count_bath");
+				String image1Url = rs.getString("image1_url");
+
+				room = new Room(id, title, description, price, countBed, countBath, image1Url);
+
+				list.add(room);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		System.out.println("List without state input: " + list);
 		return list;
 	}
 }
