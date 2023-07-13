@@ -121,7 +121,7 @@
 									href="login.jsp" class="nav-item nav-link">Landlord</a>
 								<div class="nav-item dropdown">
 									<a href="#" class="nav-link dropdown-toggle"
-										data-bs-toggle="dropdown">Account/Hi!Luv</a>
+										data-bs-toggle="dropdown">Account</a>
 									<div class="dropdown-menu rounded-0 m-0">
 										<a href="register.jsp" class="dropdown-item">Register</a> <a
 											href="login.jsp" class="dropdown-item">Login</a> <a
