@@ -130,11 +130,11 @@ public class RoomService {
 				String image2Url = rs.getString("image2_url");
 				String image3Url = rs.getString("image3_url");
 				String image4Url = rs.getString("image4_url");
-				String mapURL = rs.getString("mapURL");
+				String mapUrl = rs.getString("map_url");
 
 				room = new Room( id,  title,  description,  price, bond,  squareArea,  capacity,  countBed,
 						 countBath,  availableDate,  landlordId,  lat,  lng,  address,
-						 state,  postcode,  image1Url,  image2Url,  image3Url,  image4Url, mapURL);
+						 state,  postcode,  image1Url,  image2Url,  image3Url,  image4Url, mapUrl);
 
 			}
 		} catch (Exception e) {
