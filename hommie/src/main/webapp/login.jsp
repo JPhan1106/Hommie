@@ -149,43 +149,16 @@
 			</div>
 			<div class="center-form">
 				<script>
-					function submitLoginForm() {
-						checkFormAction();
-						encrypt();
-						var form = document.getElementById("loginForm");
-						form.submit();
-					}
-
-					function checkFormAction() {
-						var userType = document
-								.querySelector('input[name="userType"]:checked').value;
-						var form = document.getElementById("loginForm");
-
-						if (userType === "student") {
-							form.action = "studentLogin";
-						} else if (userType === "landlord") {
-							form.action = "landlordLogin";
-						}
-					}
-
-					function encrypt() {
+					function encryptThenSubmitForm() {
 					    var password = document.getElementById("password").value;
 					    var encryptedPassword = md5(password);
 					    document.getElementById("password").value = encryptedPassword;
+					    var form = document.getElementById("loginForm");
+						form.submit();
 					}
 				</script>
 
-				<form id="loginForm" method="post" style="align-content: center">
-					<div class="row g-3">
-						<div class="col-md-6">
-							<input type="radio" value="student" id="radioOne" name="userType"
-								checked /> <label class="p-2" for="radioOne">Student</label> <input
-								type="radio" value="landlord" id="radioTwo" name="userType" />
-							<label class="p-2" for="radioTwo">Landlord</label>
-						</div>
-					</div>
-					<br> <br>
-
+				<form action ="login" id="loginForm" method="post" style="align-content: center">
 					<div class="col-md-6 w-100">
 						<div class="form-floating">
 							<input type="email" name="email" value="${param.email}"
@@ -206,16 +179,18 @@
 					<br>
 					<div class="col-md-6 w-100">
 						<button class="btn btn-primary w-100 py-3" type="submit"
-							onClick="submitLoginForm()">Login</button>
+							onClick="encryptThenSubmitForm()">Login</button>
 					</div>
 				</form>
 
 				<br>
 				<h5>
-					Don't have an account? Click <a href="register-Hommie.html">
+					Don't have an account? Click <a href="register.jsp">
 						here </a> to register
 				</h5>
 			</div>
+			
+			
 		</div>
 	</div>
 
@@ -223,8 +198,6 @@
 
 
 	<!-- Newsletter Start -->
-	<br>
-	<br>
 	<br>
 	<br>
 	<br>

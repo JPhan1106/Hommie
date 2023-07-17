@@ -209,7 +209,7 @@
 					</div>
 					<div data-wow-delay="0.1s">
 						<iframe class="position-relative rounded w-100 h-100"
-							src="${room.mapURL}"
+							src="${room.mapUrl}"
 							frameborder="0" style="min-height: 350px; border: 0;"
 							allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 					</div>
