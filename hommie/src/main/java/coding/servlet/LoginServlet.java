@@ -60,11 +60,13 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 				
 				if (user.getRole().equals("student")) {
 					session.setAttribute("user", user);
+					session.setAttribute("studentId", user.getId());
 					RequestDispatcher rd = request.getRequestDispatcher("home");
 					rd.forward(request, response);
 				}
 				else if (user.getRole().equals("landlord")) {
 					session.setAttribute("user", user);
+					session.setAttribute("landlordId", user.getId());
 					RequestDispatcher rd = request.getRequestDispatcher("landlord-home.jsp");
 					rd.forward(request, response);
 				}

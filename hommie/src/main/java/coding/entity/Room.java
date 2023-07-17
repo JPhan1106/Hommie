@@ -77,6 +77,7 @@ public class Room {
 		this.mapUrl = mapUrl;
 	}
 
+
 	public int getId() {
 		return id;
 	}

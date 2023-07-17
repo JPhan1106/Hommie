@@ -117,7 +117,7 @@
 							room</span>
 				</div>
 				<div class="center-form">
-					<form action="listing" id="listingForm" method="get"
+					<form action="newListing" id="listingForm" method="get" enctype="multipart/form-data"
 						style="align-content: center">
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
@@ -232,25 +232,25 @@
 
 								<div class="form-floating">
 									<input type="file" class="form-control" id="image1"
-										name="image1"> <label for="image1"><i
+										name="image1" accept="image/*"> <label for="image1"><i
 									class="fa fa-file-image-o" aria-hidden="true"></i>Image 1</label>
 								</div>
 
 								<div class="form-floating">
 									<input type="file" class="form-control" id="image2"
-										name="image2"> <label for="image2"><i
+										name="image2" accept="image/*"> <label for="image2"><i
 									class="fa fa-file-image-o" aria-hidden="true"></i>Image 2</label>
 								</div>
 
 								<div class="form-floating">
 									<input type="file" class="form-control" id="image3"
-										name="image3"> <label for="image3"><i
+										name="image3" accept="image/*"> <label for="image3"><i
 									class="fa fa-file-image-o" aria-hidden="true"></i>Image 3</label>
 								</div>
 
 								<div class="form-floating">
 									<input type="file" class="form-control" id="image4"
-										name="image4"> <label for="image4"><i
+										name="image4" accept="image/*"> <label for="image4"><i
 									class="fa fa-file-image-o" aria-hidden="true"></i>Image 4</label>
 								</div>
 							</div>
