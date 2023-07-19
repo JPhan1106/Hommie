@@ -76,28 +76,12 @@ public class Room {
 		this.image4Url = image4Url;
 		this.mapURL = mapURL;
 	}
-	
-	// constructor for getAllRentedRoomsByLandlordId showing studentId
-	
 
 	public int getId() {
 		return id;
 	}
 
 
-
-	public Room(int id, String title, String description, int price, int countBed, int countBath, int studentId,
-			String image1Url) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.price = price;
-		this.countBed = countBed;
-		this.countBath = countBath;
-		this.studentId = studentId;
-		this.image1Url = image1Url;
-	}
 
 	public void setId(int id) {
 		this.id = id;
