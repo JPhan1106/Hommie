@@ -96,12 +96,13 @@
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
 								<a href="home" class="nav-item nav-link active">Home</a> <a
-									href="roomList" class="nav-item nav-link">Rooms</a> 
-								<c:if test="${not empty user}">
+									href="roomList" class="nav-item nav-link">Rooms</a> <a
+									href="login.jsp" class="nav-item nav-link">Landlord</a>
+								<c:if test="${not empty student}">
 									<div class="nav-item dropdown">
 										<a href="#" class="nav-link dropdown-toggle"
-											data-bs-toggle="dropdown"> Hello ${user.firstName}
-											${user.lastName}</a>
+											data-bs-toggle="dropdown"> ${student.firstName}
+											${student.lastName}</a>
 										<div class="dropdown-menu rounded-0 m-0">
 											<a href="logout" class="dropdown-item">Logout</a> <a
 												href="wish-list.jsp" class="dropdown-item">Wish-list</a>
@@ -109,7 +110,19 @@
 									</div>
 								</c:if>
 
-								<c:if test="${empty user}">
+								<c:if test="${not empty landlord}">
+									<div class="nav-item dropdown">
+										<a href="#" class="nav-link dropdown-toggle"
+											data-bs-toggle="dropdown"> ${landlord.firstName}
+											${landlord.lastName}</a>
+										<div class="dropdown-menu rounded-0 m-0">
+											<a href="logout" class="dropdown-item">Logout</a> <a
+												href="wish-list.jsp" class="dropdown-item">Wish-list</a>
+										</div>
+									</div>
+								</c:if>
+
+								<c:if test="${empty student and empty landlord}">
 									<div class="nav-item dropdown">
 										<a href="#" class="nav-link dropdown-toggle"
 											data-bs-toggle="dropdown"> Account</a>
@@ -143,6 +156,10 @@
 							<div class="p-3" style="max-width: 700px;">
 								<h1 class="display-3 text-white mb-4 animated slideInDown">Looking
 									for a flatmate?</h1>
+								<a href=""
+									class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Landlord</a>
+								<a href=""
+									class="btn btn-light py-md-3 px-md-5 animated slideInRight">Student</a>
 							</div>
 						</div>
 					</div>
@@ -153,6 +170,10 @@
 							<div class="p-3" style="max-width: 700px;">
 								<h1 class="display-3 text-white mb-4 animated slideInDown">Finding
 									a room near your campus?</h1>
+								<a href=""
+									class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Landlord</a>
+								<a href=""
+									class="btn btn-light py-md-3 px-md-5 animated slideInRight">Student</a>
 							</div>
 						</div>
 					</div>

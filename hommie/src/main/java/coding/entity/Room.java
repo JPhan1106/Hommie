@@ -17,7 +17,7 @@ public class Room {
 
 
 // location:
-	private String mapUrl;
+	private String mapURL;
 	private String lat;
 	private String lng;
 	private String address;
@@ -52,7 +52,7 @@ public class Room {
 // constructor for getRoomDetails
 	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity, int countBed,
 			int countBath, String availableDate, int landlordId, String lat, String lng, String address,
-			String state, String postcode, String image1Url, String image2Url, String image3Url, String image4Url, String mapUrl) {
+			String state, String postcode, String image1Url, String image2Url, String image3Url, String image4Url, String mapURL) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -74,9 +74,8 @@ public class Room {
 		this.image2Url = image2Url;
 		this.image3Url = image3Url;
 		this.image4Url = image4Url;
-		this.mapUrl = mapUrl;
+		this.mapURL = mapURL;
 	}
-
 
 	public int getId() {
 		return id;
@@ -324,12 +323,12 @@ public class Room {
 		this.bond = bond;
 	}
 
-	public String getMapUrl() {
-		return mapUrl;
+	public String getMapURL() {
+		return mapURL;
 	}
 
-	public void setMapUrl(String mapUrl) {
-		this.mapUrl = mapUrl;
+	public void setMapURL(String mapURL) {
+		this.mapURL = mapURL;
 	}
 	
 
