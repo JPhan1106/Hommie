@@ -77,18 +77,43 @@ public class Room {
 		this.mapUrl = mapUrl;
 	}
 
-
+	
 	public int getId() {
 		return id;
 	}
 
+	// constructor for getRentedRoomDetails (for landlord view)
 
-
-	public void setId(int id) {
+	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity,
+			int countBed, int countBath, String availableDate, int landlordId, int studentId, String mapUrl, String lat,
+			String lng, String address, String state, String postcode, String image1Url, String image2Url,
+			String image3Url, String image4Url) {
+		super();
 		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.price = price;
+		this.bond = bond;
+		this.squareArea = squareArea;
+		this.capacity = capacity;
+		this.countBed = countBed;
+		this.countBath = countBath;
+		this.availableDate = availableDate;
+		this.landlordId = landlordId;
+		this.studentId = studentId;
+		this.mapUrl = mapUrl;
+		this.lat = lat;
+		this.lng = lng;
+		this.address = address;
+		this.state = state;
+		this.postcode = postcode;
+		this.image1Url = image1Url;
+		this.image2Url = image2Url;
+		this.image3Url = image3Url;
+		this.image4Url = image4Url;
 	}
 
-
+	
 
 	public String getTitle() {
 		return title;
