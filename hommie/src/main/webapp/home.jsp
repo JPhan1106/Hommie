@@ -96,7 +96,7 @@
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
 								<a href="home" class="nav-item nav-link active">Home</a> <a
-									href="roomList" class="nav-item nav-link">Rooms</a> 
+									href="roomList" class="nav-item nav-link">Rooms</a>
 								<c:if test="${not empty user}">
 									<div class="nav-item dropdown">
 										<a href="#" class="nav-link dropdown-toggle"
@@ -187,12 +187,15 @@
 										<input type="text" class="form-control datetimepicker-input"
 											placeholder="Available date" data-target="#date1"
 											data-toggle="datetimepicker" name="availableDate"
-											value="${availableDate != null ? availableDate : 'Available date'}"/>
+											value="${availableDate != null ? availableDate : 'Available date'}" />
 									</div>
 								</div>
 
 								<div class="col-md-3">
-									<select class="form-select" name="state" id="stateSelect">
+
+								
+									<select class="form-select" name="state" id="stateSelect"
+										onchange="clearStateError()">
 										<option selected disabled>State</option>
 										<option value="NSW">New South Wales</option>
 										<option value="VIC">Victoria</option>
@@ -202,7 +205,12 @@
 										<option value="NT">Northern Territory</option>
 										<option value="TAS">Tasmania</option>
 									</select>
+																		<c:if test="${not empty errorMessage}">
+											<p style="color: #ff385c; text-align: center; margin-top: 10px; font-size: 12px;">${errorMessage}</p>
+									</c:if>
+									
 								</div>
+
 
 								<script>
 									const stateSelect = document
@@ -219,6 +227,7 @@
 										}
 									}
 								</script>
+
 
 								<div class="col-md-3">
 									<select class="form-select" name="weeklyPrice"
@@ -249,8 +258,8 @@
 
 
 								<div class="col-md-3">
-									<input class="form-control" placeholder="pet, bill included..."
-										name="searchInput" value="${searchInput != null ? searchInput : 'pet, uni,...'}"/>
+									<input class="form-control"
+										name="searchInput" value="${searchInput}"/>
 								</div>
 							</div>
 						</div>
@@ -341,6 +350,7 @@
 	<!-- Room List Start -->
 	<div class="container-xxl py-5">
 		<div class="container">
+			
 			<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 				<h6 class="section-title text-center text-primary text-uppercase">Home
 					Tour</h6>
@@ -348,6 +358,7 @@
 					Explore Our <span class="text-primary text-uppercase">Rooms</span>
 				</h1>
 			</div>
+
 			<div class="row g-4">
 				<c:forEach var="room" items="${roomList}">
 					<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">

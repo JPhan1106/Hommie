@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import coding.entity.Room;
-import coding.service.RoomService;
+import coding.service.LandlordRoomService;
 
 /**
  * Servlet implementation class LandlordRoomListServlet
@@ -36,17 +36,43 @@ public class LandlordRoomListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		try {
+
 			HttpSession session = request.getSession();
 			Integer landlordId = (Integer) session.getAttribute("landlordId");
 
-			RoomService roomService = new RoomService();
-			List<Room> roomList = roomService.getAllAvailableRoomsByLandlordId(landlordId);
+			String type = request.getParameter("TYPE");
 
-			RequestDispatcher rd = request.getRequestDispatcher("room-list.jsp");
-			request.setAttribute("roomList", roomList);
-			rd.forward(request, response);
+			if (type.equals("ALL")) {
+				LandlordRoomService landlordRoomService = new LandlordRoomService();
+				List<Room> availableRoomList = landlordRoomService.getAllAvailableRoomsByLandlordId(landlordId);
+				List<Room> rentedRoomList = landlordRoomService.getAllRentedRoomsByLandlordId(landlordId);
+
+				RequestDispatcher rd = request.getRequestDispatcher("landlord-room-list.jsp");
+				request.setAttribute("availableRoomList", availableRoomList);
+				request.setAttribute("rentedRoomList", rentedRoomList);
+				rd.forward(request, response);
+			}
+			
+			else if (type.equals("AVAILABLE")) {
+				LandlordRoomService landlordRoomService = new LandlordRoomService();
+				List<Room> availableRoomList = landlordRoomService.getAllAvailableRoomsByLandlordId(landlordId);
+				
+				RequestDispatcher rd = request.getRequestDispatcher("landlord-room-list.jsp");
+				request.setAttribute("availableRoomList", availableRoomList);
+				rd.forward(request, response);
+			}
+			
+			else if (type.equals("RENTED")) {
+				LandlordRoomService landlordRoomService = new LandlordRoomService();
+				List<Room> rentedRoomList = landlordRoomService.getAllRentedRoomsByLandlordId(landlordId);
+
+				RequestDispatcher rd = request.getRequestDispatcher("landlord-room-list.jsp");
+				request.setAttribute("rentedRoomList", rentedRoomList);
+				rd.forward(request, response);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
