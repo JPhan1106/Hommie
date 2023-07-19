@@ -180,6 +180,12 @@
 									class="btn btn-link" href="">Terms & Condition</a> <a
 									class="btn btn-link" href="">Support</a>
 							</div>
+							<div class="col-md-6">
+								<h6
+									class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
+								<a class="btn btn-link" href="">Landlords</a> <a
+									class="btn btn-link" href="">Students</a>
+							</div>
 						</div>
 					</div>
 				</div>

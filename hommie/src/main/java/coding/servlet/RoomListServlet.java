@@ -33,9 +33,7 @@ public class RoomListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		try {
-			
 			RoomService roomService = new RoomService();
 			List<Room> roomList = roomService.getAllRooms();
 
