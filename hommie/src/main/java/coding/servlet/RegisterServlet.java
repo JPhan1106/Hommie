@@ -11,37 +11,37 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import coding.entity.Landlord;
-import coding.service.LandlordService;
+
+import coding.entity.User;
+import coding.service.UserService;
+
+
 
 /**
- * Servlet implementation class LandlordLoginServlet
+ * Servlet implementation class RegisterServlet
  */
-@WebServlet("/landlordRegister")
-public class LandlordRegisterServlet extends HttpServlet {
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public RegisterServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public LandlordRegisterServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -51,6 +51,7 @@ public class LandlordRegisterServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String confirmPassword = request.getParameter("confirmPassword");
+		String role = request.getParameter("role");
 
 		// Validate email and password
 		List<String> errors = validateData(email, password, confirmPassword);
@@ -61,11 +62,11 @@ public class LandlordRegisterServlet extends HttpServlet {
 			return;
 		}
 
-		LandlordService landlordService = new LandlordService();
+		UserService userService = new UserService();
 		try {
 			// Check for duplicate email, and password
 
-			boolean isEmailAvailable = landlordService.isEmailAvailable(email);
+			boolean isEmailAvailable = userService.isEmailAvailable(email);
 
 			if (!isEmailAvailable) {
 				errors.add("Email has been registered. Please use another email.");
@@ -78,9 +79,9 @@ public class LandlordRegisterServlet extends HttpServlet {
 				return;
 			}
 
-			Landlord landlord = new Landlord(firstName, lastName, phoneNumber, email, password);
+			User user = new User(firstName, lastName, phoneNumber, email, password, role);
 
-			boolean isInsertSuccessful = landlordService.insertLandlord(landlord);
+			boolean isInsertSuccessful = userService.insertUser(user);
 
 			if (isInsertSuccessful) {
 				response.sendRedirect("register-success.jsp");

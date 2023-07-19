@@ -150,43 +150,27 @@
 					</h1>
 				</div>
 				<div class="center-form">
-					<script>
-						function submitRegisterForm() {
-							checkFormAction()
-							encrypt();
-							var form = document.getElementById("registerForm");
-							form.submit();
-						}
-						
-					function checkFormAction() {
-						    var userType = document.querySelector('input[name="userType"]:checked').value;
-						    var form = document.getElementById("registerForm");
-
-						    if (userType === "student") {
-						        form.action = "studentRegister";
-						    } else if (userType === "landlord") {
-						        form.action = "landlordRegister";
-						    } 
-					}
-						
-						function encrypt() {
+					<script>				
+						function encryptThenSubmitForm() {
 							var password = document.getElementById("password").value;
 							var encryptedPassword = md5(password);
 							document.getElementById("password").value = encryptedPassword;	
 							var confirmPassword = document.getElementById("confirmPassword").value;
 							var encryptedConfirmPassword = md5(confirmPassword);
 							document.getElementById("confirmPassword").value = encryptedConfirmPassword;
+							var form = document.getElementById("registerForm");
+							form.submit();
 							
 						}
 					</script>
 
-					<form id="registerForm" method="post">
+					<form  action ="register" id="registerForm" method="post">
 						<div class="row g-3">
 							<div class="col-md-6" style="align-content: center">
 								<input type="radio" value="student" id="radioOne"
-									name="userType" checked /> <label class="p-2" for="radioOne">Student</label>
+									name="role" checked /> <label class="p-2" for="radioOne">Student</label>
 								<input type="radio" value="landlord" id="radioTwo"
-									name="userType" /> <label class="p-2" for="radioTwo">Landlord</label>
+									name="role" /> <label class="p-2" for="radioTwo">Landlord</label>
 							</div>
 						</div>
 						<br>
@@ -255,7 +239,7 @@
 						<br>
 						<div class="row g-3">
 							<button class="btn btn-primary w-100 py-3" type="submit"
-								onClick="submitRegisterForm()">Register</button>
+								onClick="encryptThenSubmitForm()">Register</button>
 						</div>
 					</form>
 					<br>
