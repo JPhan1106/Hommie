@@ -1,0 +1,73 @@
+package coding.servlet;
+
+import java.io.IOException;
+
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import coding.entity.Student;
+import coding.service.StudentService;
+
+
+
+/**
+ * Servlet implementation class StudentLoginServlet
+ */
+@WebServlet("/studentLogin")
+public class StudentLoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public StudentLoginServlet() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		try {
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+
+			StudentService studentService = new StudentService();
+			Student student = new Student();
+			student = studentService.getStudentByEmailAndPassword(email, password);
+
+			if (student == null) {
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				request.setAttribute("errorMessage", "Login details are incorrect, please try again!");
+				rd.forward(request, response);
+
+			} else {
+				HttpSession session = request.getSession(false);
+				session.setAttribute("student", student);
+				RequestDispatcher rd = request.getRequestDispatcher("home");
+				rd.forward(request, response);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+}
+
