@@ -13,6 +13,7 @@ public class Room {
 	private String availableDate;
 	private int landlordId;
 	private int studentId;
+	private String leaseStartDate;
 
 
 
@@ -85,9 +86,9 @@ public class Room {
 	// constructor for getRentedRoomDetails (for landlord view)
 
 	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity,
-			int countBed, int countBath, String availableDate, int landlordId, int studentId, String mapUrl, String lat,
+			int countBed, int countBath, String leaseStartDate, int landlordId, int studentId,String lat,
 			String lng, String address, String state, String postcode, String image1Url, String image2Url,
-			String image3Url, String image4Url) {
+			String image3Url, String image4Url, String mapUrl) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -98,7 +99,7 @@ public class Room {
 		this.capacity = capacity;
 		this.countBed = countBed;
 		this.countBath = countBath;
-		this.availableDate = availableDate;
+		this.leaseStartDate = leaseStartDate;
 		this.landlordId = landlordId;
 		this.studentId = studentId;
 		this.mapUrl = mapUrl;
@@ -111,6 +112,7 @@ public class Room {
 		this.image2Url = image2Url;
 		this.image3Url = image3Url;
 		this.image4Url = image4Url;
+		this.mapUrl = mapUrl;
 	}
 
 	
@@ -336,7 +338,6 @@ public class Room {
 	}
 
 
-
 	public void setImage4Url(String image4Url) {
 		this.image4Url = image4Url;
 	}
@@ -355,6 +356,18 @@ public class Room {
 
 	public void setMapUrl(String mapUrl) {
 		this.mapUrl = mapUrl;
+	}
+
+	public String getLeaseStartDate() {
+		return leaseStartDate;
+	}
+
+	public void setLeaseStartDate(String leaseStartDate) {
+		this.leaseStartDate = leaseStartDate;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 

@@ -55,6 +55,17 @@ public User(int id, String firstName, String lastName, String phoneNumber, Strin
 }
 
 
+
+public User(int id, String firstName, String lastName, String phoneNumber, String email) {
+	super();
+	this.id = id;
+	this.firstName = firstName;
+	this.lastName = lastName;
+	this.phoneNumber = phoneNumber;
+	this.email = email;
+}
+
+
 public int getId() {
 	return id;
 }

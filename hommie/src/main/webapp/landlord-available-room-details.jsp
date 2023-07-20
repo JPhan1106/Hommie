@@ -57,6 +57,15 @@
 	width: auto;
 	margin: 0 auto;
 }
+
+.button-container {
+  display: flex;
+  justify-content: center; /* Center the buttons horizontally */
+}
+
+.button-container a {
+  margin: 0 10px; /* Add some horizontal spacing between the buttons */
+}
 </style>
 
 <!-- JavaScript Libraries -->
@@ -151,124 +160,103 @@
 		<!-- Header End -->
 
 		<!-- Room Image Start -->
-		<c:if test="${not empty availableRoom}">
-			<div class="container-fluid">
-				<div class="row">
-					<div
-						class="col-md-6 d-flex align-items-center justify-content-center"
-						style="background-color: rgb(240, 244, 248);">
-						<div id="myCarousel" class="carousel slide" data-ride="carousel">
-							<!-- Indicators -->
-							<ol class="carousel-indicators">
-								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-								<li data-target="#myCarousel" data-slide-to="1"></li>
-								<li data-target="#myCarousel" data-slide-to="2"></li>
-							</ol>
+		<div class="container-fluid">
+			<div class="row">
+				<div
+					class="col-md-6 d-flex align-items-center justify-content-center"
+					style="background-color: rgb(240, 244, 248);">
+					<div id="myCarousel" class="carousel slide" data-ride="carousel">
+						<!-- Indicators -->
+						<ol class="carousel-indicators">
+							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="2"></li>
+						</ol>
 
-							<!-- Wrapper for slides -->
-							<div class="carousel-inner">
-								<div class="item active">
-									<img class="img-fluid" src="${availableRoom.image1Url}"
-										style="width: 100%;">
-								</div>
-
-								<div class="item">
-									<img class="img-fluid  src="
-										${availableRoom.image2Url}"
+						<!-- Wrapper for slides -->
+						<div class="carousel-inner">
+							<div class="item active">
+								<img class="img-fluid" src="${availableRoom.image1Url}"
 									style="width: 100%;">
-								</div>
-
-								<div class="item">
-									<img class="img-fluid" src="${availableRoom.image3Url}"
-										style="width: 100%;">
-								</div>
-
 							</div>
-							<!-- Left and right controls -->
-							<a class="left carousel-control" href="#myCarousel"
-								data-slide="prev"> <span
-								class="glyphicon glyphicon-chevron-left"></span> <span
-								class="sr-only">Previous</span>
-							</a> <a class="right carousel-control" href="#myCarousel"
-								data-slide="next"> <span
-								class="glyphicon glyphicon-chevron-right"></span> <span
-								class="sr-only">Next</span>
-							</a>
-						</div>
-					</div>
-					<div class="col-sm-6" style="background-color: rgb(240, 244, 248);">
-						<div class="d-flex justify-content-between mb-3">
-							<h3 class="mb-0">${availableRoom.address}
-								<br>${availableRoom.state} ${availableRoom.postcode}
-							</h3>
 
-							<div class="ps-2"></div>
+							<div class="item">
+								<img class="img-fluid  src="
+									${availableRoom.image2Url}"
+									style="width: 100%;">
+							</div>
+
+							<div class="item">
+								<img class="img-fluid" src="${availableRoom.image3Url}"
+									style="width: 100%;">
+							</div>
+
 						</div>
-						<div class="d-flex mb-3">
-							<small class="border-end me-3 pe-3"><i
-								class="fa fa-bed text-primary me-2"></i>${availableRoom.countBed}
-								Bed</small> <small class="border-end me-3 pe-3"><i
-								class="fa fa-bath text-primary me-2"></i>${availableRoom.countBath}
-								Bath</small> <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
-						</div>
-						<div>
-							<h4>
-								<strong>$${availableRoom.price} Weekly</strong>
-							</h4>
-							<p>
-								<strong>Bond </strong>$${availableRoom.bond}
-							</p>
-							<p>
-								<strong>Available </strong>${availableRoom.availableDate}
-							</p>
-						</div>
-						<div data-wow-delay="0.1s">
-							<iframe class="position-relative rounded w-100 h-100"
-								src="${availableRoom.mapUrl}" frameborder="0"
-								style="min-height: 350px; border: 0;" allowfullscreen=""
-								aria-hidden="false" tabindex="0"></iframe>
-						</div>
+						<!-- Left and right controls -->
+						<a class="left carousel-control" href="#myCarousel"
+							data-slide="prev"> <span
+							class="glyphicon glyphicon-chevron-left"></span> <span
+							class="sr-only">Previous</span>
+						</a> <a class="right carousel-control" href="#myCarousel"
+							data-slide="next"> <span
+							class="glyphicon glyphicon-chevron-right"></span> <span
+							class="sr-only">Next</span>
+						</a>
+					</div>
+				</div>
+				<div class="col-sm-6" style="background-color: rgb(240, 244, 248);">
+					<div class="d-flex justify-content-between mb-3">
+						<h3 class="mb-0">${availableRoom.address}
+							<br>${availableRoom.state} ${availableRoom.postcode}
+						</h3>
+
+						<div class="ps-2"></div>
+					</div>
+					<div class="d-flex mb-3">
+						<small class="border-end me-3 pe-3"><i
+							class="fa fa-bed text-primary me-2"></i>${availableRoom.countBed}
+							Bed</small> <small class="border-end me-3 pe-3"><i
+							class="fa fa-bath text-primary me-2"></i>${availableRoom.countBath}
+							Bath</small> <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+					</div>
+					<div>
+						<h4>
+							<strong>$${availableRoom.price} Weekly</strong>
+						</h4>
+						<p>
+							<strong>Bond </strong>$${availableRoom.bond}
+						</p>
+						<p>
+							<strong>Available </strong>${availableRoom.availableDate}
+						</p>
+					</div>
+					<div data-wow-delay="0.1s">
+						<iframe class="position-relative rounded w-100 h-100"
+							src="${availableRoom.mapUrl}" frameborder="0"
+							style="min-height: 350px; border: 0;" allowfullscreen=""
+							aria-hidden="false" tabindex="0"></iframe>
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<!-- Room Image End -->
-			<!-- Buttons For Available Room Start -->
+		<!-- Room Image End -->
+		<!-- Buttons For Available Room Start -->
 
-			<div class="container-xxl py-5">
-				<div class="container">
-					<div class="text-center wow fadeInUp pb-5" data-wow-delay="0.1s">
-						<a href="landlord-listing.jsp" class="update-button" role="button">Update
-							This Room</a>
-					</div>
+		<div class="container-xxl py-5">
+			<div class="container">
+				<div class="button-container text-center wow fadeInUp"
+					data-wow-delay="0.1s">
+					<a href="landlord-listing.jsp" class="update-button" role="button">Update
+						This Room</a> <a href="#" class="update-button" role="button">Check
+						inspection history</a> <a href="#" class="update-button" role="button">Make
+						it occupied</a>
 				</div>
-				<div class="container">
-					<div class="text-center wow fadeInUp pb-5" data-wow-delay="0.1s">
-						<a href="#" class="update-button" role="button">Check
-							inspection history</a>
-					</div>
-				</div>
-		</c:if>
+			</div>
+		</div>
+
 		<!-- Buttons For Available Room End -->
 
-		<!-- Update Button Start -->
-<%-- 		<c:if test="${not empty rentedRoom}">
-			<div class="container-xxl py-5">
-				<div class="container">
-					<div class="text-center wow fadeInUp pb-5" data-wow-delay="0.1s">
-						<a href="#" class="update-button" role="button">View Rommie's
-							details</a>
-					</div>
-				</div>
-				<div class="container">
-					<div class="text-center wow fadeInUp pb-5" data-wow-delay="0.1s">
-						<a href="#" class="update-button" role="button">Check payment
-							history</a>
-					</div>
-				</div>
-		</c:if> --%>
-		<!-- Update Button  End -->
-		<!--  -->
 		<br> <br>
 
 		<!-- Footer Start -->

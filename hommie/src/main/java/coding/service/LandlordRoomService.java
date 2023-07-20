@@ -11,7 +11,7 @@ import coding.db.DBUtil;
 import coding.entity.Room;
 
 public class LandlordRoomService {
-	
+
 	public List<Room> getAllAvailableRoomsByLandlordId(int landlordId) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -97,7 +97,7 @@ public class LandlordRoomService {
 
 		return list;
 	}
-	
+
 	public Room getAvailableRoomDetails(int roomId) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -156,7 +156,7 @@ public class LandlordRoomService {
 		return room;
 
 	}
-	
+
 	public Room getRentedRoomDetails(int roomId) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -180,7 +180,7 @@ public class LandlordRoomService {
 				int capacity = rs.getInt("capacity");
 				int countBed = rs.getInt("count_bed");
 				int countBath = rs.getInt("count_bath");
-				String availableDate = rs.getString("available_date");
+				String leaseStartDate = rs.getString("lease_start_date");
 				int landlordId = rs.getInt("landlord_id");
 				int studentId = rs.getInt("student_id");
 				String lat = rs.getString("lat");
@@ -195,10 +195,13 @@ public class LandlordRoomService {
 				String mapUrl = rs.getString("map_url");
 
 				room = new Room(id, title, description, price, bond, squareArea, capacity, countBed, countBath,
-						availableDate, landlordId,studentId, lat, lng, address, state, postcode, image1Url, image2Url, image3Url,
-						image4Url, mapUrl);
+						leaseStartDate, landlordId, studentId, lat, lng, address, state, postcode, image1Url, image2Url,
+						image3Url, image4Url, mapUrl);
+
+				System.out.println(room.getLeaseStartDate());
 
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
