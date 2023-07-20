@@ -22,7 +22,7 @@ public class RoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement("select * from `room` limit 3");
+			ps = conn.prepareStatement("select * from `room` where `student_id` IS NULL limit 3");
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
@@ -64,7 +64,7 @@ public class RoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement("select * from `room`");
+			ps = conn.prepareStatement("select * from `room` where `student_id` IS NULL");
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
