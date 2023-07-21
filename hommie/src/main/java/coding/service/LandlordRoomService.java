@@ -21,7 +21,7 @@ public class LandlordRoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement("select * from `room` where `landlord_id`=? and `student_id` IS NULL");
+			ps = conn.prepareStatement("select * from `room` where `landlord_id`=? and `status`='available'");
 			ps.setInt(1, landlordId);
 			rs = ps.executeQuery();
 
@@ -64,7 +64,7 @@ public class LandlordRoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement("select * from `room` where `landlord_id`=? and `student_id` IS NOT NULL");
+			ps = conn.prepareStatement("select * from `room` where `landlord_id`=? and `status`='rented'");
 			ps.setInt(1, landlordId);
 			rs = ps.executeQuery();
 
@@ -133,11 +133,11 @@ public class LandlordRoomService {
 				String image3Url = rs.getString("image3_url");
 				String image4Url = rs.getString("image4_url");
 				String mapUrl = rs.getString("map_url");
+				String status = rs.getString("status");
 
 				room = new Room(id, title, description, price, bond, squareArea, capacity, countBed, countBath,
 						availableDate, landlordId, lat, lng, address, state, postcode, image1Url, image2Url, image3Url,
-						image4Url, mapUrl);
-
+						image4Url, mapUrl, status);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -193,12 +193,13 @@ public class LandlordRoomService {
 				String image3Url = rs.getString("image3_url");
 				String image4Url = rs.getString("image4_url");
 				String mapUrl = rs.getString("map_url");
+				String status = rs.getString("status");
 
 				room = new Room(id, title, description, price, bond, squareArea, capacity, countBed, countBath,
 						leaseStartDate, landlordId, studentId, lat, lng, address, state, postcode, image1Url, image2Url,
-						image3Url, image4Url, mapUrl);
+						image3Url, image4Url, mapUrl, status);
 
-				System.out.println(room.getLeaseStartDate());
+//				System.out.println(room.getLeaseStartDate());
 
 			}
 
@@ -217,6 +218,62 @@ public class LandlordRoomService {
 		}
 
 		return room;
+
+	}
+
+	public void makeRentedRoomAvaible(int roomId) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+//			make connection to mySQL
+			conn = DBUtil.makeConnection();
+			ps = conn.prepareStatement("UPDATE `room` SET `status` = 'available' WHERE `id` = ?");
+			ps.setInt(1, roomId);
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+
+	}
+
+	public void makeAvaibleRoomOccupied(int roomId) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+//			make connection to mySQL
+			conn = DBUtil.makeConnection();
+			ps = conn.prepareStatement("UPDATE `room` SET `status` = 'rented' WHERE `id` = ?");
+			ps.setInt(1, roomId);
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
 
 	}
 

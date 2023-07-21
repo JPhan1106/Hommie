@@ -252,7 +252,7 @@
         <button type="submit" class="update-button">View Rommie's details</button>
       </form>
     <a href="#" class="update-button" role="button">Check payment history</a>
-    <a href="#" class="update-button" role="button">Make this room available</a>
+    <a href="landlordRoom?TYPE=MAKE_AVAILABLE&roomId=${rentedRoom.id}" class="update-button" role="button">Make this room available</a>
   </div>
   </div>
 </div>

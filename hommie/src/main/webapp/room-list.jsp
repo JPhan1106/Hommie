@@ -73,9 +73,9 @@
 		</div>
 		<!-- Spinner End -->
 
-		<!-- Header Start -->
+			<!-- Header Start -->
 		<div class="container-fluid bg-dark px-0">
-			<div class="row gx-0 justify-content-between p-4">
+			<div class="row gx-0 justify-content-between p-3">
 				<div class="col-lg-3 bg-dark d-none d-lg-block">
 					<a href="home"
 						class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
@@ -95,20 +95,31 @@
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
 								<a href="home" class="nav-item nav-link active">Home</a> <a
-									href="roomList" class="nav-item nav-link">Rooms</a> <a
-									href="login.jsp" class="nav-item nav-link">Landlord</a>
-								<div class="nav-item dropdown">
-									<a href="#" class="nav-link dropdown-toggle"
-										data-bs-toggle="dropdown">Account</a>
-									<div class="dropdown-menu rounded-0 m-0">
-										<a href="register.jsp" class="dropdown-item">Register</a> <a
-											href="login.jsp" class="dropdown-item">Login</a> <a
-											href="logout" class="dropdown-item">Logout</a> <a
+									href="roomList" class="nav-item nav-link">Rooms</a>
+								<c:if test="${not empty user}">
+									<div class="nav-item dropdown">
+										<a href="#" class="nav-link dropdown-toggle"
+											data-bs-toggle="dropdown"> Hello ${user.firstName}
+											${user.lastName}</a>
+										<div class="dropdown-menu rounded-0 m-0">
+											<a href="logout" class="dropdown-item">Logout</a> <a
 											href="wish-list?command=VIEW_WISH_LIST" class="dropdown-item">Wish-list
 											(${empty sessionScope.wishList? 0 : sessionScope.wishList.size()})</a>
-
+										</div>
 									</div>
-								</div>
+								</c:if>
+
+								<c:if test="${empty user}">
+									<div class="nav-item dropdown">
+										<a href="#" class="nav-link dropdown-toggle"
+											data-bs-toggle="dropdown"> Account</a>
+										<div class="dropdown-menu rounded-0 m-0">
+											<a href="register.jsp" class="dropdown-item">Register</a> <a
+												href="login.jsp" class="dropdown-item">Login</a> <a
+												href="logout" class="dropdown-item">Logout</a> 
+										</div>
+									</div>
+								</c:if>
 							</div>
 						</div>
 					</nav>
