@@ -96,17 +96,14 @@
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
 								<a href="home" class="nav-item nav-link active">Home</a> <a
-									href="roomList" class="nav-item nav-link">Rooms</a> <a
-									href="login.jsp" class="nav-item nav-link">Landlord</a>
+									href="roomList" class="nav-item nav-link">Rooms</a> 
 								<div class="nav-item dropdown">
 
 									<a href="#" class="nav-link dropdown-toggle"
 										data-bs-toggle="dropdown">Account</a>
 									<div class="dropdown-menu rounded-0 m-0">
 										<a href="register.jsp" class="dropdown-item">Register</a> <a
-											href="login.jsp" class="dropdown-item">Login</a> <a
-											href="logout" class="dropdown-item">Logout</a> <a
-											href="wish-list.jsp" class="dropdown-item">Wish-list</a>
+											href="login.jsp" class="dropdown-item">Login</a>  
 									</div>
 								</div>
 							</div>

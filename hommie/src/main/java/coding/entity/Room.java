@@ -14,6 +14,7 @@ public class Room {
 	private int landlordId;
 	private int studentId;
 	private String leaseStartDate;
+	private String status;
 
 
 
@@ -76,19 +77,16 @@ public class Room {
 		this.image3Url = image3Url;
 		this.image4Url = image4Url;
 		this.mapUrl = mapUrl;
+
 	}
 
 	
-	public int getId() {
-		return id;
-	}
-
 	// constructor for getRentedRoomDetails (for landlord view)
 
 	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity,
 			int countBed, int countBath, String leaseStartDate, int landlordId, int studentId,String lat,
 			String lng, String address, String state, String postcode, String image1Url, String image2Url,
-			String image3Url, String image4Url, String mapUrl) {
+			String image3Url, String image4Url, String mapUrl, String status) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -113,9 +111,39 @@ public class Room {
 		this.image3Url = image3Url;
 		this.image4Url = image4Url;
 		this.mapUrl = mapUrl;
+		this.status = status;
 	}
 
-	
+	// constructor for getAvailableRoomDetails (for landlord view)
+	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity,
+			int countBed, int countBath, String leaseStartDate, int landlordId, String lat,
+			String lng, String address, String state, String postcode, String image1Url, String image2Url,
+			String image3Url, String image4Url, String mapUrl, String status) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.description = description;
+		this.price = price;
+		this.bond = bond;
+		this.squareArea = squareArea;
+		this.capacity = capacity;
+		this.countBed = countBed;
+		this.countBath = countBath;
+		this.leaseStartDate = leaseStartDate;
+		this.landlordId = landlordId;
+		this.mapUrl = mapUrl;
+		this.lat = lat;
+		this.lng = lng;
+		this.address = address;
+		this.state = state;
+		this.postcode = postcode;
+		this.image1Url = image1Url;
+		this.image2Url = image2Url;
+		this.image3Url = image3Url;
+		this.image4Url = image4Url;
+		this.mapUrl = mapUrl;
+		this.status = status;
+	}
 
 	public String getTitle() {
 		return title;
@@ -365,9 +393,21 @@ public class Room {
 	public void setLeaseStartDate(String leaseStartDate) {
 		this.leaseStartDate = leaseStartDate;
 	}
+	
+	public int getId() {
+		return id;
+	}
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 

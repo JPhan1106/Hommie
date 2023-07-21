@@ -96,7 +96,7 @@
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
 								<a href="#" class="nav-item nav-link active">Home</a> <a
-									href="landlordRoomList?TYPE=ALL&landlordId" class="nav-item nav-link">Your Rooms</a>
+									href="landlordRoomList?TYPE=ALL&landlordId" class="nav-item nav-link">Room Management</a>
 								<div class="nav-item dropdown">
 									<a href="#" class="nav-link dropdown-toggle"
 										data-bs-toggle="dropdown"> Hello ${user.firstName}

@@ -249,8 +249,9 @@
 					data-wow-delay="0.1s">
 					<a href="landlord-listing.jsp" class="update-button" role="button">Update
 						This Room</a> <a href="#" class="update-button" role="button">Check
-						inspection history</a> <a href="#" class="update-button" role="button">Make
+						inspection history</a> <a href="landlordRoom?TYPE=MAKE_OCCUPIED&roomId=${availableRoom.id}" class="update-button" role="button">Make
 						it occupied</a>
+						<a href="#" class="update-button" role="button">Delete This Room</a>
 				</div>
 			</div>
 		</div>

@@ -79,16 +79,13 @@
 								id="navbarCollapse">
 								<div class="navbar-nav mr-auto py-0">
 									<a href="home" class="nav-item nav-link active">Home</a> <a
-										href="roomList" class="nav-item nav-link">Rooms</a> <a
-										href="login.jsp" class="nav-item nav-link">Landlord</a>
+										href="roomList" class="nav-item nav-link">Rooms</a> 
 									<div class="nav-item dropdown">
 										<a href="#" class="nav-link dropdown-toggle"
 											data-bs-toggle="dropdown">Account</a>
 										<div class="dropdown-menu rounded-0 m-0">
 											<a href="register.jsp" class="dropdown-item">Register</a> <a
-												href="login.jsp" class="dropdown-item">Login</a> <a
-												href="logout.jsp" class="dropdown-item">Logout</a> <a
-												href="wish-list.jsp" class="dropdown-item">Wish-list</a>
+												href="login.jsp" class="dropdown-item">Login</a> 
 										</div>
 									</div>
 								</div>
@@ -119,10 +116,12 @@
 
 		<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 			<h1 class="mb-5">
-				<span class="text-primary text-uppercase">Congratulations!</span> <br>
-				Your account has been successfully registered <br> Please click
-				<a href="home">here </a>to return to Home page. <br>
-			</h1>
+				<span class="text-primary text-uppercase">Congratulations!</span> <br><br>
+				</h1>
+				<h2>Your account has been successfully registered </h2><br> <br> 
+				<h3><a href="login.jsp">Login</a> to explore our services <br><br>
+				 <a href="home">Return</a> to Home page as guest <br></h3>
+			
 		</div>
 		<br><br><br><br><br><br><br><br><br><br>
 

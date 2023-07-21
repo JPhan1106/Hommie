@@ -104,8 +104,7 @@
 										<a href="#" class="nav-link dropdown-toggle"
 											data-bs-toggle="dropdown">Account</a>
 										<div class="dropdown-menu rounded-0 m-0">
-											<a href="login.jsp" class="dropdown-item">Login</a>  <a
-												href="wish-list.jsp" class="dropdown-item">Wish-list</a>
+											<a href="login.jsp" class="dropdown-item">Login</a>  
 										</div>
 									</div>
 								</div>

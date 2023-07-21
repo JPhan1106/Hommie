@@ -116,8 +116,7 @@
 										<div class="dropdown-menu rounded-0 m-0">
 											<a href="register.jsp" class="dropdown-item">Register</a> <a
 												href="login.jsp" class="dropdown-item">Login</a> <a
-												href="logout" class="dropdown-item">Logout</a> <a
-												href="wish-list.jsp" class="dropdown-item">Wish-list</a>
+												href="logout" class="dropdown-item">Logout</a> 
 										</div>
 									</div>
 								</c:if>
