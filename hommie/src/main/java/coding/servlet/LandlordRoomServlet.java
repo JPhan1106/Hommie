@@ -69,6 +69,12 @@ public class LandlordRoomServlet extends HttpServlet {
 				response.sendRedirect("landlordRoomList?TYPE=ALL");
 
 			}
+			
+			else if (type.equals("DELETE")) {
+				landlordRoomService.deleteRoom(Integer.parseInt(roomId));
+				response.sendRedirect("landlordRoomList?TYPE=ALL");
+
+			}
 
 		}
 

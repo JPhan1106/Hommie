@@ -229,7 +229,7 @@ public class LandlordRoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement("UPDATE `room` SET `status` = 'available' WHERE `id` = ?");
+			ps = conn.prepareStatement("UPDATE `room` SET `status` = 'available' , `student_id` = NULL WHERE `id` = ?");
 			ps.setInt(1, roomId);
 			ps.executeUpdate();
 
@@ -276,5 +276,35 @@ public class LandlordRoomService {
 		}
 
 	}
+	
+	
+	public void deleteRoom(int roomId) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+//			make connection to mySQL
+			conn = DBUtil.makeConnection();
+			ps = conn.prepareStatement("DELETE FROM `room` WHERE `id` = ?");
+			ps.setInt(1, roomId);
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+
+	}
+	
 
 }

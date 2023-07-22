@@ -33,6 +33,8 @@ public class LogoutServlet extends HttpServlet {
 
 		if (session != null) {
 			session.removeAttribute("user");
+			session.removeAttribute("studentId");
+			session.removeAttribute("landlordId");
 			response.sendRedirect("logout.jsp");
 		} else {
 
