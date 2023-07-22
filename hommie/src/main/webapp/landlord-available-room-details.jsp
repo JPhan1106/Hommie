@@ -59,12 +59,12 @@
 }
 
 .button-container {
-  display: flex;
-  justify-content: center; /* Center the buttons horizontally */
+	display: flex;
+	justify-content: center; /* Center the buttons horizontally */
 }
 
 .button-container a {
-  margin: 0 10px; /* Add some horizontal spacing between the buttons */
+	margin: 0 10px; /* Add some horizontal spacing between the buttons */
 }
 </style>
 
@@ -100,6 +100,7 @@
 	text-decoration: none;
 	border: none;
 	border-radius: 4px;
+	margin-right: 10px;
 }
 </style>
 
@@ -242,19 +243,47 @@
 
 		<!-- Room Image End -->
 		<!-- Buttons For Available Room Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="button-container text-center wow fadeInUp" data-wow-delay="0.1s">
+      <a href="landlord-listing.jsp" class="update-button" role="button">Update This Room</a>
+      <a href="#" class="update-button" role="button">Check inspection history</a>
 
-		<div class="container-xxl py-5">
-			<div class="container">
-				<div class="button-container text-center wow fadeInUp"
-					data-wow-delay="0.1s">
-					<a href="landlord-listing.jsp" class="update-button" role="button">Update
-						This Room</a> <a href="#" class="update-button" role="button">Check
-						inspection history</a> <a href="landlordRoom?TYPE=MAKE_OCCUPIED&roomId=${availableRoom.id}" class="update-button" role="button">Make
-						it occupied</a>
-						<a href="#" class="update-button" role="button">Delete This Room</a>
-				</div>
-			</div>
-		</div>
+      <script>
+        function confirmMakeRoomOccupied() {
+          const confirmation = window.confirm("Are you sure you want to make this room occupied?");
+          var form = document.getElementById("confirmMakeRoomOccupied");
+          if (confirmation) {
+            form.submit();
+          }
+        }
+      </script>
+      <form action="landlordRoom" id="confirmMakeRoomOccupied" style="display: inline-block;">
+        <input type="hidden" name="TYPE" value="MAKE_OCCUPIED">
+        <input type="hidden" name="roomId" value="${availableRoom.id}">
+        <button type="submit" onClick="confirmMakeRoomOccupied()" class="update-button">Make this room occupied</button>
+      </form>
+
+      <script>
+        function confirmDeleteRoom() {
+          const confirmation = window.confirm("Are you sure you want to delete this room?");
+          var form = document.getElementById("confirmDeleteRoom");
+          if (confirmation) {
+            form.submit();
+          }
+        }
+      </script>
+      <form action="landlordRoom" id="confirmDeleteRoom" style="display: inline-block;">
+        <input type="hidden" name="TYPE" value="DELETE">
+        <input type="hidden" name="roomId" value="${availableRoom.id}">
+        <button type="submit" onClick="confirmDeleteRoom()" class="update-button">Delete this room</button>
+      </form>
+      
+    </div>
+  </div>
+</div>
+
+
 
 		<!-- Buttons For Available Room End -->
 
