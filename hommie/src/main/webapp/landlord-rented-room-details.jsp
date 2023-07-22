@@ -265,6 +265,10 @@
 							if (confirmation) {
 								form.submit();
 							}
+							
+							else {
+								 event.preventDefault();
+							}
 						}
 					</script>
 					<form action="landlordRoom" id="makeRoomAvailable">

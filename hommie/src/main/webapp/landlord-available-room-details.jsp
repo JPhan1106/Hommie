@@ -255,7 +255,9 @@
           var form = document.getElementById("confirmMakeRoomOccupied");
           if (confirmation) {
             form.submit();
-          }
+          }else {
+				 event.preventDefault();
+			}
         }
       </script>
       <form action="landlordRoom" id="confirmMakeRoomOccupied" style="display: inline-block;">
@@ -270,7 +272,9 @@
           var form = document.getElementById("confirmDeleteRoom");
           if (confirmation) {
             form.submit();
-          }
+          }else {
+				 event.preventDefault();
+			}
         }
       </script>
       <form action="landlordRoom" id="confirmDeleteRoom" style="display: inline-block;">
