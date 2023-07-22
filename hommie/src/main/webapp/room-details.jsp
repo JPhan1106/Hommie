@@ -57,6 +57,10 @@
 	width: auto;
 	margin: 0 auto;
 }
+
+.bold {
+	font-weight: bold;
+}
 </style>
 
 <!-- JavaScript Libraries -->
@@ -125,8 +129,8 @@
 											${user.lastName}</a>
 										<div class="dropdown-menu rounded-0 m-0">
 											<a href="logout" class="dropdown-item">Logout</a> <a
-											href="wish-list?command=VIEW_WISH_LIST" class="dropdown-item">Wish-list
-											(${empty sessionScope.wishList? 0 : sessionScope.wishList.size()})</a>
+												href="wish-list?command=VIEW_WISH_LIST"
+												class="dropdown-item">Wish-list (${empty sessionScope.wishList? 0 : sessionScope.wishList.size()})</a>
 										</div>
 									</div>
 								</c:if>
@@ -138,7 +142,7 @@
 										<div class="dropdown-menu rounded-0 m-0">
 											<a href="register.jsp" class="dropdown-item">Register</a> <a
 												href="login.jsp" class="dropdown-item">Login</a> <a
-												href="logout" class="dropdown-item">Logout</a> 
+												href="logout" class="dropdown-item">Logout</a>
 										</div>
 									</div>
 								</c:if>
@@ -155,13 +159,15 @@
 
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-6 d-flex align-items-center justify-content-center" style="background-color: rgb(240, 244, 248);">
+				<div
+					class="col-md-6 d-flex align-items-center justify-content-center"
+					style="background-color: rgb(240, 244, 248);">
 					<div id="myCarousel" class="carousel slide" data-ride="carousel">
 						<!-- Indicators -->
 						<ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
+							<li data-target="#myCarousel" data-slide-to="1" class="active"></li>
 							<li data-target="#myCarousel" data-slide-to="2"></li>
+							<li data-target="#myCarousel" data-slide-to="3"></li>
 						</ol>
 
 						<!-- Wrapper for slides -->
@@ -172,7 +178,8 @@
 							</div>
 
 							<div class="item">
-								<img class="img-fluid  src="${room.image2Url}"
+								<img class="img-fluid  src="
+									${room.image2Url}"
 									style="width: 100%;">
 							</div>
 
@@ -222,9 +229,9 @@
 					</div>
 					<div data-wow-delay="0.1s">
 						<iframe class="position-relative rounded w-100 h-100"
-							src="${room.mapUrl}"
-							frameborder="0" style="min-height: 350px; border: 0;"
-							allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+							src="${room.mapUrl}" frameborder="0"
+							style="min-height: 350px; border: 0;" allowfullscreen=""
+							aria-hidden="false" tabindex="0"></iframe>
 					</div>
 				</div>
 			</div>
@@ -241,7 +248,7 @@
 						Get In Touch, <span class="text-primary text-uppercase">Hommie</span>
 					</h1>
 				</div>
-				<div class="row g-5">
+				<div class="row g-5 bold">
 					<div class="col-lg-6">
 						<div class="row g-3">
 							<h3>${room.title}</h3>
@@ -255,53 +262,29 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="wow fadeInUp" data-wow-delay="0.2s">
-							<form action="">
+							<form action="inspection" method="post">
+								<!-- Use method="post" to send form data securely -->
+								<input type="hidden" name="roomId" value="${room.id}">
+								<!-- Hidden input to pass roomId to the servlet -->
 								<div class="row g-3">
-									<h3 class="text-center">Book your inspection</h3>
-									<div class="col-6">
-										<div class="form-floating">
-											<input type="text" class="form-control" id="name"
-												placeholder="Your Name"> <label for="name">Your
-												Name</label>
-										</div>
-									</div>
-									<div class="col-6">
-										<div class="form-floating">
-											<input type="email" class="form-control" id="email"
-												placeholder="Your Email"> <label for="email">Your
-												Email</label>
-										</div>
-									</div>
-									<div class="col-6">
-										<div class="form-floating date" id="date3">
-											<input type="text" class="form-control datetimepicker-input"
-												id="checkin" placeholder="Move In" data-target="#date3"
-												data-toggle="datetimepicker" /> <label for="checkin">Contact
-												Number</label>
-										</div>
-									</div>
-									<div class="col-6">
-										<div class="form-floating date" id="date4"
-											data-target-input="nearest">
-											<input type="text" class="form-control datetimepicker-input"
-												id="checkout" placeholder="Check Out" data-target="#date4"
-												data-toggle="datetimepicker" /> <label for="checkout">Available
-												Date</label>
-										</div>
-									</div>
+									<h3 class="text-center bold">
+										Book an inspection/ <br> Send a private message to
+										Landlord
+									</h3>
 									<div class="col-12">
 										<div class="form-floating">
-											<select class="form-select" id="select3">
-												<option value="1">Length of lease</option>
-												<option value="2">Arrange private inspection</option>
-												<option value="3">Rental application</option>
+											<select class="form-select" id="select3" name="enquiryType">
+												<option value="Length of lease">Length of lease</option>
+												<option value="Arrange private inspection">Arrange private inspection</option>
+												<option value="Rental application">Rental application</option>
+												<option value="Other">Other</option>
 											</select> <label for="select3">What's your enquiry about?</label>
 										</div>
 									</div>
 									<div class="col-12">
 										<div class="form-floating">
 											<textarea class="form-control" placeholder="Special Request"
-												id="message" style="height: 100px"></textarea>
+												name="message" id="message" style="height: 100px"></textarea>
 											<label for="message">Message</label>
 										</div>
 									</div>
@@ -312,104 +295,101 @@
 							</form>
 						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Booking End -->
-		<br>
-		<br>
+					<!-- Booking End -->
+					<br> <br>
 
-		<!-- Footer Start -->
-		<div
-			class="container-fluid bg-dark text-light footer wow fadeIn mt-lg-5"
-			data-wow-delay="0.1s">
-			<div class="container pb-5">
-				<div class="row g-5">
-					<div class="col-md-6 col-lg-4">
-						<div class="bg-primary rounded p-4">
-							<a href="index.html"><h1
-									class="text-white text-uppercase mb-3">Hotelier</h1></a>
-							<p class="text-white mb-0">
-								Download <a class="text-dark fw-medium"
-									href="https://htmlcodex.com/hotel-html-template-pro">Hommie</a>,
-								ultimate platform for students in search of their ideal living
-								companion. Find harmony in shared living and unlock the doors to
-								lifelong friendships.
-							</p>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<h6
-							class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
-						<p class="mb-2">
-							<i class="fa fa-map-marker-alt me-3"></i>123 Beauty Street,
-							Sydney, NSW
-						</p>
-						<p class="mb-2">
-							<i class="fa fa-phone-alt me-3"></i>+61 2 8123 4567
-						</p>
-						<p class="mb-2">
-							<i class="fa fa-envelope me-3"></i>info@hommie.com
-						</p>
-						<div class="d-flex pt-2">
-							<a class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-twitter"></i></a> <a
-								class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-facebook-f"></i></a> <a
-								class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-youtube"></i></a> <a
-								class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-linkedin-in"></i></a>
-						</div>
-					</div>
-					<div class="col-lg-5 col-md-12">
-						<div class="row gy-5 g-4">
-							<div class="col-md-6">
-								<h6
-									class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
-								<a class="btn btn-link" href="">About Us</a> <a
-									class="btn btn-link" href="">Contact Us</a> <a
-									class="btn btn-link" href="">Privacy Policy</a> <a
-									class="btn btn-link" href="">Terms & Condition</a> <a
-									class="btn btn-link" href="">Support</a>
-							</div>
-							<div class="col-md-6">
-								<h6
-									class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
-								<a class="btn btn-link" href="">Food & Restaurant</a> <a
-									class="btn btn-link" href="">Spa & Fitness</a> <a
-									class="btn btn-link" href="">Sports & Gaming</a> <a
-									class="btn btn-link" href="">Event & Party</a> <a
-									class="btn btn-link" href="">GYM & Yoga</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Your Site Name</a>, All
-							Right Reserved.
-
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
-						</div>
-						<div class="col-md-6 text-center text-md-end">
-							<div class="footer-menu">
-								<a href="">Home</a> <a href="">Cookies</a> <a href="">Help</a> <a
-									href="">FQAs</a>
+					<!-- Footer Start -->
+					<div
+						class="container-fluid bg-dark text-light footer wow fadeIn mt-lg-5"
+						data-wow-delay="0.1s">
+						<div class="container pb-5">
+							<div class="row g-5">
+								<div class="col-md-6 col-lg-4">
+									<div class="bg-primary rounded p-4">
+										<a href="index.html"><h1
+												class="text-white text-uppercase mb-3">Hotelier</h1></a>
+										<p class="text-white mb-0">
+											Download <a class="text-dark fw-medium"
+												href="https://htmlcodex.com/hotel-html-template-pro">Hommie</a>,
+											ultimate platform for students in search of their ideal
+											living companion. Find harmony in shared living and unlock
+											the doors to lifelong friendships.
+										</p>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-3">
+									<h6
+										class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
+									<p class="mb-2">
+										<i class="fa fa-map-marker-alt me-3"></i>123 Beauty Street,
+										Sydney, NSW
+									</p>
+									<p class="mb-2">
+										<i class="fa fa-phone-alt me-3"></i>+61 2 8123 4567
+									</p>
+									<p class="mb-2">
+										<i class="fa fa-envelope me-3"></i>info@hommie.com
+									</p>
+									<div class="d-flex pt-2">
+										<a class="btn btn-outline-light btn-social" href=""><i
+											class="fab fa-twitter"></i></a> <a
+											class="btn btn-outline-light btn-social" href=""><i
+											class="fab fa-facebook-f"></i></a> <a
+											class="btn btn-outline-light btn-social" href=""><i
+											class="fab fa-youtube"></i></a> <a
+											class="btn btn-outline-light btn-social" href=""><i
+											class="fab fa-linkedin-in"></i></a>
+									</div>
+								</div>
+								<div class="col-lg-5 col-md-12">
+									<div class="row gy-5 g-4">
+										<div class="col-md-6">
+											<h6
+												class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
+											<a class="btn btn-link" href="">About Us</a> <a
+												class="btn btn-link" href="">Contact Us</a> <a
+												class="btn btn-link" href="">Privacy Policy</a> <a
+												class="btn btn-link" href="">Terms & Condition</a> <a
+												class="btn btn-link" href="">Support</a>
+										</div>
+										<div class="col-md-6">
+											<h6
+												class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
+											<a class="btn btn-link" href="">Food & Restaurant</a> <a
+												class="btn btn-link" href="">Spa & Fitness</a> <a
+												class="btn btn-link" href="">Sports & Gaming</a> <a
+												class="btn btn-link" href="">Event & Party</a> <a
+												class="btn btn-link" href="">GYM & Yoga</a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
+						<div class="container">
+							<div class="copyright">
+								<div class="row">
+									<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+										&copy; <a class="border-bottom" href="#">Your Site Name</a>,
+										All Right Reserved.
+
+										<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+										Designed By <a class="border-bottom"
+											href="https://htmlcodex.com">HTML Codex</a>
+									</div>
+									<div class="col-md-6 text-center text-md-end">
+										<div class="footer-menu">
+											<a href="">Home</a> <a href="">Cookies</a> <a href="">Help</a>
+											<a href="">FQAs</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<!-- Footer End -->
+					<!-- Footer End -->
 
 
-		<!-- Back to Top -->
-		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
+					<!-- Back to Top -->
+					<a href="#"
+						class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
+						class="bi bi-arrow-up"></i></a>
