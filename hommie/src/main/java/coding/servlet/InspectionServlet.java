@@ -1,8 +1,17 @@
 package coding.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
+import java.sql.SQLException;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +20,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import coding.entity.Inspection;
+import coding.entity.Room;
+import coding.entity.User;
 import coding.service.InspectionService;
+import coding.service.RoomService;
+import coding.service.UserService;
 
 /**
  * Servlet implementation class InspectionServlet
@@ -38,6 +51,12 @@ public class InspectionServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		InspectionService inspectionService = new InspectionService();
 		
+		Room room = new Room();
+		RoomService roomService = new RoomService();
+		
+		User landlord = new User();
+		UserService userService = new UserService();
+		
 
 		if (session == null || session.getAttribute("studentId") == null) {
 	        response.sendRedirect("login.jsp");
@@ -49,22 +68,77 @@ public class InspectionServlet extends HttpServlet {
 	    String enquiryType = request.getParameter("enquiryType");
 	    String message = request.getParameter("message");
 	    
-	    
-	    System.out.println(studentId);
-
 	    Inspection inspection = new Inspection(studentId, roomId, enquiryType, message);
 			
-			try {
+		try {
 				
-			int	insertedId = inspectionService.insertInspection(inspection);
-//			functions to send notification to landlord here
+			int	insertedInspectionId = inspectionService.insertInspection(inspection);
+			room = roomService.getRoomDetails(roomId);
+			int landlordId = room.getLandlordId();
+			landlord = userService.getUserByUserId(landlordId);
+			
+			
+			// Send email using EmailUtility
+		    String to = landlord.getEmail();
+		    String subject = "Hommie - New message from your potential roomie - " + enquiryType;
+		    String content = message;
+
+		    EmailUtility.sendEmail(to, subject, content);
+						
+
 			response.sendRedirect("inspection-request-success.jsp");
-				
+			
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		
 			
 		}
+	
+//	function to send email to landlord:
+	
+	public class EmailUtility {
+	    public static void sendEmail(String to, String subject, String content) {
+	    	
+	    	final String username = "jenny@workvisalawyers.com.au";
+	        final String password = "Bluebike27!";
+	    	
+	        
+	        Properties prop = new Properties();
+			prop.put("mail.smtp.host", "smtp.gmail.com");
+	        prop.put("mail.smtp.port", "587");
+	        prop.put("mail.smtp.auth", "true");
+	        prop.put("mail.smtp.starttls.enable", "true"); 
+	        
+	        Session session = Session.getInstance(prop,
+	                new javax.mail.Authenticator() {
+	                    protected PasswordAuthentication getPasswordAuthentication() {
+	                        return new PasswordAuthentication(username, password);
+	                    }
+	                });
+
+	        try {
+
+	            MimeMessage message = new MimeMessage(session);
+
+	            message.setFrom(new InternetAddress(username));
+
+	            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+
+	            message.setSubject(subject);
+
+
+	            message.setText(content);
+
+	            Transport.send(message);
+	            System.out.println("Done");
+	        } catch (MessagingException mex) {
+	            mex.printStackTrace();
+	        }
+	    }
+	}
+	
+	
 	}
 
