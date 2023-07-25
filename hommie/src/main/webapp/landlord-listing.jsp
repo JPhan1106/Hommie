@@ -117,7 +117,7 @@
 							room</span>
 				</div>
 				<div class="center-form">
-					<form action="newListing" id="listingForm" method="get" enctype="multipart/form-data"
+					<form action="newListing" id="listingForm" method="post" enctype="multipart/form-data"
 						style="align-content: center">
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
@@ -167,6 +167,15 @@
 						<br>
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
+								<input type="text" class="form-control" id="capacity"
+									name="capacity" value="${param.capacity}"
+									placeholder="capacity"> <label for="capacity"><i
+									class="fa fa-male" aria-hidden="true"></i> Number of people</label>
+							</div>
+						</div>
+						<br>
+						<div class="col-md-6 w-100">
+							<div class="form-floating">
 								<input type="number" class="form-control" id="price"
 									name="price" value="${param.price}" placeholder="price">
 								<label for="price"><i class="fa fa-credit-card"
@@ -206,7 +215,7 @@
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="number" class="form-control" id="countBed"
-									name="countBed" value="${param.countBath}"
+									name="countBath" value="${param.countBath}"
 									placeholder="countBath"> <label for="countBath"><i
 									class="fa fa-bath" aria-hidden="true"></i> Number of
 									Bathrooms</label>

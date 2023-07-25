@@ -270,15 +270,30 @@ public class RoomService {
 //			create sql for insert
 			String sql = "INSERT INTO `room`(title, description, price, bond, square_area,capacity, landlord_id, address, state, postcode, count_bed, count_bath, available_date, image1_url, image2_url, image3_url, image4_url) value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
-			ps = conn.prepareStatement(sql);
 
-//			set parameters
-
-			ps.execute();
+			ps.setString(1, room.getTitle());
+			ps.setString(2, room.getDescription());
+			ps.setInt(3, room.getPrice());
+			ps.setInt(4, room.getBond());
+			ps.setInt(5, room.getSquareArea());
+			ps.setInt(6, room.getCapacity());
+			ps.setInt(7, room.getLandlordId());
+			ps.setString(8, room.getAddress());
+			ps.setString(9, room.getState());
+			ps.setString(10, room.getPostcode());
+			ps.setInt(11, room.getCountBed());
+			ps.setInt(12, room.getCountBath());
+			ps.setString(13, room.getAvailableDate());
+			ps.setString(14, room.getImage1Url());
+			ps.setString(15, room.getImage2Url());
+			ps.setString(16, room.getImage3Url());
+			ps.setString(17, room.getImage4Url());
+			ps.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
+			
 		} finally {
 			if (ps != null) {
 				ps.close();
