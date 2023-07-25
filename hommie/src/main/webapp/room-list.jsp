@@ -73,7 +73,7 @@
 		</div>
 		<!-- Spinner End -->
 
-			<!-- Header Start -->
+		<!-- Header Start -->
 		<div class="container-fluid bg-dark px-0">
 			<div class="row gx-0 justify-content-between p-3">
 				<div class="col-lg-3 bg-dark d-none d-lg-block">
@@ -103,8 +103,8 @@
 											${user.lastName}</a>
 										<div class="dropdown-menu rounded-0 m-0">
 											<a href="logout" class="dropdown-item">Logout</a> <a
-											href="wish-list?command=VIEW_WISH_LIST" class="dropdown-item">Wish-list
-											(${empty sessionScope.wishList? 0 : sessionScope.wishList.size()})</a>
+												href="wish-list?command=VIEW_WISH_LIST"
+												class="dropdown-item">Wish-list (${empty sessionScope.wishList? 0 : sessionScope.wishList.size()})</a>
 										</div>
 									</div>
 								</c:if>
@@ -116,7 +116,7 @@
 										<div class="dropdown-menu rounded-0 m-0">
 											<a href="register.jsp" class="dropdown-item">Register</a> <a
 												href="login.jsp" class="dropdown-item">Login</a> <a
-												href="logout" class="dropdown-item">Logout</a> 
+												href="logout" class="dropdown-item">Logout</a>
 										</div>
 									</div>
 								</c:if>
@@ -228,7 +228,8 @@
 
 
 									<div class="col-md-3">
-										<input class="form-control" name="searchInput" value="${searchInput}" />
+										<input class="form-control" name="searchInput"
+											value="${searchInput}" />
 									</div>
 								</div>
 							</div>
@@ -245,50 +246,58 @@
 		<!-- Room List Start -->
 		<div class="container-xxl py-5">
 			<div class="container">
-			<c:if test="${empty roomList}">
-				<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-					<h6 class="section-title text-center text-primary text-uppercase">Oops! We couldn't find any rooms matching your search criteria.</h6>
-					<h1 class="mb-5">
-						Explore Our <span class="text-primary text-uppercase"><a href="roomList">Rooms</a></span>
-					</h1>
-				</div>
-							</c:if>
-			<c:if test="${not empty roomList}">
-				<div class="row g-4">
-					<c:forEach var="room" items="${roomList}">
-						<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-							<div class="room-item shadow rounded overflow-hidden">
-								<div class="position-relative">
-									<img class="img-fluid" src="${room.image1Url}" alt="image-room">
-									<small
-										class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$${room.price}/Week</small>
-								</div>
-								<div class="p-4 mt-2">
-									<div class="d-flex justify-content-between mb-3">
-										<h5 class="mb-0">${room.title}</h5>
-										<div class="ps-2"></div>
+				<c:if test="${empty roomList}">
+					<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+						<h6 class="section-title text-center text-primary text-uppercase">Oops!
+							We couldn't find any rooms matching your search criteria.</h6>
+						<h1 class="mb-5">
+							Explore Our <span class="text-primary text-uppercase"><a
+								href="roomList">Rooms</a></span>
+						</h1>
+					</div>
+				</c:if>
+				<c:if test="${not empty roomList}">
+					<div class="row g-4">
+						<c:forEach var="room" items="${roomList}">
+							<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+								<div class="room-item shadow rounded overflow-hidden">
+									<div class="position-relative">
+										<img class="img-fluid" src="${room.image1Url}"
+											alt="image-room"> <small
+											class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$${room.price}/Week</small>
 									</div>
-									<div class="d-flex mb-3">
-										<small class="border-end me-3 pe-3"><i
-											class="fa fa-bed text-primary me-2"></i>${room.countBed} Bed</small>
-										<small class="border-end me-3 pe-3"><i
-											class="fa fa-bath text-primary me-2"></i>${room.countBath}
-											Bath</small> <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
-									</div>
-									<p class="text-body mb-3">${room.description}</p>
-									<div class="d-flex justify-content-between">
-										<a class="btn btn-sm btn-primary rounded py-2 px-4"
-											href="room?roomId=${room.id}">View Detail</a> <input
-											type="button" value="Add"
-											onclick="window.location.href='wish-list?command=ADD_TO_WISH_LIST&roomId=${room.id}'"
-											class="btn btn-sm btn-primary rounded py-2 px-4" />
+									<div class="p-4 mt-2">
+										<div class="d-flex justify-content-between mb-3">
+											<h5 class="mb-0">${room.title}</h5>
+											<div class="ps-2"></div>
+										</div>
+										<div class="d-flex mb-3">
+											<small class="border-end me-3 pe-3"><i
+												class="fa fa-bed text-primary me-2"></i>${room.countBed} Bed</small>
+											<small class="border-end me-3 pe-3"><i
+												class="fa fa-bath text-primary me-2"></i>${room.countBath}
+												Bath</small> <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
+										</div>
+										<p class="text-body mb-3">${room.description}</p>
+										<div class="d-flex justify-content-between">
+											<a class="btn btn-sm btn-primary rounded py-2 px-4"
+												href="room?roomId=${room.id}">View Detail</a> <input
+												type="button" value="Add"
+												onclick="window.location.href='wish-list?command=ADD_TO_WISH_LIST&roomId=${room.id}'"
+												class="btn btn-sm btn-primary rounded py-2 px-4" />
 
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</c:forEach>
-				</div>
+						</c:forEach>
+					</div>
+					<div class="pagination d-flex justify-content-center mt-4">
+						<c:forEach var="pageNumber" begin="1" end="${totalPage}">
+							<a href="roomList?page=${pageNumber}"
+								class="btn btn-sm ${pageNumber == currentPage ? 'btn-primary' : 'btn-light'} mx-1">${pageNumber}</a>
+						</c:forEach>
+					</div>
 				</c:if>
 			</div>
 		</div>

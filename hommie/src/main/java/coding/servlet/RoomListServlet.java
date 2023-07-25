@@ -2,6 +2,7 @@ package coding.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -35,12 +36,17 @@ public class RoomListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			
+			int currentPage = 1;
+			if(request.getParameter("page") != null) {
+				currentPage = Integer.parseInt(request.getParameter("page"));
+			}
 			RoomService roomService = new RoomService();
-			List<Room> roomList = roomService.getAllRooms();
-
+			List<Room> roomList = roomService.getRoomsByPage(currentPage);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("room-list.jsp");
 			request.setAttribute("roomList", roomList);
+			request.setAttribute("currentPage", currentPage);
+			request.setAttribute("totalPage", roomService.getTotalPage());
 			rd.forward(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
