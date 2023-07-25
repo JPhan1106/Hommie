@@ -3,6 +3,8 @@ package coding.servlet;
 import java.io.IOException;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -12,6 +14,7 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -68,6 +71,14 @@ public class InspectionServlet extends HttpServlet {
 	    String enquiryType = request.getParameter("enquiryType");
 	    String message = request.getParameter("message");
 	    
+	 // Validate message
+	 		List<String> errors = validateMessage(message);
+	 		if (!errors.isEmpty()) {
+	 			RequestDispatcher rd = request.getRequestDispatcher("room?roomId=" + roomId);
+	 			request.setAttribute("errorMessage", errors);
+	 			rd.forward(request, response);
+	 		}
+	    
 	    Inspection inspection = new Inspection(studentId, roomId, enquiryType, message);
 			
 		try {
@@ -85,7 +96,7 @@ public class InspectionServlet extends HttpServlet {
 
 		    EmailUtility.sendEmail(to, subject, content);
 						
-
+		    
 			response.sendRedirect("inspection-request-success.jsp");
 			
 			} catch (SQLException e) {
@@ -138,6 +149,18 @@ public class InspectionServlet extends HttpServlet {
 	        }
 	    }
 	}
+	
+	private List<String> validateMessage(String message) {
+	    List<String> errors = new ArrayList<>();
+
+	    // Validate message length
+	    if (message == null || message.trim().isEmpty() || message.length() > 300) {
+	        errors.add("Invalid message. Message cannot be empty and must be at most 300 characters long!");
+	    }
+
+	    return errors;
+	}
+
 	
 	
 	}

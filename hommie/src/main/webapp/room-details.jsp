@@ -262,6 +262,12 @@
 					</div>
 					<div class="col-lg-6">
 						<div class="wow fadeInUp" data-wow-delay="0.2s">
+							<c:if test="${not empty errorMessage}">
+								<c:forEach var="error" items="${errorMessage}">
+									<p
+										style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">${error}</p>
+								</c:forEach>
+							</c:if>
 							<form action="inspection" method="post">
 								<!-- Use method="post" to send form data securely -->
 								<input type="hidden" name="roomId" value="${room.id}">
@@ -275,8 +281,10 @@
 										<div class="form-floating">
 											<select class="form-select" id="select3" name="enquiryType">
 												<option value="Length of lease">Length of lease</option>
-												<option value="Arrange private inspection">Arrange private inspection</option>
-												<option value="Rental application">Rental application</option>
+												<option value="Arrange private inspection">Arrange
+													private inspection</option>
+												<option value="Rental application">Rental
+													application</option>
 												<option value="Other">Other</option>
 											</select> <label for="select3">What's your enquiry about?</label>
 										</div>
@@ -285,7 +293,8 @@
 										<div class="form-floating">
 											<textarea class="form-control" placeholder="Special Request"
 												name="message" id="message" style="height: 100px"></textarea>
-											<label for="message">Message</label>
+											<label for="message">Message (maximum 300 words)</label>
+											
 										</div>
 									</div>
 									<div class="col-12">
