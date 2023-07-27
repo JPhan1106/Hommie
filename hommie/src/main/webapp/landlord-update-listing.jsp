@@ -55,6 +55,7 @@
 		</div>
 		<!-- Spinner End -->
 
+
 		<!-- Header Start -->
 		<div class="container-fluid bg-dark px-0">
 			<div class="row gx-0 justify-content-between p-3">
@@ -108,22 +109,29 @@
 		<!-- Page Header End -->
 
 
+		<c:if test="${not empty updateRoomUnsuccessfulMessage}">
+			<p
+				style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">${updateRoomUnsuccessfulMessage}</p>
+		</c:if>
 
 		<!-- Listing Start -->
 		<div class="container-xxl py-5">
 			<div class="container w-50">
 				<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 					<h1 class="mb-5">
-						<span class="text-primary text-uppercase">List your vacant
-							room</span>
+						<span class="text-primary text-uppercase">Update your
+							vacant room</span>
 				</div>
 				<div class="center-form">
-					<form action="newListing" id="listingForm" method="post" enctype="multipart/form-data"
+					<form action="updateListing" id="listingForm" method="post"
 						style="align-content: center">
+									<!-- Hidden input field for room.id -->
+						<input type="hidden" id="id" name="id" value="${room.id}">
+						
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="text" class="form-control" id="title" name="title"
-									value="${param.title}" placeholder="Tittle"> <label
+									value="${room.title}" placeholder="Tittle"> <label
 									for="title"><i class="fa fa-home" aria-hidden="true"></i>
 									Title</label>
 							</div>
@@ -132,7 +140,7 @@
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="text" class="form-control" id="address"
-									name="address" value="${param.address}" placeholder="Address">
+									name="address" value="${room.address}" placeholder="Address">
 								<label for="address"><i class="fa fa-location-arrow"
 									aria-hidden="true"></i> Street Address and Suburb</label>
 							</div>
@@ -141,7 +149,7 @@
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="text" class="form-control" id="state" name="state"
-									value="${param.state}" placeholder="state"> <label
+									value="${room.state}" placeholder="state"> <label
 									for="state"><i class="fa fa-map-marker"
 									aria-hidden="true"></i> State</label>
 							</div>
@@ -150,16 +158,16 @@
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="text" class="form-control" id="postcode"
-									name="postcode" value="${param.postcode}"
-									placeholder="postcode"> <label for="address"><i
-									class="fa fa-map-pin" aria-hidden="true"></i> Postcode</label>
+									name="postcode" value="${room.postcode}" placeholder="postcode">
+								<label for="address"><i class="fa fa-map-pin"
+									aria-hidden="true"></i> Postcode</label>
 							</div>
 						</div>
 						<br>
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="text" class="form-control" id="squareArea"
-									name="squareArea" value="${param.squareArea}"
+									name="squareArea" value="${room.squareArea}"
 									placeholder="squareArea"> <label for="squareArea"><i
 									class="fa fa-superscript" aria-hidden="true"></i> Room Size
 									(m²)</label>
@@ -169,16 +177,16 @@
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="text" class="form-control" id="capacity"
-									name="capacity" value="${param.capacity}"
-									placeholder="capacity"> <label for="capacity"><i
-									class="fa fa-male" aria-hidden="true"></i> Number of people</label>
+									name="capacity" value="${room.capacity}" placeholder="capacity">
+								<label for="capacity"><i class="fa fa-male"
+									aria-hidden="true"></i> Number of people</label>
 							</div>
 						</div>
 						<br>
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="number" class="form-control" id="price"
-									name="price" value="${param.price}" placeholder="price">
+									name="price" value="${room.price}" placeholder="price">
 								<label for="price"><i class="fa fa-credit-card"
 									aria-hidden="true"></i> Weekly Price</label>
 							</div>
@@ -187,7 +195,7 @@
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="date" class="form-control" id="Available Date"
-									name="availableDate" value="${param.availableDate}"
+									name="availableDate" value="${room.availableDate}"
 									placeholder="Available Date"> <label
 									for="availableDate"><i class="fa fa-calendar"
 									aria-hidden="true"></i> Available Date</label>
@@ -197,7 +205,7 @@
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="number" class="form-control" id="bond" name="bond"
-									value="${param.bond}" placeholder="bond"> <label
+									value="${room.bond}" placeholder="bond"> <label
 									for="bond"><i class="fa fa-university"
 									aria-hidden="true"></i> Bond</label>
 							</div>
@@ -206,20 +214,18 @@
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="number" class="form-control" id="countBed"
-									name="countBed" value="${param.countBed}"
-									placeholder="countBed"> <label for="countBed"><i
-									class="fa fa-bed" aria-hidden="true"></i> Number of
-									Bedrooms</label>
+									name="countBed" value="${room.countBed}" placeholder="countBed">
+								<label for="countBed"><i class="fa fa-bed"
+									aria-hidden="true"></i> Number of Bedrooms</label>
 							</div>
 						</div>
 						<br>
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="number" class="form-control" id="countBed"
-									name="countBath" value="${param.countBath}"
+									name="countBath" value="${room.countBath}"
 									placeholder="countBath"> <label for="countBath"><i
-									class="fa fa-bath" aria-hidden="true"></i> Number of
-									Bathrooms</label>
+									class="fa fa-bath" aria-hidden="true"></i> Number of Bathrooms</label>
 							</div>
 						</div>
 						<br>
@@ -228,47 +234,13 @@
 								<label for="message"><i class="fa fa-pencil"
 									aria-hidden="true"></i> Description</label>
 								<textarea class="form-control" id="message" name="description"
-									style="height: 100px">${param.description}</textarea>
-							</div>
-						</div>
-
-						<br>
-						<div class="col-12">
-							<div>
-								<p>
-									<i class="fa fa-file-image-o" aria-hidden="true"></i> Upload
-									photos of your listing
-								</p>
-
-								<div class="form-floating">
-									<input type="file" class="form-control" id="image1"
-										name="image1" accept="image/*"> <label for="image1"><i
-									class="fa fa-file-image-o" aria-hidden="true"></i>Image 1</label>
-								</div>
-
-								<div class="form-floating">
-									<input type="file" class="form-control" id="image2"
-										name="image2" accept="image/*"> <label for="image2"><i
-									class="fa fa-file-image-o" aria-hidden="true"></i>Image 2</label>
-								</div>
-
-								<div class="form-floating">
-									<input type="file" class="form-control" id="image3"
-										name="image3" accept="image/*"> <label for="image3"><i
-									class="fa fa-file-image-o" aria-hidden="true"></i>Image 3</label>
-								</div>
-
-								<div class="form-floating">
-									<input type="file" class="form-control" id="image4"
-										name="image4" accept="image/*"> <label for="image4"><i
-									class="fa fa-file-image-o" aria-hidden="true"></i>Image 4</label>
-								</div>
+									style="height: 100px">${room.description}</textarea>
 							</div>
 						</div>
 
 						<br>
 						<div class="col-md-6 w-100 pt-4">
-							<button class="btn btn-primary w-100 py-3" type="submit">List
+							<button class="btn btn-primary w-100 py-3" type="submit">Update
 								Your Room</button>
 						</div>
 					</form>

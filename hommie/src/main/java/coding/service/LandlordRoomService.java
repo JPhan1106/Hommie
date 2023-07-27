@@ -1,6 +1,7 @@
 package coding.service;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -277,7 +278,52 @@ public class LandlordRoomService {
 
 	}
 	
-	
+	public boolean insertRoom(Room room) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+//			make connection to mySQL
+			conn = DBUtil.makeConnection();
+
+//			create sql for insert
+			String sql = "INSERT INTO `room`(title, description, price, bond, square_area,capacity, landlord_id, address, state, postcode, count_bed, count_bath, available_date, image1_url, image2_url, image3_url, image4_url) value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			ps = conn.prepareStatement(sql);
+
+			ps.setString(1, room.getTitle());
+			ps.setString(2, room.getDescription());
+			ps.setInt(3, room.getPrice());
+			ps.setInt(4, room.getBond());
+			ps.setInt(5, room.getSquareArea());
+			ps.setInt(6, room.getCapacity());
+			ps.setInt(7, room.getLandlordId());
+			ps.setString(8, room.getAddress());
+			ps.setString(9, room.getState());
+			ps.setString(10, room.getPostcode());
+			ps.setInt(11, room.getCountBed());
+			ps.setInt(12, room.getCountBath());
+			ps.setString(13, room.getAvailableDate());
+			ps.setString(14, room.getImage1Url());
+			ps.setString(15, room.getImage2Url());
+			ps.setString(16, room.getImage3Url());
+			ps.setString(17, room.getImage4Url());
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+			
+		} finally {
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return true;
+	}
+
 	public void deleteRoom(int roomId) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -305,6 +351,44 @@ public class LandlordRoomService {
 		}
 
 	}
-	
 
+	public boolean updateRoom(Room room) throws SQLException {
+		// connect to DB
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+//			make connection to mySQL
+			conn = DBUtil.makeConnection();
+			ps = conn.prepareStatement("UPDATE `room` SET `title` = ?, `description` = ?, `price` = ?, `bond` = ?, `square_area` = ?, `capacity` = ?, `address` = ?, `state` = ?, `postcode` = ?, `count_bed` = ?, `count_bath` = ?, `available_date` = ? WHERE `id` = ?");
+			ps.setString(1, room.getTitle());
+			ps.setString(2, room.getDescription());
+			ps.setInt(3, room.getPrice());
+			ps.setInt(4, room.getBond());
+			ps.setInt(5, room.getSquareArea());
+			ps.setInt(6, room.getCapacity());
+			ps.setString(7, room.getAddress());
+			ps.setString(8, room.getState());
+			ps.setString(9, room.getPostcode());
+			ps.setInt(10, room.getCountBed());
+			ps.setInt(11, room.getCountBath());
+			ps.setString(12, room.getAvailableDate());
+			ps.setInt(13, room.getId());
+
+			ps.execute();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+			
+		} finally {
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return true;
+	}
 }

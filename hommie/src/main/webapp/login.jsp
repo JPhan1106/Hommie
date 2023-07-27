@@ -134,7 +134,6 @@
 				style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">${errorMessage}</p>
 		</c:if>
 
-	</div>
 
 	<div class="container-xxl py-5 w-50">
 		<div class="container">
