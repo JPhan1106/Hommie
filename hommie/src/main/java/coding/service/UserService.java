@@ -114,6 +114,7 @@ public class UserService {
 				ps.close();
 			}
 			if (conn != null) {
+				conn.close();
 			}
 
 		}
@@ -154,6 +155,7 @@ public class UserService {
 				ps.close();
 			}
 			if (conn != null) {
+				conn.close();
 			}
 
 		}

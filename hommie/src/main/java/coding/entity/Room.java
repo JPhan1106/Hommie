@@ -145,12 +145,37 @@ public class Room {
 		this.status = status;
 	}
 
+	
+//	constructor for insertRoom
+		public Room(String title, String description, int price, int bond, int squareArea, int capacity, int countBed,
+			int countBath, String availableDate, int landlordId, String address, String state, String postcode,
+			String image1Url, String image2Url, String image3Url, String image4Url) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.price = price;
+		this.bond = bond;
+		this.squareArea = squareArea;
+		this.capacity = capacity;
+		this.countBed = countBed;
+		this.countBath = countBath;
+		this.availableDate = availableDate;
+		this.landlordId = landlordId;
+		this.address = address;
+		this.state = state;
+		this.postcode = postcode;
+		this.image1Url = image1Url;
+		this.image2Url = image2Url;
+		this.image3Url = image3Url;
+		this.image4Url = image4Url;
+	}
+
+	
 	public String getTitle() {
 		return title;
 	}
 
-
-
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
