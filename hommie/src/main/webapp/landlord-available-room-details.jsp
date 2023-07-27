@@ -204,8 +204,13 @@
 							class="sr-only">Next</span>
 						</a>
 					</div>
+					
 				</div>
 				<div class="col-sm-6" style="background-color: rgb(240, 244, 248);">
+				<c:if test="${not empty updateRoomSuccessfulMessage}">
+						<p
+							style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">${updateRoomSuccessfulMessage}</p>
+					</c:if>
 					<div class="d-flex justify-content-between mb-3">
 						<h3 class="mb-0">${availableRoom.address}
 							<br>${availableRoom.state} ${availableRoom.postcode}
@@ -242,50 +247,68 @@
 		</div>
 
 		<!-- Room Image End -->
+
 		<!-- Buttons For Available Room Start -->
-<div class="container-xxl py-5">
-  <div class="container">
-    <div class="button-container text-center wow fadeInUp" data-wow-delay="0.1s">
-      <a href="landlord-listing.jsp" class="update-button" role="button">Update This Room</a>
-      <a href="#" class="update-button" role="button">Check inspection history</a>
+		<div class="container-xxl py-5">
+			<div class="container">
+				<div class="button-container text-center wow fadeInUp"
+					data-wow-delay="0.1s">
+					<form action="landlordRoom" id="updateRoom"
+						style="display: inline-block;">
+						<input type="hidden" name="TYPE" value="UPDATE"> <input
+							type="hidden" name="roomId" value="${availableRoom.id}">
+						<button type="submit" class="update-button">Update this
+							room</button>
+					</form>
 
-      <script>
-        function confirmMakeRoomOccupied() {
-          const confirmation = window.confirm("Are you sure you want to make this room occupied?");
-          var form = document.getElementById("confirmMakeRoomOccupied");
-          if (confirmation) {
-            form.submit();
-          }else {
-				 event.preventDefault();
-			}
-        }
-      </script>
-      <form action="landlordRoom" id="confirmMakeRoomOccupied" style="display: inline-block;">
-        <input type="hidden" name="TYPE" value="MAKE_OCCUPIED">
-        <input type="hidden" name="roomId" value="${availableRoom.id}">
-        <button type="submit" onClick="confirmMakeRoomOccupied()" class="update-button">Make this room occupied</button>
-      </form>
+					<a href="#" class="update-button" role="button">Check
+						inspection history</a>
 
-      <script>
-        function confirmDeleteRoom() {
-          const confirmation = window.confirm("Are you sure you want to delete this room?");
-          var form = document.getElementById("confirmDeleteRoom");
-          if (confirmation) {
-            form.submit();
-          }else {
-				 event.preventDefault();
-			}
-        }
-      </script>
-      <form action="landlordRoom" id="confirmDeleteRoom" style="display: inline-block;">
-        <input type="hidden" name="TYPE" value="DELETE">
-        <input type="hidden" name="roomId" value="${availableRoom.id}">
-        <button type="submit" onClick="confirmDeleteRoom()" class="update-button">Delete this room</button>
-      </form>
-      
-    </div>
-  </div>
-</div>
+					<script>
+						function confirmMakeRoomOccupied() {
+							const confirmation = window
+									.confirm("Are you sure you want to make this room occupied?");
+							var form = document
+									.getElementById("confirmMakeRoomOccupied");
+							if (confirmation) {
+								form.submit();
+							} else {
+								event.preventDefault();
+							}
+						}
+					</script>
+					<form action="landlordRoom" id="confirmMakeRoomOccupied"
+						style="display: inline-block;">
+						<input type="hidden" name="TYPE" value="MAKE_OCCUPIED"> <input
+							type="hidden" name="roomId" value="${availableRoom.id}">
+						<button type="submit" onClick="confirmMakeRoomOccupied()"
+							class="update-button">Make this room occupied</button>
+					</form>
+
+					<script>
+						function confirmDeleteRoom() {
+							const confirmation = window
+									.confirm("Are you sure you want to delete this room?");
+							var form = document
+									.getElementById("confirmDeleteRoom");
+							if (confirmation) {
+								form.submit();
+							} else {
+								event.preventDefault();
+							}
+						}
+					</script>
+					<form action="landlordRoom" id="confirmDeleteRoom"
+						style="display: inline-block;">
+						<input type="hidden" name="TYPE" value="DELETE"> <input
+							type="hidden" name="roomId" value="${availableRoom.id}">
+						<button type="submit" onClick="confirmDeleteRoom()"
+							class="update-button">Delete this room</button>
+					</form>
+
+				</div>
+			</div>
+		</div>
 
 
 
@@ -302,7 +325,7 @@
 					<div class="col-md-6 col-lg-4">
 						<div class="bg-primary rounded p-4">
 							<a href="index.html"><h1
-									class="text-white text-uppercase mb-3">Hotelier</h1></a>
+									class="text-white text-uppercase mb-3">Hommie</h1></a>
 							<p class="text-white mb-0">
 								Download <a class="text-dark fw-medium"
 									href="https://htmlcodex.com/hotel-html-template-pro">Hommie</a>,
@@ -364,8 +387,8 @@
 				<div class="copyright">
 					<div class="row">
 						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Your Site Name</a>, All
-							Right Reserved.
+							&copy; <a class="border-bottom" href="#">Hommie</a>, All Right
+							Reserved.
 
 							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
 							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML

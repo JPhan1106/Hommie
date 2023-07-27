@@ -4,6 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import coding.db.MyConstant;
 import coding.entity.Room;
+import coding.service.LandlordRoomService;
 import coding.service.RoomService;
 
 /**
@@ -72,9 +75,11 @@ public class NewListingServlet extends HttpServlet {
 			Part image3 = request.getPart("image3");
 			Part image4 = request.getPart("image4");
 
+			String rootPathString = MyConstant.IMAGE_ROOT_PATH;
+
 			String image1Name = image1.getSubmittedFileName();
 			System.out.println("Image1's name: " + image1Name);
-			String image1UploadPath = "C:/Users/Troika VR/git/hommie/hommie/src/main/webapp/img/" + image1Name;
+			String image1UploadPath = rootPathString + image1Name;
 			String image1Url = "img/" + image1Name;
 			System.out.println(image1UploadPath);
 
@@ -89,9 +94,8 @@ public class NewListingServlet extends HttpServlet {
 
 			String image2Name = image2.getSubmittedFileName();
 			System.out.println("Image2's name: " + image2Name);
-			String image2UploadPath = "C:/Users/Troika VR/git/hommie/hommie/src/main/webapp/img/" + image2Name;
+			String image2UploadPath = rootPathString + image2Name;
 			String image2Url = "img/" + image2Name;
-			
 
 			FileOutputStream fos2 = new FileOutputStream(image2UploadPath);
 			InputStream is2 = image1.getInputStream();
@@ -104,9 +108,8 @@ public class NewListingServlet extends HttpServlet {
 
 			String image3Name = image3.getSubmittedFileName();
 			System.out.println("Image3's name: " + image3Name);
-			String image3UploadPath = "C:/Users/Troika VR/git/hommie/hommie/src/main/webapp/img/" + image3Name;
+			String image3UploadPath = rootPathString + image3Name;
 			String image3Url = "img/" + image3Name;
-			
 
 			FileOutputStream fos3 = new FileOutputStream(image3UploadPath);
 			InputStream is3 = image3.getInputStream();
@@ -119,7 +122,7 @@ public class NewListingServlet extends HttpServlet {
 
 			String image4Name = image4.getSubmittedFileName();
 			System.out.println("Image4's name: " + image4Name);
-			String image4UploadPath = "C:/Users/Troika VR/git/hommie/hommie/src/main/webapp/img/" + image4Name;
+			String image4UploadPath = rootPathString + image4Name;
 			String image4Url = "img/" + image4Name;
 
 			FileOutputStream fos4 = new FileOutputStream(image4UploadPath);
@@ -134,14 +137,19 @@ public class NewListingServlet extends HttpServlet {
 			Room room = new Room(title, description, price, bond, squareArea, capacity, countBed, countBath,
 					availableDate, landlordId, address, state, postcode, image1Url, image2Url, image3Url, image4Url);
 
-			RoomService roomService = new RoomService();
+			LandlordRoomService landlordRoomService = new LandlordRoomService();
 
-			if (roomService.insertRoom(room)) {
-				String successfulMessageString = "Your new listing has been successfully added.";
-				response.sendRedirect("landlordRoomList?TYPE=AVAILABLE");
+			if (landlordRoomService.insertRoom(room)) {
+				String createRoomSuccessfulMessage = "Your new listing has been successfully added.";
+				request.setAttribute("createRoomSuccessfulMessage", createRoomSuccessfulMessage);
+				RequestDispatcher rd = request.getRequestDispatcher("landlordRoomList?TYPE=AVAILABLE");
+				rd.forward(request, response);
+
 			} else {
-				String unsuccessfulMessageString = "There was an error, please try again!";
-				response.sendRedirect("landlord-listing.jsp");
+				String createRoomUnsuccessfulMessage = "There was an error, please try again!";
+				request.setAttribute("createRoomUnsuccessfulMessage", createRoomUnsuccessfulMessage);
+				RequestDispatcher rd = request.getRequestDispatcher("landlord-listing.jsp");
+				rd.forward(request, response);
 			}
 
 		} catch (Exception e) {

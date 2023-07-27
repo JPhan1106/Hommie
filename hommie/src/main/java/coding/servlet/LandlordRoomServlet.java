@@ -42,7 +42,6 @@ public class LandlordRoomServlet extends HttpServlet {
 			Room rentedRoom = new Room();
 			String type = request.getParameter("TYPE");
 
-
 			if (type.equals("AVAILABLE")) {
 				availableRoom = landlordRoomService.getAvailableRoomDetails(Integer.parseInt(roomId));
 				RequestDispatcher rd = request.getRequestDispatcher("landlord-available-room-details.jsp");
@@ -63,19 +62,26 @@ public class LandlordRoomServlet extends HttpServlet {
 				response.sendRedirect("landlordRoomList?TYPE=ALL");
 
 			}
-			
+
 			else if (type.equals("MAKE_OCCUPIED")) {
 				landlordRoomService.makeAvaibleRoomOccupied(Integer.parseInt(roomId));
 				response.sendRedirect("landlordRoomList?TYPE=ALL");
 
 			}
-			
+
 			else if (type.equals("DELETE")) {
 				landlordRoomService.deleteRoom(Integer.parseInt(roomId));
 				response.sendRedirect("landlordRoomList?TYPE=ALL");
 
 			}
 
+			else if (type.equals("UPDATE")) {
+				Room room = new Room();
+				room = landlordRoomService.getAvailableRoomDetails(Integer.parseInt(roomId));
+				RequestDispatcher rd = request.getRequestDispatcher("landlord-update-listing.jsp");
+				request.setAttribute("room", room);
+				rd.forward(request, response);
+			}
 		}
 
 		catch (SQLException e) {

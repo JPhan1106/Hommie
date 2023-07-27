@@ -130,6 +130,11 @@
 			</div>
 		</div>
 		<!-- Page Header End -->
+		
+		<c:if test="${not empty createRoomSuccessfulMessage}">
+			<p
+				style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">${createRoomSuccessfulMessage}</p>
+		</c:if>
 
 		<!-- Room List Start -->
 		<div class="container-xxl py-5">
@@ -398,6 +403,4 @@
 </body>
 
 </html>
-</body>
-</html>
-/html>
+
