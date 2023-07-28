@@ -128,6 +128,10 @@
 
 
 		<!-- Login Start -->
+		<c:if test="${not empty loginAsLandlordMessage}">
+			<p
+				style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">${loginAsLandlordMessage}</p>
+		</c:if>
 
 		<c:if test="${not empty errorMessage}">
 			<p
