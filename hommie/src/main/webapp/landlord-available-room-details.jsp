@@ -238,9 +238,10 @@
 					</div>
 					<div data-wow-delay="0.1s">
 						<iframe class="position-relative rounded w-100 h-100"
-							src="${availableRoom.mapUrl}" frameborder="0"
-							style="min-height: 350px; border: 0;" allowfullscreen=""
-							aria-hidden="false" tabindex="0"></iframe>
+							src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDme-55i5yxxsYP3sd3Ev-E82qi27MQc8s
+							&q=${availableRoom.lat}, ${availableRoom.lng}"
+							frameborder="0" style="min-height: 350px; border: 0;"
+							allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 					</div>
 				</div>
 			</div>

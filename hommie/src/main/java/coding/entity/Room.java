@@ -139,10 +139,12 @@ public class Room {
 		this.mapUrl = mapUrl;
 		this.status = status;
 	}
+	
+
 
 //	constructor for insertRoom
 	public Room(String title, String description, int price, int bond, int squareArea, int capacity, int countBed,
-			int countBath, String availableDate, int landlordId, String address, String state, String postcode,
+			int countBath, String availableDate, int landlordId, String address, String state, String lat, String lng, String postcode,
 			String image1Url, String image2Url, String image3Url, String image4Url) {
 		super();
 		this.title = title;
@@ -157,6 +159,8 @@ public class Room {
 		this.landlordId = landlordId;
 		this.address = address;
 		this.state = state;
+		this.lat = lat;
+		this.lng = lng;
 		this.postcode = postcode;
 		this.image1Url = image1Url;
 		this.image2Url = image2Url;

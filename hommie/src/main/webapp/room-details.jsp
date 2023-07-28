@@ -229,9 +229,10 @@
 					</div>
 					<div data-wow-delay="0.1s">
 						<iframe class="position-relative rounded w-100 h-100"
-							src="${room.mapUrl}" frameborder="0"
-							style="min-height: 350px; border: 0;" allowfullscreen=""
-							aria-hidden="false" tabindex="0"></iframe>
+							src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDme-55i5yxxsYP3sd3Ev-E82qi27MQc8s
+							&q=${room.lat}, ${room.lng}"
+							frameborder="0" style="min-height: 350px; border: 0;"
+							allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 					</div>
 				</div>
 			</div>
@@ -294,7 +295,7 @@
 											<textarea class="form-control" placeholder="Special Request"
 												name="message" id="message" style="height: 100px"></textarea>
 											<label for="message">Message (maximum 300 words)</label>
-											
+
 										</div>
 									</div>
 									<div class="col-12">

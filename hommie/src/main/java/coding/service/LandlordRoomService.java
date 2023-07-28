@@ -287,7 +287,7 @@ public class LandlordRoomService {
 			conn = DBUtil.makeConnection();
 
 //			create sql for insert
-			String sql = "INSERT INTO `room`(title, description, price, bond, square_area,capacity, landlord_id, address, state, postcode, count_bed, count_bath, available_date, image1_url, image2_url, image3_url, image4_url) value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO `room`(title, description, price, bond, square_area,capacity, landlord_id, address, state, postcode, count_bed, count_bath, available_date, image1_url, image2_url, image3_url, image4_url, lat, lng) value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, room.getTitle());
@@ -307,6 +307,8 @@ public class LandlordRoomService {
 			ps.setString(15, room.getImage2Url());
 			ps.setString(16, room.getImage3Url());
 			ps.setString(17, room.getImage4Url());
+			ps.setString(18, room.getLat());
+			ps.setString(19, room.getLng());
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
