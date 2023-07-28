@@ -62,11 +62,20 @@ public class NewListingServlet extends HttpServlet {
 		int landlordId = (Integer) session.getAttribute("landlordId");
 		System.out.println("landlordId:" + landlordId);
 		String address = request.getParameter("address");
-		String state = request.getParameter("state");
+
+		// getAbbreviatedState
+		String stateParam = request.getParameter("state");
+		String state = getAbbreviatedState(stateParam);
+
 		String postcode = request.getParameter("postcode");
+		String lat = request.getParameter("lat");
+		System.out.println("lat:" + lat);
+		String lng = request.getParameter("lng");
+		System.out.println("lng:" + lng);
 		int countBed = Integer.parseInt((request.getParameter("countBed")));
 		int countBath = Integer.parseInt((request.getParameter("countBath")));
 		String availableDate = request.getParameter("availableDate");
+		System.out.println("Available date:" + availableDate);
 
 		try {
 
@@ -77,7 +86,7 @@ public class NewListingServlet extends HttpServlet {
 
 			String rootPathString = MyConstant.IMAGE_ROOT_PATH;
 
-			String image1Name = image1.getSubmittedFileName();
+			String image1Name = getSubmittedFileName(image1);
 			System.out.println("Image1's name: " + image1Name);
 			String image1UploadPath = rootPathString + image1Name;
 			String image1Url = "img/" + image1Name;
@@ -92,13 +101,13 @@ public class NewListingServlet extends HttpServlet {
 			fos1.close();
 			is1.close();
 
-			String image2Name = image2.getSubmittedFileName();
+			String image2Name = getSubmittedFileName(image2);
 			System.out.println("Image2's name: " + image2Name);
 			String image2UploadPath = rootPathString + image2Name;
 			String image2Url = "img/" + image2Name;
 
 			FileOutputStream fos2 = new FileOutputStream(image2UploadPath);
-			InputStream is2 = image1.getInputStream();
+			InputStream is2 = image2.getInputStream();
 
 			byte[] data2 = new byte[is2.available()];
 			is2.read(data2);
@@ -106,7 +115,7 @@ public class NewListingServlet extends HttpServlet {
 			fos2.close();
 			is2.close();
 
-			String image3Name = image3.getSubmittedFileName();
+			String image3Name = getSubmittedFileName(image3);
 			System.out.println("Image3's name: " + image3Name);
 			String image3UploadPath = rootPathString + image3Name;
 			String image3Url = "img/" + image3Name;
@@ -120,7 +129,7 @@ public class NewListingServlet extends HttpServlet {
 			fos3.close();
 			is3.close();
 
-			String image4Name = image4.getSubmittedFileName();
+			String image4Name = getSubmittedFileName(image4);
 			System.out.println("Image4's name: " + image4Name);
 			String image4UploadPath = rootPathString + image4Name;
 			String image4Url = "img/" + image4Name;
@@ -135,7 +144,8 @@ public class NewListingServlet extends HttpServlet {
 			is4.close();
 
 			Room room = new Room(title, description, price, bond, squareArea, capacity, countBed, countBath,
-					availableDate, landlordId, address, state, postcode, image1Url, image2Url, image3Url, image4Url);
+					availableDate, landlordId, address, state, lat, lng, postcode, image1Url, image2Url, image3Url,
+					image4Url);
 
 			LandlordRoomService landlordRoomService = new LandlordRoomService();
 
@@ -156,5 +166,39 @@ public class NewListingServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
+	}
+
+	public String getAbbreviatedState(String stateName) {
+		switch (stateName) {
+		case "New South Wales":
+			return "NSW";
+		case "Queensland":
+			return "QLD";
+		case "South Australia":
+			return "SA";
+		case "Tasmania":
+			return "TAS";
+		case "Victoria":
+			return "VIC";
+		case "Western Australia":
+			return "WA";
+		case "Australian Capital Territory":
+			return "ACT";
+		case "Northern Territory":
+			return "NT";
+		default:
+			return stateName; // Return the original state name if no abbreviation is found
+		}
+	}
+
+	// Method to extract the submitted file name from the Part object
+	private String getSubmittedFileName(Part part) {
+		for (String cd : part.getHeader("content-disposition").split(";")) {
+			if (cd.trim().startsWith("filename")) {
+				String fileName = cd.substring(cd.indexOf('=') + 1).trim().replace("\"", "");
+				return fileName;
+			}
+		}
+		return null;
 	}
 }
