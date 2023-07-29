@@ -37,9 +37,12 @@
 # Project Demonstration: 
 
 ### Register: 
-User can sign up as student or landlord. 
+- User can sign up as student or landlord.
+- ![Register](https://github.com/JPhan1106/Hommie/assets/126372713/fcbd4d43-b75d-43d2-951f-211c5d635fda)
 ### Log in: 
-User role will be checked to be directed to a propriate view. 
+- User role will be checked to be directed to a propriate view.
+- ![login](https://github.com/JPhan1106/Hommie/assets/126372713/941e523c-b401-4763-873d-104467d0fbfd)
+
 ### Student's view:
 #### Search and filter rooms, view room list after search
 - ![Search](https://github.com/JPhan1106/Hommie/assets/126372713/b81d22a7-cf02-4bd2-ae9b-b4d49e8c078e)
@@ -51,5 +54,10 @@ User role will be checked to be directed to a propriate view.
 - ![add to wishlist](https://github.com/JPhan1106/Hommie/assets/126372713/e1cf3044-fdc1-4eb3-9088-2dc327478888)
 - ![wishlist](https://github.com/JPhan1106/Hommie/assets/126372713/59f31879-b169-4611-974c-2395f6086e98)
 
+### Guest's view: 
+- Looks similar to Student's view, however, if they wish to send inspection request or add rooms to wishlist, they will have to login as student. 
+
+### Landlord's view: 
+- 
 
 
