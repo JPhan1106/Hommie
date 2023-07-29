@@ -9,6 +9,10 @@ public class Inspection {
 	private String enquiryType;
 	private Timestamp requestTime;
 	private String message;
+	private String studentFirstName; 
+	private String studentLastName;
+	private String studentPhoneNumber;
+	private String studentEmail;
 
 	public Inspection() {
 
@@ -30,6 +34,23 @@ public class Inspection {
 		this.roomId = roomId;
 		this.enquiryType = enquiryType;
 		this.message = message;
+	}
+
+	
+	
+	public Inspection(int id, int studentId, int roomId, String enquiryType, Timestamp requestTime, String message,
+			String studentFirstName, String studentLastName, String studentPhoneNumber, String studentEmail) {
+		super();
+		this.id = id;
+		this.studentId = studentId;
+		this.roomId = roomId;
+		this.enquiryType = enquiryType;
+		this.requestTime = requestTime;
+		this.message = message;
+		this.studentFirstName = studentFirstName;
+		this.studentLastName = studentLastName;
+		this.studentPhoneNumber = studentPhoneNumber;
+		this.studentEmail = studentEmail;
 	}
 
 	public int getId() {
@@ -78,6 +99,38 @@ public class Inspection {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getStudentFirstName() {
+		return studentFirstName;
+	}
+
+	public void setStudentFirstName(String studentFirstName) {
+		this.studentFirstName = studentFirstName;
+	}
+
+	public String getStudentLastName() {
+		return studentLastName;
+	}
+
+	public void setStudentLastName(String studentLastName) {
+		this.studentLastName = studentLastName;
+	}
+
+	public String getStudentPhoneNumber() {
+		return studentPhoneNumber;
+	}
+
+	public void setStudentPhoneNumber(String studentPhoneNumber) {
+		this.studentPhoneNumber = studentPhoneNumber;
+	}
+
+	public String getStudentEmail() {
+		return studentEmail;
+	}
+
+	public void setStudentEmail(String studentEmail) {
+		this.studentEmail = studentEmail;
 	}
 
 }

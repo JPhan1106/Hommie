@@ -1,10 +1,11 @@
 package coding.service;
 
 import java.sql.Connection;
-
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -122,7 +123,16 @@ public class LandlordRoomService {
 				int capacity = rs.getInt("capacity");
 				int countBed = rs.getInt("count_bed");
 				int countBath = rs.getInt("count_bath");
-				String availableDate = rs.getString("available_date");
+
+				Date sqlDate = rs.getDate("available_date");
+//				System.out.println(sqlDate);
+				String availableDate = null;
+				if (sqlDate != null) {
+				    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				    String trimmedSqlDate = sqlDate.toString().trim();
+				    availableDate = sdf.format(Date.valueOf(trimmedSqlDate));
+				}
+//				System.out.println(availableDate);
 				int landlordId = rs.getInt("landlord_id");
 				String lat = rs.getString("lat");
 				String lng = rs.getString("lng");
@@ -139,7 +149,9 @@ public class LandlordRoomService {
 				room = new Room(id, title, description, price, bond, squareArea, capacity, countBed, countBath,
 						availableDate, landlordId, lat, lng, address, state, postcode, image1Url, image2Url, image3Url,
 						image4Url, mapUrl, status);
+//				System.out.println(room.getAvailableDate());
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -277,7 +289,7 @@ public class LandlordRoomService {
 		}
 
 	}
-	
+
 	public boolean insertRoom(Room room) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -314,7 +326,7 @@ public class LandlordRoomService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-			
+
 		} finally {
 			if (ps != null) {
 				ps.close();
@@ -362,7 +374,8 @@ public class LandlordRoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement("UPDATE `room` SET `title` = ?, `description` = ?, `price` = ?, `bond` = ?, `square_area` = ?, `capacity` = ?, `address` = ?, `state` = ?, `postcode` = ?, `count_bed` = ?, `count_bath` = ?, `available_date` = ? WHERE `id` = ?");
+			ps = conn.prepareStatement(
+					"UPDATE `room` SET `title` = ?, `description` = ?, `price` = ?, `bond` = ?, `square_area` = ?, `capacity` = ?, `address` = ?, `state` = ?, `postcode` = ?, `count_bed` = ?, `count_bath` = ?, `available_date` = ? WHERE `id` = ?");
 			ps.setString(1, room.getTitle());
 			ps.setString(2, room.getDescription());
 			ps.setInt(3, room.getPrice());
@@ -382,7 +395,7 @@ public class LandlordRoomService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
-			
+
 		} finally {
 			if (ps != null) {
 				ps.close();

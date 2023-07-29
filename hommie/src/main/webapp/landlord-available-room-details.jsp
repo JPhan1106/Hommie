@@ -64,7 +64,9 @@
 }
 
 .button-container a {
-	margin: 0 10px; /* Add some horizontal spacing between the buttons */
+	margin: 10px;
+	margin-bottom: 100px; 
+
 }
 </style>
 
@@ -120,16 +122,16 @@
 
 		<!-- Header Start -->
 		<div class="container-fluid bg-dark px-0">
-			<div class="row gx-0 justify-content-between p-4">
+			<div class="row gx-0 justify-content-between p-3">
 				<div class="col-lg-3 bg-dark d-none d-lg-block">
-					<a href="landlord-home.jsp"
+					<a href="home"
 						class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
 						<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
 					</a>
 				</div>
 				<div class="col-lg-5 px-5 text-end">
 					<nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-						<a href="landlord-home.jsp" class="navbar-brand d-block d-lg-none">
+						<a href="home" class="navbar-brand d-block d-lg-none">
 							<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
 						</a>
 						<button type="button" class="navbar-toggler"
@@ -139,11 +141,8 @@
 						<div class="collapse navbar-collapse justify-content-between"
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
-								<a href="landlord-home.jsp" class="nav-item nav-link active">Home</a>
-								<a href="landlordRoomList?TYPE=ALL&landlordId"
-									class="nav-item nav-link active">Rooms</a><a href="#"
-									class="nav-item nav-link">Inspections</a> <a href="#"
-									class="nav-item nav-link">Earnings</a>
+								<a href="home" class="nav-item nav-link active">Home</a> <a
+									href="roomList" class="nav-item nav-link">Rooms</a>
 								<div class="nav-item dropdown">
 									<a href="#" class="nav-link dropdown-toggle"
 										data-bs-toggle="dropdown"> ${sessionScope.user.firstName}
@@ -158,8 +157,8 @@
 				</div>
 			</div>
 		</div>
-		<!-- Header End -->
 
+		<!-- Header End -->
 		<!-- Room Image Start -->
 		<div class="container-fluid">
 			<div class="row">
@@ -262,9 +261,13 @@
 							room</button>
 					</form>
 
-					<a href="#" class="update-button" role="button">Check
-						inspection history</a>
-
+					<form action="landlordInspectionView" method="post" id="inspection style="display: inline-block;">
+						<input
+							type="hidden" name="roomId" value="${availableRoom.id}">
+						<button type="submit" class="update-button">Check
+						inspection history</button>
+					</form>
+					
 					<script>
 						function confirmMakeRoomOccupied() {
 							const confirmation = window
@@ -315,97 +318,92 @@
 
 		<!-- Buttons For Available Room End -->
 
-		<br> <br>
+		<br> <br><br> <br><br> <br><br> <br>
 
-		<!-- Footer Start -->
-		<div
-			class="container-fluid bg-dark text-light footer wow fadeIn mt-lg-5"
-			data-wow-delay="0.1s">
-			<div class="container pb-5">
-				<div class="row g-5">
-					<div class="col-md-6 col-lg-4">
-						<div class="bg-primary rounded p-4">
-							<a href="index.html"><h1
-									class="text-white text-uppercase mb-3">Hommie</h1></a>
-							<p class="text-white mb-0">
-								Download <a class="text-dark fw-medium"
-									href="https://htmlcodex.com/hotel-html-template-pro">Hommie</a>,
-								ultimate platform for students in search of their ideal living
-								companion. Find harmony in shared living and unlock the doors to
-								lifelong friendships.
-							</p>
-						</div>
-					</div>
-					<div class="col-md-6 col-lg-3">
-						<h6
-							class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
-						<p class="mb-2">
-							<i class="fa fa-map-marker-alt me-3"></i>123 Beauty Street,
-							Sydney, NSW
+	<!-- Footer Start -->
+	<div class="container-fluid bg-dark text-light footer wow fadeIn"
+		data-wow-delay="0.1s">
+		<div class="container pb-5">
+			<div class="row g-5">
+				<div class="col-md-6 col-lg-4">
+					<div class="bg-primary rounded p-4">
+						<a href="index.html"><h1
+								class="text-white text-uppercase mb-3">Hommie</h1></a>
+						<p class="text-white mb-0">
+							Download <a class="text-dark fw-medium"
+								href="https://htmlcodex.com/hotel-html-template-pro">Hommie</a>,
+							ultimate platform for students in search of their ideal living
+							companion. Find harmony in shared living and unlock the doors to
+							lifelong friendships.
 						</p>
-						<p class="mb-2">
-							<i class="fa fa-phone-alt me-3"></i>+61 2 8123 4567
-						</p>
-						<p class="mb-2">
-							<i class="fa fa-envelope me-3"></i>info@hommie.com
-						</p>
-						<div class="d-flex pt-2">
-							<a class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-twitter"></i></a> <a
-								class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-facebook-f"></i></a> <a
-								class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-youtube"></i></a> <a
-								class="btn btn-outline-light btn-social" href=""><i
-								class="fab fa-linkedin-in"></i></a>
-						</div>
-					</div>
-					<div class="col-lg-5 col-md-12">
-						<div class="row gy-5 g-4">
-							<div class="col-md-6">
-								<h6
-									class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
-								<a class="btn btn-link" href="">About Us</a> <a
-									class="btn btn-link" href="">Contact Us</a> <a
-									class="btn btn-link" href="">Privacy Policy</a> <a
-									class="btn btn-link" href="">Terms & Condition</a> <a
-									class="btn btn-link" href="">Support</a>
-							</div>
-							<div class="col-md-6">
-								<h6
-									class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
-								<a class="btn btn-link" href="">Food & Restaurant</a> <a
-									class="btn btn-link" href="">Spa & Fitness</a> <a
-									class="btn btn-link" href="">Sports & Gaming</a> <a
-									class="btn btn-link" href="">Event & Party</a> <a
-									class="btn btn-link" href="">GYM & Yoga</a>
-							</div>
-						</div>
 					</div>
 				</div>
-			</div>
-			<div class="container">
-				<div class="copyright">
-					<div class="row">
-						<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-							&copy; <a class="border-bottom" href="#">Hommie</a>, All Right
-							Reserved.
-
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML
-								Codex</a>
+				<div class="col-md-6 col-lg-3">
+					<h6
+						class="section-title text-start text-primary text-uppercase mb-4">Contact</h6>
+					<p class="mb-2">
+						<i class="fa fa-map-marker-alt me-3"></i>123 Beauty Street,
+						Sydney, NSW
+					</p>
+					<p class="mb-2">
+						<i class="fa fa-phone-alt me-3"></i>+61 2 8123 4567
+					</p>
+					<p class="mb-2">
+						<i class="fa fa-envelope me-3"></i>info@hommie.com.au
+					</p>
+					<div class="d-flex pt-2">
+						<a class="btn btn-outline-light btn-social" href=""><i
+							class="fab fa-twitter"></i></a> <a
+							class="btn btn-outline-light btn-social" href=""><i
+							class="fab fa-facebook-f"></i></a> <a
+							class="btn btn-outline-light btn-social" href=""><i
+							class="fab fa-youtube"></i></a> <a
+							class="btn btn-outline-light btn-social" href=""><i
+							class="fab fa-linkedin-in"></i></a>
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-12">
+					<div class="row gy-5 g-4">
+						<div class="col-md-6">
+							<h6
+								class="section-title text-start text-primary text-uppercase mb-4">Company</h6>
+							<a class="btn btn-link" href="">About Us</a> <a
+								class="btn btn-link" href="">Contact Us</a> <a
+								class="btn btn-link" href="">Privacy Policy</a> <a
+								class="btn btn-link" href="">Terms & Condition</a> <a
+								class="btn btn-link" href="">Support</a>
 						</div>
-						<div class="col-md-6 text-center text-md-end">
-							<div class="footer-menu">
-								<a href="">Home</a> <a href="">Cookies</a> <a href="">Help</a> <a
-									href="">FQAs</a>
-							</div>
+						<div class="col-md-6">
+							<h6
+								class="section-title text-start text-primary text-uppercase mb-4">Services</h6>
+							<a class="btn btn-link" href="">Landlords</a> <a
+								class="btn btn-link" href="">Students</a>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Footer End -->
+		<div class="container">
+			<div class="copyright">
+				<div class="row">
+					<div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+						&copy; <a class="border-bottom" href="#">Hommie Australia</a>, All
+						Right Reserved.
+
+						<!--/*** This template is free as long as you keep the footer authorâs credit link/attribution link/backlink. If you'd like to use the template without the footer authorâs credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+						</a>
+					</div>
+					<div class="col-md-6 text-center text-md-end">
+						<div class="footer-menu">
+							<a href="">Home</a> <a href="">Cookies</a> <a href="">Help</a> <a
+								href="">FQAs</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Footer End -->
 
 
 		<!-- Back to Top -->

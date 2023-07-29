@@ -1,6 +1,5 @@
 package coding.servlet;
 
-
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
@@ -44,7 +43,7 @@ public class UpdateListingServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		int id = Integer.parseInt((request.getParameter("id")));
 		String title = request.getParameter("title");
 		String description = request.getParameter("description");
@@ -53,14 +52,17 @@ public class UpdateListingServlet extends HttpServlet {
 		int squareArea = Integer.parseInt((request.getParameter("squareArea")));
 		int capacity = Integer.parseInt((request.getParameter("capacity")));
 		String address = request.getParameter("address");
-		String state = request.getParameter("state");
+
+		// getAbbreviatedState
+		String stateParam = request.getParameter("state");
+		String state = getAbbreviatedState(stateParam);
+
 		String postcode = request.getParameter("postcode");
 		int countBed = Integer.parseInt((request.getParameter("countBed")));
 		int countBath = Integer.parseInt((request.getParameter("countBath")));
 		String availableDate = request.getParameter("availableDate");
-		
-		try {
 
+		try {
 
 			Room room = new Room(id, title, description, price, bond, squareArea, capacity, countBed, countBath,
 					availableDate, address, state, postcode);
@@ -86,4 +88,26 @@ public class UpdateListingServlet extends HttpServlet {
 
 	}
 
+	public String getAbbreviatedState(String stateName) {
+		switch (stateName) {
+		case "New South Wales":
+			return "NSW";
+		case "Queensland":
+			return "QLD";
+		case "South Australia":
+			return "SA";
+		case "Tasmania":
+			return "TAS";
+		case "Victoria":
+			return "VIC";
+		case "Western Australia":
+			return "WA";
+		case "Australian Capital Territory":
+			return "ACT";
+		case "Northern Territory":
+			return "NT";
+		default:
+			return stateName; // Return the original state name if no abbreviation is found
+		}
+	}
 }
