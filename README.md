@@ -3,12 +3,12 @@ Hommie is a platform for landlords to list their spare rooms and students to fin
 <br>
 <h4>The admin site will be developed soon using Sring, JSON, and AJAX.</h4>
 
-<h3>**Technologies**</h3>
--&nbsp;Java Servlet MVC, Web API
--&nbsp;Languages: Java, HTML, CSS, JavaScript, SQL
--&nbsp;OOP, Design Pattern
--&nbsp;Database Cloud Service 
--&nbsp;Workspace: Eclipse, MySQL, Visual Code, Trello, Google's tools, GitHub, Diagram.net, 
+##**Technologies**
+- Java Servlet MVC, Web API
+- Languages: Java, HTML, CSS, JavaScript, SQL
+- OOP, Design Pattern
+- Database Cloud Service 
+- Workspace: Eclipse, MySQL, Visual Code, Trello, Google's tools, GitHub, Diagram.net, 
 
 
 <h3>**Main features**</h3>
