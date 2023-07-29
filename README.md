@@ -1,7 +1,5 @@
 # This project is a (mainly) Java Servlet MVC web application that allows users to sign up as students or landlords and provides different views and user-specific functionalities based on their roles. 
 
-<h4>The admin side will be developed soon using Sring, JSON, and AJAX.</h4>
-
 ## Technologies
 - Java Servlet MVC, Web API
 - Languages: Java, HTML, CSS, JavaScript, SQL
