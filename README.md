@@ -1,7 +1,7 @@
-# Hommie Project has been developed mainly by MVC Servlet (client sites including landlords and students). <br>
+# Hommie Project has been developed mainly by MVC Servlet (client sides including landlords and students). <br>
 Hommie is a platform for landlords to list their spare rooms and students to find a shared room to rent.
 
-<h4>The admin site will be developed soon using Sring, JSON, and AJAX.</h4>
+<h4>The admin side will be developed soon using Sring, JSON, and AJAX.</h4>
 
 ## Technologies
 - Java Servlet MVC, Web API
