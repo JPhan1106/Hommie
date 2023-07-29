@@ -38,7 +38,7 @@
 
 ### Register: 
 - User can sign up as student or landlord.
-- ![Register](https://github.com/JPhan1106/Hommie/assets/126372713/fcbd4d43-b75d-43d2-951f-211c5d635fda)
+- [![Register](https://github.com/JPhan1106/Hommie/assets/126372713/fcbd4d43-b75d-43d2-951f-211c5d635fda)](https://github.com/JPhan1106/Hommie/issues/21#issue-1827494405)
 ### Log in: 
 - User role will be checked to be directed to a propriate view.
 - ![login](https://github.com/JPhan1106/Hommie/assets/126372713/941e523c-b401-4763-873d-104467d0fbfd)
