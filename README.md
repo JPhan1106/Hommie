@@ -32,3 +32,7 @@
 - Database design normalization to 3NF
 
 # Project Demonstration: 
+
+### Register: 
+User can sign up as student or landlord. 
+![Register](https://github.com/JPhan1106/Hommie/assets/126372713/05e9a49d-e22a-477f-b06a-7d2994743ac8)
