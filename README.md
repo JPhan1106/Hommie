@@ -17,12 +17,12 @@ Hommie is a platform for landlords to list their spare rooms and students to fin
 - Show room's details with map
 - User filter
 
-<h4>Student:</h4>
+###Student:
 - Add room to wish-list
 - Send inspection request
 - Search and filter rooms
 
-<h4>Landlord:</h4>
+###Landlord:
 - Upload, update, delete room
 - Receive inspection request via email
 - Payment to upload room 
