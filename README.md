@@ -30,7 +30,8 @@
 - Database design normalization to 3NF
 
 ## Instalation
-- git clone 
+- Eclipse https://www.eclipse.org/downloads/
+- Apache Tomcat Version 8.5 https://tomcat.apache.org/download-80.cgi
 
 # Project Demonstration: 
 
