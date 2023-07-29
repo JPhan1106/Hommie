@@ -33,3 +33,4 @@ Hommie is a platform for landlords to list their spare rooms and students to fin
 - UI/UX design inspired by free template Hotelier 
 - Database design normalization to 3NF
 
+# Project Demonstration: 
