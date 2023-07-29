@@ -14,19 +14,18 @@
 - Show rooms from database
 - Log in, Log out, Sign up
 - Show room's details with map
+- Search and filter rooms
 - User filter
 
 ### Student:
 - Add room to wish-list
 - Send inspection request
-- Search and filter rooms
 
 ### Landlord:
 - Upload, update, delete room
 - Receive inspection request via email
 - Payment to upload room 
 - View inspection history
-
 
 ## Design
 - UI/UX design inspired by free template Hotelier 
