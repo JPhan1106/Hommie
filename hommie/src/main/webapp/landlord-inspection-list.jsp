@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
 <meta charset="utf-8">
-<title>Hommie - Where you find your best roommie</title>
+<title>Hommie - Find roomate App</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <meta content="" name="keywords">
 <meta content="" name="description">
@@ -41,8 +40,74 @@
 
 <!-- Template Stylesheet -->
 <link href="css/style.css" rel="stylesheet">
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="lib/wow/wow.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+<script src="lib/counterup/counterup.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="lib/tempusdominus/js/moment.min.js"></script>
+<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="js/main.js"></script>
+
+<style>
+.container1 {
+	/* Add your custom styles for the inner container */
+	/* For example: */
+	background-color: #f7f7f7;
+	padding: 20px;
+	border-radius: 10px;
+	border: 1px solid #ccc;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.text-primary {
+	/* Add your custom styles for the primary text */
+	/* For example: */
+	color: #007bff;
+}
+
+.center-form1 {
+	/* Add your custom styles for the form alignment */
+	/* For example: */
+	display: flex;
+	flex-direction: column;
+	align-items: right;
+}
+
+.contact-info {
+	/* Add your custom styles for the contact info section */
+	/* For example: */
+	margin-bottom: 20px;
+}
+
+.contact-item1 {
+	/* Add your custom styles for each contact item */
+	/* For example: */
+	display: flex;
+	align-items: right;
+	margin-bottom: 10px;
+}
+
+.contact-item1 i {
+	/* Add your custom styles for the contact item icons */
+	/* For example: */
+	margin-right: 10px;
+}
+</style>
 </head>
 
+
+
+<body>
 <body>
 	<div class="container-xxl bg-white p-0">
 		<!-- Spinner Start -->
@@ -54,7 +119,6 @@
 			</div>
 		</div>
 		<!-- Spinner End -->
-
 
 		<!-- Header Start -->
 		<div class="container-fluid bg-dark px-0">
@@ -96,163 +160,58 @@
 
 		<!-- Header End -->
 
+
 		<!-- Page Header Start -->
 		<div class="container-fluid page-header mb-5 p-0"
-			style="background-image: url(https://i.pinimg.com/564x/b0/6b/59/b06b59ae4ce0b72518f5b010100ff46e.jpg);">
+			style="background-image: url(img/carousel-1.jpeg);">
 			<div class="container-fluid page-header-inner py-5">
 				<div class="container text-center pb-5">
-					<h1 class="display-3 text-white mb-3 animated slideInDown">Landlord</h1>
+					<h1 class="display-3 text-white mb-3 animated slideInDown">${sessionScope.user.firstName}'s
+						rommie</h1>
+					<nav aria-label="breadcrumb"></nav>
 				</div>
 			</div>
 		</div>
-
 		<!-- Page Header End -->
 
-
-		<c:if test="${not empty updateRoomUnsuccessfulMessage}">
-			<p
-				style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">${updateRoomUnsuccessfulMessage}</p>
-		</c:if>
-
-		<!-- Listing Start -->
-		<div class="container-xxl py-5">
-			<div class="container w-50">
-				<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-					<h1 class="mb-5">
-						<span class="text-primary text-uppercase">Update your
-							vacant room</span>
+		<div class="container-xxl py-5 w-50">
+			<c:forEach var="inspection" items="${list}">
+				<div class="container1">
+					<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+						<h1 class="mb-5 text-center">
+							<span class="text-primary text-uppercase">${inspection.studentFirstName}
+								${inspection.studentLastName}</span>
+						</h1>
+					</div>
+					<div class="center-form1">
+						<div class="contact-info1">
+							<div class="contact-item1">
+								<i class="fa fa-user-circle" aria-hidden="true"></i> <span
+									class="text-right">${inspection.studentPhoneNumber}</span>
+							</div>
+							<div class="contact-item1">
+								<i class="fa fa-phone" aria-hidden="true"></i> <span
+									class="text-right">${inspection.studentEmail}</span>
+							</div>
+							<div class="contact-item1">
+								<i class="fa fa-clock" aria-hidden="true"></i> <span
+									class="text-right">${inspection.requestTime}</span>
+							</div>
+							<div class="contact-item1">
+								<i class="fa fa-envelope" aria-hidden="true"></i> <span
+									class="text-right">${inspection.message}</span>
+							</div>
+						</div>
+					</div>
+					<br>
 				</div>
-				<div class="center-form">
-					<form action="updateListing" id="listingForm" method="post"
-						style="align-content: center">
-									<!-- Hidden input field for room.id -->
-						<input type="hidden" id="id" name="id" value="${room.id}">
-						
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="text" class="form-control" id="title" name="title"
-									value="${room.title}" placeholder="Tittle"> <label
-									for="title"><i class="fa fa-home" aria-hidden="true"></i>
-									Title</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="text" class="form-control" id="address"
-									name="address" value="${room.address}" placeholder="Address">
-								<label for="address"><i class="fa fa-location-arrow"
-									aria-hidden="true"></i> Street Address and Suburb</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="text" class="form-control" id="state" name="state"
-									value="${room.state}" placeholder="state"> <label
-									for="state"><i class="fa fa-map-marker"
-									aria-hidden="true"></i> State</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="text" class="form-control" id="postcode"
-									name="postcode" value="${room.postcode}" placeholder="postcode">
-								<label for="address"><i class="fa fa-map-pin"
-									aria-hidden="true"></i> Postcode</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="text" class="form-control" id="squareArea"
-									name="squareArea" value="${room.squareArea}"
-									placeholder="squareArea"> <label for="squareArea"><i
-									class="fa fa-superscript" aria-hidden="true"></i> Room Size
-									(m²)</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="text" class="form-control" id="capacity"
-									name="capacity" value="${room.capacity}" placeholder="capacity">
-								<label for="capacity"><i class="fa fa-male"
-									aria-hidden="true"></i> Number of people</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="number" class="form-control" id="price"
-									name="price" value="${room.price}" placeholder="price">
-								<label for="price"><i class="fa fa-credit-card"
-									aria-hidden="true"></i> Weekly Price</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="date" class="form-control" id="Available Date"
-									name="availableDate" value="${room.availableDate}"
-									placeholder="Available Date"> <label
-									for="availableDate"><i class="fa fa-calendar"
-									aria-hidden="true"></i> Available Date</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="number" class="form-control" id="bond" name="bond"
-									value="${room.bond}" placeholder="bond"> <label
-									for="bond"><i class="fa fa-university"
-									aria-hidden="true"></i> Bond</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="number" class="form-control" id="countBed"
-									name="countBed" value="${room.countBed}" placeholder="countBed">
-								<label for="countBed"><i class="fa fa-bed"
-									aria-hidden="true"></i> Number of Bedrooms</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="number" class="form-control" id="countBed"
-									name="countBath" value="${room.countBath}"
-									placeholder="countBath"> <label for="countBath"><i
-									class="fa fa-bath" aria-hidden="true"></i> Number of Bathrooms</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-12">
-							<div>
-								<label for="message"><i class="fa fa-pencil"
-									aria-hidden="true"></i> Description</label>
-								<textarea class="form-control" id="message" name="description"
-									style="height: 100px">${room.description}</textarea>
-							</div>
-						</div>
-
-						<br>
-						<div class="col-md-6 w-100 pt-4">
-							<button class="btn btn-primary w-100 py-3" type="submit">Update
-								Your Room</button>
-						</div>
-					</form>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
 
-		<!-- Listing End -->
 
-		<br> <br> <br> <br> <br> <br> <br>
-		<br> <br>
-
+		<!-- Newsletter Start -->
+		<br> <br> <br> <br>
+		<!-- Newsletter Start -->
 
 
 		<!-- Footer Start -->
@@ -347,21 +306,8 @@
 			class="bi bi-arrow-up"></i></a>
 	</div>
 
-	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="lib/wow/wow.min.js"></script>
-	<script src="lib/easing/easing.min.js"></script>
-	<script src="lib/waypoints/waypoints.min.js"></script>
-	<script src="lib/counterup/counterup.min.js"></script>
-	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-	<script src="lib/tempusdominus/js/moment.min.js"></script>
-	<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-	<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-	<!-- Template Javascript -->
-	<script src="js/main.js"></script>
 </body>
 
 </html>
+

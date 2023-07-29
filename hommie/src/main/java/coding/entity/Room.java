@@ -30,6 +30,7 @@ public class Room {
 	private String image3Url;
 	private String image4Url;
 
+
 	public Room() {
 
 	}
@@ -111,7 +112,7 @@ public class Room {
 
 	// constructor for getAvailableRoomDetails (for landlord view)
 	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity,
-			int countBed, int countBath, String leaseStartDate, int landlordId, String lat, String lng, String address,
+			int countBed, int countBath, String getAvailableDate, int landlordId, String lat, String lng, String address,
 			String state, String postcode, String image1Url, String image2Url, String image3Url, String image4Url,
 			String mapUrl, String status) {
 		super();
@@ -124,7 +125,7 @@ public class Room {
 		this.capacity = capacity;
 		this.countBed = countBed;
 		this.countBath = countBath;
-		this.leaseStartDate = leaseStartDate;
+		this.availableDate = getAvailableDate;
 		this.landlordId = landlordId;
 		this.mapUrl = mapUrl;
 		this.lat = lat;

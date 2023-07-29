@@ -1,6 +1,7 @@
 package coding.servlet;
 
 import java.io.FileOutputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -17,7 +18,6 @@ import javax.servlet.http.Part;
 import coding.db.MyConstant;
 import coding.entity.Room;
 import coding.service.LandlordRoomService;
-import coding.service.RoomService;
 
 /**
  * Servlet implementation class NewListingServlet

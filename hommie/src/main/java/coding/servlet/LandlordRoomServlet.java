@@ -46,6 +46,7 @@ public class LandlordRoomServlet extends HttpServlet {
 				availableRoom = landlordRoomService.getAvailableRoomDetails(Integer.parseInt(roomId));
 				RequestDispatcher rd = request.getRequestDispatcher("landlord-available-room-details.jsp");
 				request.setAttribute("availableRoom", availableRoom);
+//				System.out.println(availableRoom.getAvailableDate());
 				rd.forward(request, response);
 			}
 
@@ -53,7 +54,7 @@ public class LandlordRoomServlet extends HttpServlet {
 				rentedRoom = landlordRoomService.getRentedRoomDetails(Integer.parseInt(roomId));
 				request.setAttribute("rentedRoom", rentedRoom);
 				RequestDispatcher rd = request.getRequestDispatcher("landlord-rented-room-details.jsp");
-//				System.out.println(rentedRoom.getLeaseStartDate()); 
+				System.out.println(rentedRoom.getLeaseStartDate()); 
 				rd.forward(request, response);
 			}
 

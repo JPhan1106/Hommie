@@ -5,9 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 import coding.db.DBUtil;
 import coding.entity.Inspection;
+import coding.entity.Room;
 
 public class InspectionService {
 
@@ -50,6 +54,52 @@ public class InspectionService {
 			}
 
 		}
+	}
+
+	public List<Inspection> getAllInspectionByRoomId(int roomId) throws SQLException {
+
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Inspection inspection = null;
+		List<Inspection> list = new ArrayList<Inspection>();
+
+		try {
+//			make connection to mySQL
+			conn = DBUtil.makeConnection();
+			ps = conn.prepareStatement("select * from `inspection` JOIN `user` ON `inspection`.`student_id` = `user`.`id` where `room_id`=? ORDER BY `request_time` DESC");
+			ps.setInt(1, roomId);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				int studentId = rs.getInt("student_id");
+				String enquiryType = rs.getString("enquiry_type");
+				Timestamp requestTime = rs.getTimestamp("request_time");
+				String message = rs.getString("message");
+				String studentFirstName = rs.getString("first_name");
+				String studentLastName = rs.getString("last_name");
+				String studentPhoneNumber = rs.getString("phone_number");
+				String studentEmail = rs.getString("email");
+
+				inspection = new Inspection(id, studentId, roomId, enquiryType, requestTime, message, studentFirstName,studentLastName, studentPhoneNumber,studentEmail);
+
+				list.add(inspection);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+		return list;
 	}
 
 }

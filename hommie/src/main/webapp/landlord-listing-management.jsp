@@ -44,46 +44,45 @@
         </div>
         <!-- Spinner End -->
 
-        <!-- Header Start -->
-        <div class="container-fluid bg-dark px-0">
-            <div class="row gx-0 justify-content-between p-3">
-                <div class="col-lg-3 bg-dark d-none d-lg-block">
-                    <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-                        <h1 class="m-0 text-primary text-uppercase">Hommie</h1>
-                    </a>
-                </div>
-                <div class="col-lg-5 px-5 text-end ">
-                    <div class="row gx-0 bg-white d-none d-lg-flex">
-                        <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-                        <a href="index.html" class="navbar-brand d-block d-lg-none">
-                            <h1 class="m-0 text-primary text-uppercase">Hommie</h1>
-                        </a>
-                        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-							<div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                            <div class="navbar-nav mr-auto py-0">
-                                <a href="home.jsp" class="nav-item nav-link active">Home</a>
-                                <a href="room-list.jsp" class="nav-item nav-link">Rooms</a>
-                                <a href="login.jsp" class="nav-item nav-link">Landlord</a>
-                                <div class="nav-item dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Account/Hi!Luv</a>
-                                    <div class="dropdown-menu rounded-0 m-0">
-                                        <a href="register.jsp" class="dropdown-item">Register</a>
-                                        <a href="login.jsp" class="dropdown-item">Login</a>
-                                        <a href="logout.jsp" class="dropdown-item">Logout</a>
-                                        <a href="wish-list.jsp" class="dropdown-item">Wish-list</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <!-- Header End -->
+		<!-- Header Start -->
+		<div class="container-fluid bg-dark px-0">
+			<div class="row gx-0 justify-content-between p-3">
+				<div class="col-lg-3 bg-dark d-none d-lg-block">
+					<a href="home"
+						class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+						<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
+					</a>
+				</div>
+				<div class="col-lg-5 px-5 text-end">
+					<nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
+						<a href="home" class="navbar-brand d-block d-lg-none">
+							<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
+						</a>
+						<button type="button" class="navbar-toggler"
+							data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-between"
+							id="navbarCollapse">
+							<div class="navbar-nav mr-auto py-0">
+								<a href="home" class="nav-item nav-link active">Home</a> <a
+									href="roomList" class="nav-item nav-link">Rooms</a>
+								<div class="nav-item dropdown">
+									<a href="#" class="nav-link dropdown-toggle"
+										data-bs-toggle="dropdown"> ${sessionScope.user.firstName}
+										${sessionScope.user.lastName}</a>
+									<div class="dropdown-menu rounded-0 m-0">
+										<a href="logout" class="dropdown-item">Logout</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<!-- Header End -->
 
 
         <!-- Page Header Start -->
