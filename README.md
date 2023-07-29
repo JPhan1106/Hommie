@@ -7,7 +7,7 @@
 - Languages: Java, HTML, CSS, JavaScript, SQL
 - OOP, Design Pattern
 - Database Cloud Service 
-- Workspace: Eclipse, MySQL, Visual Code, Trello, Google's tools, GitHub, Diagram.net, 
+- Workspace: Eclipse, MySQL, Visual Studio Code, Google's tools, GitHub, Diagram.net
 
 
 ## Main features
