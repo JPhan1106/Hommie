@@ -306,7 +306,7 @@
 						</div>
 					</div>
 					<!-- Booking End -->
-					<br> <br>
+					<br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br><br> <br>
 
 		<!-- Footer Start -->
 		<div class="container-fluid bg-dark text-light footer wow fadeIn"
