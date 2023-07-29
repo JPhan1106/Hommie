@@ -1,4 +1,4 @@
-#Hommie Project has been developed mainly by MVC Servlet (client sites including landlords and students). <br>
+# Hommie Project has been developed mainly by MVC Servlet (client sites including landlords and students). <br>
 Hommie is a platform for landlords to list their spare rooms and students to find a shared room to rent.
 
 <h4>The admin site will be developed soon using Sring, JSON, and AJAX.</h4>
@@ -17,12 +17,12 @@ Hommie is a platform for landlords to list their spare rooms and students to fin
 - Show room's details with map
 - User filter
 
-###Student:
+### Student:
 - Add room to wish-list
 - Send inspection request
 - Search and filter rooms
 
-###Landlord:
+### Landlord:
 - Upload, update, delete room
 - Receive inspection request via email
 - Payment to upload room 
