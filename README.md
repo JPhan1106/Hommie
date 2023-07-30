@@ -36,6 +36,8 @@
 
 ### Register: 
 - User can sign up as student or landlord
+- User will be verified if it has been existed
+- Password will be encrypted
 ![](https://github.com/JPhan1106/Hommie/blob/main/Register.jpg)
 ### Log in: 
 - User role will be checked to be directed to a propriate view
