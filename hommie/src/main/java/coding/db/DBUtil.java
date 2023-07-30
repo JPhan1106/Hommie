@@ -8,7 +8,7 @@ public class DBUtil {
 	public static Connection makeConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://sql6.freesqldatabase.com:3306/sql6632369", "sql6632369", "8cF5UDM6BJ");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://sql6.freesqldatabase.com:3306/xxxx", "xxxx", "xxxx");
 			return conn;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
