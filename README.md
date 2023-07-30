@@ -1,4 +1,4 @@
-# This project is a (mainly) Java Servlet MVC web application that allows users to sign up as students or landlords and provides different views and user-specific functionalities based on their roles. 
+# This project is a (mainly) Java Servlet MVC web application that, in essence, is rent-a-room website that allows users to sign up as students or landlords and provides different views and user-specific functionalities based on their roles.
 
 ## Technologies
 - Java Servlet MVC, Web API
