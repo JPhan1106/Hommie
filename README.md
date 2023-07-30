@@ -40,7 +40,7 @@
 - https://github.com/JPhan1106/Hommie/blob/main/Register.jpg
 ### Log in: 
 - User role will be checked to be directed to a propriate view.
-- !https://github.com/JPhan1106/Hommie/blob/main/login.jpg
+- https://github.com/JPhan1106/Hommie/blob/main/login.jpg
 
 ### Student's view:
 #### Search and filter rooms, view room list after search
@@ -57,6 +57,7 @@
 - Looks similar to Student's view, however, if they wish to send inspection request or add rooms to wishlist, they will have to login as student. 
 
 ### Landlord's view: 
+- Create room.
 - 
 
 
