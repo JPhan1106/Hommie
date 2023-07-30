@@ -37,10 +37,10 @@
 
 ### Register: 
 - User can sign up as student or landlord
-- https://github.com/JPhan1106/Hommie/blob/main/Register.jpg
+![](./https://github.com/JPhan1106/Hommie/blob/main/Register.jpg)
 ### Log in: 
 - User role will be checked to be directed to a propriate view
-- https://github.com/JPhan1106/Hommie/blob/main/login.jpg
+![](./https://github.com/JPhan1106/Hommie/blob/main/login.jpg)
 
 ### Student's view:
 #### Search and filter rooms, view room list after search
