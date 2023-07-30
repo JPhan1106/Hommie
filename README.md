@@ -3,7 +3,7 @@
 ## Technologies
 - Java Servlet MVC, Web API
 - Languages: Java, HTML, CSS, JavaScript, SQL
-- OOP, Design Pattern
+- OOP, MVC Design Pattern
 - Database Cloud Service
 - Apache Tomcat Server
 - Workspace: Eclipse, MySQL, Visual Studio Code, Google's tools, GitHub, Diagram.net
