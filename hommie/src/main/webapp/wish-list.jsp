@@ -75,7 +75,7 @@
 
 		<!-- Header Start -->
 		<div class="container-fluid bg-dark px-0">
-			<div class="row gx-0 justify-content-between p-4">
+			<div class="row gx-0 justify-content-between p-3">
 				<div class="col-lg-3 bg-dark d-none d-lg-block">
 					<a href="home"
 						class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
@@ -95,20 +95,18 @@
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
 								<a href="home" class="nav-item nav-link active">Home</a> <a
-									href="roomList" class="nav-item nav-link">Rooms</a> <a
-									href="login.jsp" class="nav-item nav-link">Landlord</a>
-								<div class="nav-item dropdown">
-									<a href="#" class="nav-link dropdown-toggle"
-										data-bs-toggle="dropdown">Account</a>
-									<div class="dropdown-menu rounded-0 m-0">
-										<a href="register.jsp" class="dropdown-item">Register</a> <a
-											href="login.jsp" class="dropdown-item">Login</a> <a
-											href="logout" class="dropdown-item">Logout</a> <a
-											href="wish-list?command=VIEW_WISH_LIST" class="dropdown-item">Wish-list
-											(${empty sessionScope.wishList? 0 : sessionScope.wishList.size()})</a>
-
+									href="roomList" class="nav-item nav-link">Rooms</a><a
+									href="wish-list?command=VIEW_WISH_LIST"
+									class="nav-item nav-link">Wish-list</a>
+								
+									<div class="nav-item dropdown">
+										<a href="#" class="nav-link dropdown-toggle"
+											data-bs-toggle="dropdown"> ${sessionScope.user.firstName}
+											${sessionScope.user.lastName}</a>
+										<div class="dropdown-menu rounded-0 m-0">
+											<a href="logout" class="dropdown-item">Logout</a>
+										</div>
 									</div>
-								</div>
 							</div>
 						</div>
 					</nav>
@@ -116,6 +114,7 @@
 			</div>
 		</div>
 		<!-- Header End -->
+
 
 
 		<!-- Page Header Start -->
@@ -205,28 +204,28 @@
 							<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 								<div class="room-item shadow rounded overflow-hidden">
 									<div class="position-relative">
-										<img class="img-fluid" src="${room.value.image1Url}"
+										<img class="img-fluid" src="${room.image1Url}"
 											alt="image-room"> <small
-											class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$${room.value.price}/Week</small>
+											class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$${room.price}/Week</small>
 									</div>
 									<div class="p-4 mt-2">
 										<div class="d-flex justify-content-between mb-3">
-											<h5 class="mb-0">${room.value.title}</h5>
+											<h5 class="mb-0">${room.title}</h5>
 											<div class="ps-2"></div>
 										</div>
 										<div class="d-flex mb-3">
 											<small class="border-end me-3 pe-3"><i
-												class="fa fa-bed text-primary me-2"></i>${room.value.countBed}
+												class="fa fa-bed text-primary me-2"></i>${room.countBed}
 												Bed</small> <small class="border-end me-3 pe-3"><i
-												class="fa fa-bath text-primary me-2"></i>${room.value.countBath}
+												class="fa fa-bath text-primary me-2"></i>${room.countBath}
 												Bath</small> <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
 										</div>
-										<p class="text-body mb-3">${room.value.description}</p>
+										<p class="text-body mb-3">${room.description}</p>
 										<div class="d-flex justify-content-between">
 											<a class="btn btn-sm btn-primary rounded py-2 px-4"
-												href="room?roomId=${room.value.id}">View Detail</a> <a
+												href="room?roomId=${room.id}">View Detail</a> <a
 												class="btn btn-sm btn-primary rounded py-2 px-4"
-												href="wish-list?command=REMOVE&roomId=${room.key}">Remove</a>
+												href="wish-list?command=REMOVE&roomId=${room.id}">Remove</a>
 
 										</div>
 									</div>
