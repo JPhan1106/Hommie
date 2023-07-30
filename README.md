@@ -22,7 +22,6 @@
 ### Landlord:
 - Upload, update, delete room
 - Receive inspection request via email
-- Payment to upload room 
 - View inspection history
 
 ## Design
