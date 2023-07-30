@@ -250,22 +250,17 @@
 									class="fa fa-map-pin" aria-hidden="true"></i> Postcode</label>
 							</div>
 						</div>
-						<br>
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
-								<input type="text" class="form-control" id="lat" name="lat"
-									value="${param.lat}" placeholder="latitude"> <label
-									for="address"><i class="fa fa-map-pin"
-									aria-hidden="true"></i> Latitude</label>
+								<input type="hidden" class="form-control" id="lat" name="lat"
+									value="${param.lat}" placeholder="latitude">
 							</div>
 						</div>
-						<br>
+
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
-								<input type="text" class="form-control" id="lng" name="lng"
-									value="${param.lng}" placeholder="longitude"> <label
-									for="address"><i class="fa fa-map-pin"
-									aria-hidden="true"></i> Longitude</label>
+								<input type="hidden" class="form-control" id="lng" name="lng"
+									value="${param.lng}" placeholder="longitude"> 
 							</div>
 						</div>
 						<br>

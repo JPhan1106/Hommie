@@ -251,9 +251,9 @@
 							value="${rentedRoom.studentId}">
 						<button type="submit" class="update-button">View Rommie's
 							details</button>
-					</form> --%>
-					<a href="#" class="update-button" role="button">Check payment
-						history</a>
+					</form>  --%>
+				<!-- 	<a href="#" class="update-button" role="button">Check payment
+						history</a> -->
 
 					<script>
 						function confirmMakeRoomAvailable() {
@@ -283,7 +283,7 @@
 
 		<!-- Update Button  End -->
 
-		<br> <br>
+		<br> <br><br> <br><br> <br><br> <br>
 		
 
 	<!-- Footer Start -->

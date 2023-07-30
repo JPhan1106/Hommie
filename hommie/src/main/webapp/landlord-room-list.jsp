@@ -169,7 +169,7 @@
 										<p class="text-body mb-3">${room.description}</p>
 										<div class="d-flex justify-content-between">
 											<a class="btn btn-sm btn-primary rounded py-2 px-4"
-												href="landlordRoom?TYPE=AVAILABLE&roomId=${room.id}">View & Update Detail</a>
+												href="landlordRoom?TYPE=AVAILABLE&roomId=${room.id}">View & Update Details</a>
 
 										</div>
 									</div>
@@ -210,7 +210,7 @@
 										<p class="text-body mb-3">${room.description}</p>
 										<div class="d-flex justify-content-between">
 											<a class="btn btn-sm btn-primary rounded py-2 px-4"
-												href="landlordRoom?TYPE=RENTED&roomId=${room.id}">View Detail & Payment</a>
+												href="landlordRoom?TYPE=RENTED&roomId=${room.id}">View Details</a>
 
 										</div>
 									</div>
