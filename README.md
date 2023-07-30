@@ -37,21 +37,21 @@
 
 ### Register: 
 - User can sign up as student or landlord.
-- [![Register](https://github.com/JPhan1106/Hommie/assets/126372713/fcbd4d43-b75d-43d2-951f-211c5d635fda)](https://github.com/JPhan1106/Hommie/issues/21#issue-1827494405)
+- https://github.com/JPhan1106/Hommie/blob/main/Register.jpg
 ### Log in: 
 - User role will be checked to be directed to a propriate view.
-- ![login](https://github.com/JPhan1106/Hommie/assets/126372713/941e523c-b401-4763-873d-104467d0fbfd)
+- !https://github.com/JPhan1106/Hommie/blob/main/login.jpg
 
 ### Student's view:
 #### Search and filter rooms, view room list after search
-- ![Search](https://github.com/JPhan1106/Hommie/assets/126372713/b81d22a7-cf02-4bd2-ae9b-b4d49e8c078e)
-- ![Room List](https://github.com/JPhan1106/Hommie/assets/126372713/eb411214-2b4f-4b67-8f7a-3ef5f846686c)
+- https://github.com/JPhan1106/Hommie/blob/main/Search.jpg
+- https://github.com/JPhan1106/Hommie/blob/main/Room%20List.jpg
 #### View details of each room with map and send inspection request to landlord
-- ![room details](https://github.com/JPhan1106/Hommie/assets/126372713/142c9b10-7093-4d1c-85dc-7e6cccb47e9f)
-- ![Inspection sent success](https://github.com/JPhan1106/Hommie/assets/126372713/108f2779-9248-432f-8944-c143d2efb0ec)
+- https://github.com/JPhan1106/Hommie/blob/main/room%20details.jpg
+- https://github.com/JPhan1106/Hommie/blob/main/Inspection%20sent%20success.jpg
 #### Add favourite rooms to wishlist and view wishlist
-- ![add to wishlist](https://github.com/JPhan1106/Hommie/assets/126372713/e1cf3044-fdc1-4eb3-9088-2dc327478888)
-- ![wishlist](https://github.com/JPhan1106/Hommie/assets/126372713/59f31879-b169-4611-974c-2395f6086e98)
+- https://github.com/JPhan1106/Hommie/blob/main/wishlist.jpg
+- https://github.com/JPhan1106/Hommie/blob/main/add%20to%20wishlist.jpg
 
 ### Guest's view: 
 - Looks similar to Student's view, however, if they wish to send inspection request or add rooms to wishlist, they will have to login as student. 
