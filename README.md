@@ -44,6 +44,8 @@
 ![](https://github.com/JPhan1106/Hommie/blob/main/login.jpg)
 
 ### Student's view:
+#### Homepage
+![](https://github.com/JPhan1106/Hommie/blob/main/homepage%20-%20student%20and%20guest.jpg)
 #### Search and filter rooms, view room list after search
 ![](https://github.com/JPhan1106/Hommie/blob/main/Search.jpg)
 ![](https://github.com/JPhan1106/Hommie/blob/main/Room%20List.jpg)
@@ -58,6 +60,8 @@
 - Looks similar to Student's view, however, if they wish to send inspection request or add rooms to wishlist, they will have to login as student. 
 
 ### Landlord's view: 
+#### Homepage
+![](https://github.com/JPhan1106/Hommie/blob/main/homepage%20-%20landlord.jpg)
 #### Create room
 ![](https://github.com/JPhan1106/Hommie/blob/main/Create%20room.jpg)
 #### View all room list, available room list and rented room list 
