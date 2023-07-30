@@ -39,36 +39,36 @@
 ![](https://github.com/JPhan1106/Hommie/blob/main/Register.jpg)
 ### Log in: 
 - User role will be checked to be directed to a propriate view
-![](./https://github.com/JPhan1106/Hommie/blob/main/login.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/login.jpg)
 
 ### Student's view:
 #### Search and filter rooms, view room list after search
-![](./https://github.com/JPhan1106/Hommie/blob/main/Search.jpg)
-![](./https://github.com/JPhan1106/Hommie/blob/main/Room%20List.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Search.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Room%20List.jpg)
 #### View details of each room with map and send inspection request to landlord
-![](./https://github.com/JPhan1106/Hommie/blob/main/room%20details.jpg)
-![](./https://github.com/JPhan1106/Hommie/blob/main/Inspection%20sent%20success.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/room%20details.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Inspection%20sent%20success.jpg)
 #### Add favourite rooms to wishlist and view wishlist
-![](./https://github.com/JPhan1106/Hommie/blob/main/wishlist.jpg)
-![](./https://github.com/JPhan1106/Hommie/blob/main/add%20to%20wishlist.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/wishlist.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/add%20to%20wishlist.jpg)
 
 ### Guest's view: 
 - Looks similar to Student's view, however, if they wish to send inspection request or add rooms to wishlist, they will have to login as student. 
 
 ### Landlord's view: 
 #### Create room
-![](./https://github.com/JPhan1106/Hommie/blob/main/Create%20room.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Create%20room.jpg)
 #### View all room list, available room list and rented room list 
-![](./https://github.com/JPhan1106/Hommie/blob/main/Landlord's%20listings%20.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Landlord's%20listings%20.jpg)
 #### View available room's details and functions including: Update, Check inspection history, Make room occupied, Delete
-![](./https://github.com/JPhan1106/Hommie/blob/main/Available%20room's%20details.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Available%20room's%20details.jpg)
 #### Update room
-![](./https://github.com/JPhan1106/Hommie/blob/main/Update%20room.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Update%20room.jpg)
 #### Delete room
-![](./https://github.com/JPhan1106/Hommie/blob/main/Delete%20Room.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Delete%20Room.jpg)
 #### Check inspection history: When a student sends a message or inspection request, the landlord receives an email notification. Additionally, the message or inspection request is saved in the inspection history and displayed in chronological order with the latest time displayed first.
-![](./https://github.com/JPhan1106/Hommie/blob/main/Inspection%20request%20history.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Inspection%20request%20history.jpg)
 #### View rented room's details and make it available
-![](./https://github.com/JPhan1106/Hommie/blob/main/Rented%20room's%20details.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/Rented%20room's%20details.jpg)
 
 
