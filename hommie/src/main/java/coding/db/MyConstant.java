@@ -5,4 +5,6 @@ public class MyConstant {
 	
 	public static String IMAGE_ROOT_PATH = "C:/Users/Troika VR/git/hommie/hommie/src/main/webapp/img/";
 	
+	public static double COMMISSION = 0.05;
+	
 }

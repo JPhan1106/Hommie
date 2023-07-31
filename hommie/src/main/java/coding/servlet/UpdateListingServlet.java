@@ -52,6 +52,8 @@ public class UpdateListingServlet extends HttpServlet {
 		int squareArea = Integer.parseInt((request.getParameter("squareArea")));
 		int capacity = Integer.parseInt((request.getParameter("capacity")));
 		String address = request.getParameter("address");
+		String lat = request.getParameter("lat");
+		String lng = request.getParameter("lng");
 
 		// getAbbreviatedState
 		String stateParam = request.getParameter("state");
@@ -65,7 +67,7 @@ public class UpdateListingServlet extends HttpServlet {
 		try {
 
 			Room room = new Room(id, title, description, price, bond, squareArea, capacity, countBed, countBath,
-					availableDate, address, state, postcode);
+					availableDate, address, state, postcode, lat, lng);
 
 			LandlordRoomService landlordRoomService = new LandlordRoomService();
 
