@@ -64,6 +64,8 @@
 ![](https://github.com/JPhan1106/Hommie/blob/main/homepage%20-%20landlord.jpg)
 #### Create room
 ![](https://github.com/JPhan1106/Hommie/blob/main/Create%20room.jpg)
+#### Payment (Stripe) to upload room 
+
 #### View all room list, available room list and rented room list 
 ![](https://github.com/JPhan1106/Hommie/blob/main/Landlord's%20listings%20.jpg)
 #### View available room's details and functions including: Update, Check inspection history, Make room occupied, Delete
