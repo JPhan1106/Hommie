@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,8 @@ public class LandlordRoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement("select * from `room` where `landlord_id`=? and `status`='available'");
+			ps = conn.prepareStatement(
+					"select * from `room` where `landlord_id` = ? and `status` = 'available' and `payment_status` = 'paid'");
 			ps.setInt(1, landlordId);
 			rs = ps.executeQuery();
 
@@ -66,7 +68,7 @@ public class LandlordRoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement("select * from `room` where `landlord_id`=? and `status`='rented'");
+			ps = conn.prepareStatement("select * from `room` where `landlord_id` = ? and `status` = 'rented' and `payment_status` = 'paid'");
 			ps.setInt(1, landlordId);
 			rs = ps.executeQuery();
 
@@ -128,9 +130,9 @@ public class LandlordRoomService {
 //				System.out.println(sqlDate);
 				String availableDate = null;
 				if (sqlDate != null) {
-				    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				    String trimmedSqlDate = sqlDate.toString().trim();
-				    availableDate = sdf.format(Date.valueOf(trimmedSqlDate));
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					String trimmedSqlDate = sqlDate.toString().trim();
+					availableDate = sdf.format(Date.valueOf(trimmedSqlDate));
 				}
 //				System.out.println(availableDate);
 				int landlordId = rs.getInt("landlord_id");
@@ -290,17 +292,17 @@ public class LandlordRoomService {
 
 	}
 
-	public boolean insertRoom(Room room) throws SQLException {
+	public int insertRoom(Room room) throws SQLException {
 		Connection conn = null;
 		PreparedStatement ps = null;
-
+		ResultSet rs = null;
 		try {
-//			make connection to mySQL
+			// Make connection to mySQL
 			conn = DBUtil.makeConnection();
 
-//			create sql for insert
+			// Create SQL for insert
 			String sql = "INSERT INTO `room`(title, description, price, bond, square_area,capacity, landlord_id, address, state, postcode, count_bed, count_bath, available_date, image1_url, image2_url, image3_url, image4_url, lat, lng) value(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
 			ps.setString(1, room.getTitle());
 			ps.setString(2, room.getDescription());
@@ -323,11 +325,18 @@ public class LandlordRoomService {
 			ps.setString(19, room.getLng());
 			ps.executeUpdate();
 
+			// Get the auto generated room id
+			rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return false;
-
 		} finally {
+			if (rs != null) {
+				rs.close();
+			}
 			if (ps != null) {
 				ps.close();
 			}
@@ -335,7 +344,7 @@ public class LandlordRoomService {
 				conn.close();
 			}
 		}
-		return true;
+		return -1;
 	}
 
 	public void deleteRoom(int roomId) throws SQLException {
@@ -374,8 +383,8 @@ public class LandlordRoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement(
-					"UPDATE `room` SET `title` = ?, `description` = ?, `price` = ?, `bond` = ?, `square_area` = ?, `capacity` = ?, `address` = ?, `state` = ?, `postcode` = ?, `count_bed` = ?, `count_bath` = ?, `available_date` = ? WHERE `id` = ?");
+			ps = conn.prepareStatement("UPDATE `room` SET `title` = ?, `description` = ?, `price` = ?, `bond` = ?, `square_area` = ?, `capacity` = ?, `address` = ?, `state` = ?, `postcode` = ?, `count_bed` = ?, `count_bath` = ?, `available_date` = ?, `lat` = ?, `lng` = ? WHERE `id` = ?");
+
 			ps.setString(1, room.getTitle());
 			ps.setString(2, room.getDescription());
 			ps.setInt(3, room.getPrice());
@@ -388,7 +397,9 @@ public class LandlordRoomService {
 			ps.setInt(10, room.getCountBed());
 			ps.setInt(11, room.getCountBath());
 			ps.setString(12, room.getAvailableDate());
-			ps.setInt(13, room.getId());
+			ps.setString(13, room.getLat());
+			ps.setString(14, room.getLng());
+			ps.setInt(15, room.getId());
 
 			ps.execute();
 
@@ -405,5 +416,36 @@ public class LandlordRoomService {
 			}
 		}
 		return true;
+	}
+
+	public void updateRoomStatus(Room room) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+
+		try {
+			// Make connection to MySQL
+			conn = DBUtil.makeConnection();
+
+			// Create SQL for update
+			String sql = "UPDATE room SET `payment_status` = ? WHERE id = ?";
+			ps = conn.prepareStatement(sql);
+
+			// Set the prepared statement parameters
+			ps.setString(1, room.getPaymentStatus());
+			ps.setInt(2, room.getId());
+
+			// Execute the update
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
 	}
 }

@@ -1,62 +1,138 @@
 package coding.service;
 
-import com.braintreegateway.*;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import coding.db.DBUtil;
+import coding.entity.Payment;
 
 public class PaymentService {
 
-	private static BraintreeGateway gateway = new BraintreeGateway(Environment.SANDBOX,
-			System.getenv("BRAINTREE_MERCHANT_ID"), System.getenv("BRAINTREE_PUBLIC_KEY"),
-			System.getenv("BRAINTREE_PRIVATE_KEY"));
+	public int insertPayment(Payment payment) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
 
-	/*
-	 * export BRAINTREE_MERCHANT_ID="your-merchant-id" export
-	 * BRAINTREE_PUBLIC_KEY="your-public-key" export
-	 * BRAINTREE_PRIVATE_KEY="your-private-key" In your IDE: If you're using an
-	 * Integrated Development Environment (IDE) like IntelliJ IDEA or Eclipse to run
-	 * your application, you can usually set environment variables in the run
-	 * configuration settings. In IntelliJ, for example, you would go to Run -> Edit
-	 * Configurations, then under the "Configuration" tab, there's an
-	 * "Environment variables" field where you can add your variables.
-	 */
-	// Merchant ID: vjs2rngd6srn866g
-	// Public Key: 8ff39p268fzrxxr9
-	// Private Key: b43bb3ba29d3df13b8b79decd2fc5fd2
+		try {
+//			make connection to mySQL
+			conn = DBUtil.makeConnection();
 
-	public Result<Transaction> processPayment(String nonce, BigDecimal amount, String currency) {
-		String merchantAccountId;
+			String sql = "INSERT INTO `payment`(landlord_id, room_id, listing_fee, listing_date) value(?,?,?,?)";
+			ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-		// Map currencies to merchant account IDs
-		switch (currency) {
-		case "USD":
-			merchantAccountId = "your-merchant-account-id-for-usd";
-			break;
-		case "AUD":
-			merchantAccountId = "your-merchant-account-id-for-aud";
-			break;
-		// Add more cases as needed for other currencies
-		default:
-			merchantAccountId = "your-default-merchant-account-id";
-			break;
+			ps.setInt(1, payment.getLandlordId());
+			ps.setInt(2, payment.getRoomId());
+			ps.setDouble(3, payment.getListingFee());
+			ps.setTimestamp(4, new java.sql.Timestamp(System.currentTimeMillis()));
+
+			ps.executeUpdate();
+
+			rs = ps.getGeneratedKeys();
+
+			if (rs.next()) {
+				int insertedId = rs.getInt(1);
+				return insertedId;
+			}
+
+			return 0;
+
+		} finally {
+
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+
 		}
-
-		TransactionRequest transactionRequest = new TransactionRequest().amount(amount).paymentMethodNonce(nonce)
-				.merchantAccountId(merchantAccountId) // Set the merchant account ID
-				.options().submitForSettlement(true).done();
-
-		return gateway.transaction().sale(transactionRequest);
 	}
+	
+	public List<Payment> getPaymentsByLandlordId(int landlordId) throws SQLException {
+	    Connection conn = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    List<Payment> payments = new ArrayList<>();
 
-	public String getClientToken() {
-		return gateway.clientToken().generate();
+	    try {
+	        // make connection to mySQL
+	        conn = DBUtil.makeConnection();
+
+	        String sql = "SELECT * FROM `payment` WHERE landlord_id = ?";
+	        ps = conn.prepareStatement(sql);
+	        ps.setInt(1, landlordId);
+
+	        rs = ps.executeQuery();
+
+	        while (rs.next()) {
+	            Payment payment = new Payment();
+	            payment.setId(rs.getInt("id"));
+	            payment.setLandlordId(rs.getInt("landlord_id"));
+	            payment.setRoomId(rs.getInt("room_id"));
+	            payment.setListingFee(rs.getDouble("listing_fee"));
+	            payment.setListingDate(rs.getTimestamp("listing_date"));
+	            payments.add(payment);
+	        }
+
+	        return payments;
+
+	    } finally {
+	        if (rs != null) {
+	            rs.close();
+	        }
+	        if (ps != null) {
+	            ps.close();
+	        }
+	        if (conn != null) {
+	            conn.close();
+	        }
+	    }
+	}
+	
+	public Payment getPayment(int roomId, int landlordId) throws SQLException {
+	    Connection conn = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    Payment payment = null;
+
+	    try {
+	        // Make connection to mySQL
+	        conn = DBUtil.makeConnection();
+
+	        String sql = "SELECT * FROM `payment` WHERE landlord_id = ? AND room_id = ?";
+	        ps = conn.prepareStatement(sql);
+	        ps.setInt(1, landlordId);
+	        ps.setInt(2, roomId);
+
+	        rs = ps.executeQuery();
+
+	        if (rs.next()) {
+	            payment = new Payment();
+	            payment.setId(rs.getInt("id"));
+	            payment.setLandlordId(rs.getInt("landlord_id"));
+	            payment.setRoomId(rs.getInt("room_id"));
+	            payment.setListingFee(rs.getDouble("listing_fee"));
+	            payment.setListingDate(rs.getTimestamp("listing_date"));
+	        }
+
+	        return payment;
+
+	    } finally {
+	        if (rs != null) {
+	            rs.close();
+	        }
+	        if (ps != null) {
+	            ps.close();
+	        }
+	        if (conn != null) {
+	            conn.close();
+	        }
+	    }
 	}
 
 }

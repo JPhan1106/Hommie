@@ -15,8 +15,9 @@ public class Room {
 	private int studentId;
 	private String leaseStartDate;
 	private String status;
-
-// location:
+	private String paymentStatus;
+	
+	// location:
 	private String mapUrl;
 	private String lat;
 	private String lng;
@@ -29,7 +30,6 @@ public class Room {
 	private String image2Url;
 	private String image3Url;
 	private String image4Url;
-
 
 	public Room() {
 
@@ -112,7 +112,7 @@ public class Room {
 
 	// constructor for getAvailableRoomDetails (for landlord view)
 	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity,
-			int countBed, int countBath, String getAvailableDate, int landlordId, String lat, String lng, String address,
+			int countBed, int countBath, String availableDate, int landlordId, String lat, String lng, String address,
 			String state, String postcode, String image1Url, String image2Url, String image3Url, String image4Url,
 			String mapUrl, String status) {
 		super();
@@ -125,7 +125,7 @@ public class Room {
 		this.capacity = capacity;
 		this.countBed = countBed;
 		this.countBath = countBath;
-		this.availableDate = getAvailableDate;
+		this.availableDate = availableDate;
 		this.landlordId = landlordId;
 		this.mapUrl = mapUrl;
 		this.lat = lat;
@@ -140,13 +140,11 @@ public class Room {
 		this.mapUrl = mapUrl;
 		this.status = status;
 	}
-	
-
 
 //	constructor for insertRoom
 	public Room(String title, String description, int price, int bond, int squareArea, int capacity, int countBed,
-			int countBath, String availableDate, int landlordId, String address, String state, String lat, String lng, String postcode,
-			String image1Url, String image2Url, String image3Url, String image4Url) {
+			int countBath, String availableDate, int landlordId, String address, String state, String lat, String lng,
+			String postcode, String image1Url, String image2Url, String image3Url, String image4Url, String paymentStatus) {
 		super();
 		this.title = title;
 		this.description = description;
@@ -167,11 +165,13 @@ public class Room {
 		this.image2Url = image2Url;
 		this.image3Url = image3Url;
 		this.image4Url = image4Url;
+		this.paymentStatus = paymentStatus;
+
 	}
 
 //		constructor for updateRoom
-	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity, int countBed,
-			int countBath, String availableDate, String address, String state, String postcode) {
+	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity,
+			int countBed, int countBath, String availableDate, String address, String state, String postcode,String lat, String lng) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -186,6 +186,9 @@ public class Room {
 		this.address = address;
 		this.state = state;
 		this.postcode = postcode;
+		this.lat = lat;
+		this.lng = lng;
+		
 	}
 
 	public String getTitle() {
@@ -379,5 +382,14 @@ public class Room {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public String getPaymentStatus() {
+		return paymentStatus;
+	}
+
+	public void setPaymentStatus(String paymentStatus) {
+		this.paymentStatus = paymentStatus;
+	}
+
 
 }

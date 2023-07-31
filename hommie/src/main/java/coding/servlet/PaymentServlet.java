@@ -1,8 +1,16 @@
 package coding.servlet;
 
-import com.braintreegateway.*;
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.checkout.Session;
+import com.stripe.param.checkout.SessionCreateParams;
 
-import coding.service.PaymentService;
+import coding.db.MyConstant;
+import coding.entity.Room;
+import coding.service.LandlordRoomService;
+
+import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,72 +18,74 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/payment")
 public class PaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String STRIPE_API_KEY = "sk_test_51NZ6VaAbavQCWhXPmCX4I98gOuWjK2OL5YAZn4LYV21srbF1vAauvQek2sITzldjisNSbINZXGmAPpav2ckAWY1V00YYyqczwe";
 
 	public PaymentServlet() {
 		super();
 	}
 
-	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-	    String username = (String) request.getSession().getAttribute("username");
-	    if (username == null || username.isEmpty()) {
-	        response.sendRedirect("login.jsp");
-	    } else {
-	        PaymentService paymentService = new PaymentService();
-	        String clientToken = paymentService.getClientToken();
-	        request.setAttribute("clientToken", clientToken);
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("payment.jsp");
-	        dispatcher.forward(request, response);
-	    }
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		LandlordRoomService landlordRoomService = new LandlordRoomService();
+		int roomId = Integer.parseInt(request.getParameter("roomId")); // get the roomId from the request
+		Room room = null; // Initialize room to null
+		try {
+			room = landlordRoomService.getAvailableRoomDetails(roomId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} // get the room object from the database
+
+		if (room != null) {
+			int listingFee = (int) Math.ceil((room.getPrice()) * MyConstant.COMMISSION);
+			
+			session.setAttribute("listingFee", listingFee);
+
+			try {
+				Stripe.apiKey = STRIPE_API_KEY;
+				SessionCreateParams params = SessionCreateParams.builder().setMode(SessionCreateParams.Mode.PAYMENT)
+						.setSuccessUrl("http://localhost:8080/hommie/successfulPayment?roomId=" + roomId) // add roomId
+																											// as a
+																											// parameter
+																											// to the
+																											// success
+																											// URL
+						.setCancelUrl("http://localhost:8080/hommie/payment")
+						.addLineItem(
+								SessionCreateParams.LineItem.builder().setQuantity(1L)
+										.setPriceData(SessionCreateParams.LineItem.PriceData.builder()
+												.setCurrency("aud").setUnitAmount((long) (listingFee * 100)) // Stripe
+																												// uses
+																												// cents,
+																												// not
+																												// dollars
+												.setProductData(SessionCreateParams.LineItem.PriceData.ProductData
+														.builder().setName("Listing Fee").build())
+												.build())
+										.build())
+						.build();
+				Session stripeSession = Session.create(params);
+
+				// Redirect to the Stripe Checkout page
+				response.sendRedirect(stripeSession.getUrl());
+			} catch (StripeException e) {
+				e.printStackTrace();
+				String errorMessage = "Error occurred while initiating payment. Please try again.";
+				request.setAttribute("errorMessage", errorMessage);
+				request.getRequestDispatcher("payment").forward(request, response);
+			}
+		} else {
+			response.sendRedirect("newListing");
+		}
 	}
 
-	private PaymentService paymentService = new PaymentService();
-
-	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	        throws ServletException, IOException {
-	    String username = (String) request.getSession().getAttribute("username");
-	    if (username == null || username.isEmpty()) {
-	        response.sendRedirect("login.jsp");
-	        return;
-	    }
-
-	    String nonce = request.getParameter("payment_method_nonce");
-	    BigDecimal amount;
-
-	    try {
-	        amount = new BigDecimal(request.getParameter("amount"));
-	    } catch (NumberFormatException e) {
-	        response.getWriter().append("Error: The provided amount is not a valid number.");
-	        return;
-	    }
-
-	    String currency = request.getParameter("currency");
-
-	    PaymentService paymentService = new PaymentService();
-	    Result<Transaction> result = paymentService.processPayment(nonce, amount, currency);
-
-	    if (result.isSuccess()) {
-	        response.getWriter().append("Payment executed successfully, ID = " + result.getTarget().getId());
-	    } else if (result.getTransaction() != null) {
-	        response.getWriter().append(
-	                "Error occurred during payment execution: " + result.getTransaction().getProcessorResponseText());
-	    } else {
-	        String errorMessage = "";
-	        for (ValidationError error : result.getErrors().getAllDeepValidationErrors()) {
-	            errorMessage += "Validation error: " + error.getMessage() + "\n";
-	        }
-	        response.getWriter().append("Error occurred during payment execution: " + errorMessage);
-	    }
+			throws ServletException, IOException {
+		doGet(request, response);
 	}
-
 }

@@ -74,7 +74,8 @@
 		<!-- Spinner End -->
 
 		<!-- Header Start -->
-		<div class="container-fluid bg-dark px-0">
+		
+				<div class="container-fluid bg-dark px-0">
 			<div class="row gx-0 justify-content-between p-3">
 				<div class="col-lg-3 bg-dark d-none d-lg-block">
 					<a href="home"
@@ -82,6 +83,7 @@
 						<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
 					</a>
 				</div>
+				<c:if test="${not empty user}">
 				<div class="col-lg-5 px-5 text-end">
 					<nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
 						<a href="home" class="navbar-brand d-block d-lg-none">
@@ -101,7 +103,7 @@
 								
 									<div class="nav-item dropdown">
 										<a href="#" class="nav-link dropdown-toggle"
-											data-bs-toggle="dropdown"> ${sessionScope.user.firstName}
+											data-bs-toggle="dropdown">Hi ${sessionScope.user.firstName}
 											${sessionScope.user.lastName}</a>
 										<div class="dropdown-menu rounded-0 m-0">
 											<a href="logout" class="dropdown-item">Logout</a>
@@ -111,8 +113,40 @@
 						</div>
 					</nav>
 				</div>
+				</c:if>
+				<c:if test="${empty user}">
+								<div class="col-lg-5 px-5 text-end">
+					<nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
+						<a href="home" class="navbar-brand d-block d-lg-none">
+							<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
+						</a>
+						<button type="button" class="navbar-toggler"
+							data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse justify-content-between"
+							id="navbarCollapse">
+							<div class="navbar-nav mr-auto py-0">
+								<a href="home" class="nav-item nav-link active">Home</a> <a
+									href="roomList" class="nav-item nav-link">Rooms</a>			
+									<div class="nav-item dropdown">
+										<a href="#" class="nav-link dropdown-toggle"
+											data-bs-toggle="dropdown"> Account</a>
+										<div class="dropdown-menu rounded-0 m-0">
+											<a href="register.jsp" class="dropdown-item">Register</a> <a
+												href="login.jsp" class="dropdown-item">Login</a> <a
+												href="logout" class="dropdown-item">Logout</a> 
+										</div>
+									</div>
+							</div>
+						</div>
+					</nav>
+				</div>
+				</c:if>
+				
 			</div>
 		</div>
+	
 		<!-- Header End -->
 
 
@@ -465,6 +499,4 @@
 	<script src="js/main.js"></script>
 </body>
 
-</html>
-</body>
 </html>

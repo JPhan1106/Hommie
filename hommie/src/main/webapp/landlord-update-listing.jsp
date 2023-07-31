@@ -41,6 +41,93 @@
 
 <!-- Template Stylesheet -->
 <link href="css/style.css" rel="stylesheet">
+
+<script>
+	function initMap() {
+		var map = new google.maps.Map(document.getElementById('map'), {
+			center : {
+				lat : -33.8688,
+				lng : 151.2195
+			},
+			zoom : 13
+		});
+		var input = document.getElementById('address');
+		map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+		var autocomplete = new google.maps.places.Autocomplete(input);
+		autocomplete.bindTo('bounds', map);
+
+		var infowindow = new google.maps.InfoWindow();
+		var marker = new google.maps.Marker({
+			map : map,
+			anchorPoint : new google.maps.Point(0, -29)
+		});
+
+		autocomplete
+				.addListener(
+						'place_changed',
+						function() {
+							infowindow.close();
+							marker.setVisible(false);
+							var place = autocomplete.getPlace();
+							if (!place.geometry) {
+								window
+										.alert("Autocomplete's returned place contains no geometry");
+								return;
+							}
+
+							// If the place has a geometry, then present it on a map.
+							if (place.geometry.viewport) {
+								map.fitBounds(place.geometry.viewport);
+							} else {
+								map.setCenter(place.geometry.location);
+								map.setZoom(17);
+							}
+							marker.setIcon(({
+								url : place.icon,
+								size : new google.maps.Size(71, 71),
+								origin : new google.maps.Point(0, 0),
+								anchor : new google.maps.Point(17, 34),
+								scaledSize : new google.maps.Size(35, 35)
+							}));
+							marker.setPosition(place.geometry.location);
+							marker.setVisible(true);
+
+							var address = '';
+							if (place.address_components) {
+								address = [
+										(place.address_components[0]
+												&& place.address_components[0].short_name || ''),
+										(place.address_components[1]
+												&& place.address_components[1].short_name || ''),
+										(place.address_components[2]
+												&& place.address_components[2].short_name || '') ]
+										.join(' ');
+							}
+
+							infowindow.setContent('<div><strong>' + place.name
+									+ '</strong><br>' + address);
+							infowindow.open(map, marker);
+
+							// Location details
+							var state = '';
+							for (var i = 0; i < place.address_components.length; i++) {
+								if (place.address_components[i].types[0] === 'administrative_area_level_1') {
+									state = place.address_components[i].long_name;
+								}
+								if (place.address_components[i].types[0] === 'postal_code') {
+									document.getElementById('postcode').value = place.address_components[i].long_name;
+								}
+							}
+
+							document.getElementById('state').value = state;
+							document.getElementById('lat').value = place.geometry.location
+									.lat();
+							document.getElementById('lng').value = place.geometry.location
+									.lng();
+						});
+	}
+</script>
 </head>
 
 <body>
@@ -60,14 +147,14 @@
 		<div class="container-fluid bg-dark px-0">
 			<div class="row gx-0 justify-content-between p-3">
 				<div class="col-lg-3 bg-dark d-none d-lg-block">
-					<a href="#"
+					<a href="home"
 						class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
 						<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
 					</a>
 				</div>
 				<div class="col-lg-5 px-5 text-end">
 					<nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-						<a href="#" class="navbar-brand d-block d-lg-none">
+						<a href="home" class="navbar-brand d-block d-lg-none">
 							<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
 						</a>
 						<button type="button" class="navbar-toggler"
@@ -77,8 +164,8 @@
 						<div class="collapse navbar-collapse justify-content-between"
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
-								<a href="#" class="nav-item nav-link active">Home</a> <a
-									href="landlordRoomList?TYPE=ALL&landlordId" class="nav-item nav-link">Rooms</a>
+								<a href="home" class="nav-item nav-link active">Home</a> <a
+									href="roomList" class="nav-item nav-link">Your Rooms</a>
 								<div class="nav-item dropdown">
 									<a href="#" class="nav-link dropdown-toggle"
 										data-bs-toggle="dropdown"> ${sessionScope.user.firstName}
@@ -166,6 +253,19 @@
 						<br>
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
+								<input type="hidden" class="form-control" id="lat" name="lat"
+									value="${room.lat}" placeholder="latitude">
+							</div>
+						</div>
+
+						<div class="col-md-6 w-100">
+							<div class="form-floating">
+								<input type="hidden" class="form-control" id="lng" name="lng"
+									value="${room.lng}" placeholder="longitude"> 
+							</div>
+						</div>
+						<div class="col-md-6 w-100">
+							<div class="form-floating">
 								<input type="text" class="form-control" id="squareArea"
 									name="squareArea" value="${room.squareArea}"
 									placeholder="squareArea"> <label for="squareArea"><i
@@ -247,6 +347,7 @@
 				</div>
 			</div>
 		</div>
+
 
 		<!-- Listing End -->
 
