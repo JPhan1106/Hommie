@@ -77,7 +77,8 @@
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
 								<a href="home" class="nav-item nav-link active">Home</a> <a
-									href="landlordRoomList?TYPE=ALL&landlordId" class="nav-item nav-link">Your Rooms</a>
+									href="landlordRoomList?TYPE=ALL&landlordId"
+									class="nav-item nav-link">Rooms</a>
 								<div class="nav-item dropdown">
 									<a href="#" class="nav-link dropdown-toggle"
 										data-bs-toggle="dropdown"> ${sessionScope.user.firstName}
@@ -107,22 +108,32 @@
 
 		<!-- Page Header End -->
 
-		<!-- Successful Payment Start -->
-		<div class="text-center">
-			<h3
-				class="md:text-2xl text-base text-gray-900 font-semibold text-center">Payment
-				Done!</h3>
-			<p class="text-gray-600 my-2">Thank you,
-				${sessionScope.user.firstName} ${sessionScope.user.lastName}!</p>
-			<p>Have a great day!</p>
-			<div class="py-10 text-center">
-				<a href="<%=request.getContextPath()%>/landlordRoomList?TYPE=ALL&landlordId"
-            class="px-12 bg-indigo-600 hover:bg-indigo-500 text-gray-600 my-2 font-semibold py-3">
-            GO BACK TO YOUR ROOM LIST
-        </a>
+		<!-- Payment History Start -->
+		<div class="container-fluid bg-light">
+			<div class="container py-5">
+				<h2 class="text-primary mb-4">Your Payment History</h2>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Room Title</th>
+							<th>Listing Fee</th>
+							<th>Listing Date</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="item" items="${payments}">
+							<tr>
+								<td>${item.roomTitle}</td>
+								<td>$${item.payment.listingFee}</td>
+								<td>${item.payment.listingDate}</td>
+							</tr>
+						</c:forEach>
+
+					</tbody>
+				</table>
 			</div>
 		</div>
-		<!-- Successful Payment End -->
+		<!-- Payment History End -->
 
 		<br> <br> <br> <br> <br> <br> <br>
 		<br> <br>
