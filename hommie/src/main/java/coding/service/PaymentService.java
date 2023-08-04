@@ -5,10 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import coding.db.DBUtil;
+import coding.entity.Inspection;
 import coding.entity.Payment;
 
 public class PaymentService {
@@ -27,7 +31,7 @@ public class PaymentService {
 
 			ps.setInt(1, payment.getLandlordId());
 			ps.setInt(2, payment.getRoomId());
-			ps.setDouble(3, payment.getListingFee());
+			ps.setInt(3, payment.getListingFee());
 			ps.setTimestamp(4, new java.sql.Timestamp(System.currentTimeMillis()));
 
 			ps.executeUpdate();
@@ -52,87 +56,50 @@ public class PaymentService {
 
 		}
 	}
-	
-	public List<Payment> getPaymentsByLandlordId(int landlordId) throws SQLException {
-	    Connection conn = null;
-	    PreparedStatement ps = null;
-	    ResultSet rs = null;
-	    List<Payment> payments = new ArrayList<>();
 
-	    try {
-	        // make connection to mySQL
-	        conn = DBUtil.makeConnection();
+	public List<Map<String, Object>> getPaymentsByLandlordId(int landlordId) throws SQLException {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Map<String, Object>> list = new ArrayList<>();
 
-	        String sql = "SELECT * FROM `payment` WHERE landlord_id = ?";
-	        ps = conn.prepareStatement(sql);
-	        ps.setInt(1, landlordId);
+		try {
+			// make connection to mySQL
+			conn = DBUtil.makeConnection();
 
-	        rs = ps.executeQuery();
+			// Join the payment table with the room table and select the room.title column
+			String sql = "SELECT payment.*, room.title FROM payment JOIN room ON payment.room_id = room.id WHERE payment.landlord_id = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, landlordId);
 
-	        while (rs.next()) {
-	            Payment payment = new Payment();
-	            payment.setId(rs.getInt("id"));
-	            payment.setLandlordId(rs.getInt("landlord_id"));
-	            payment.setRoomId(rs.getInt("room_id"));
-	            payment.setListingFee(rs.getDouble("listing_fee"));
-	            payment.setListingDate(rs.getTimestamp("listing_date"));
-	            payments.add(payment);
-	        }
+			rs = ps.executeQuery();
 
-	        return payments;
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				int roomId = rs.getInt("room_id");
+				int listingFee = rs.getInt("listing_fee");
+				Timestamp listingDate = rs.getTimestamp("listing_date");
+				String roomTitle = rs.getString("title"); // Assuming the title column is named "title"
 
-	    } finally {
-	        if (rs != null) {
-	            rs.close();
-	        }
-	        if (ps != null) {
-	            ps.close();
-	        }
-	        if (conn != null) {
-	            conn.close();
-	        }
-	    }
+				Payment payment = new Payment(id, landlordId, roomId, listingFee, listingDate);
+				Map<String, Object> map = new HashMap<>();
+				map.put("payment", payment);
+				map.put("roomTitle", roomTitle);
+
+				list.add(map);
+			}
+		} finally {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (conn != null) {
+				conn.close();
+			}
+		}
+
+		return list;
 	}
-	
-	public Payment getPayment(int roomId, int landlordId) throws SQLException {
-	    Connection conn = null;
-	    PreparedStatement ps = null;
-	    ResultSet rs = null;
-	    Payment payment = null;
-
-	    try {
-	        // Make connection to mySQL
-	        conn = DBUtil.makeConnection();
-
-	        String sql = "SELECT * FROM `payment` WHERE landlord_id = ? AND room_id = ?";
-	        ps = conn.prepareStatement(sql);
-	        ps.setInt(1, landlordId);
-	        ps.setInt(2, roomId);
-
-	        rs = ps.executeQuery();
-
-	        if (rs.next()) {
-	            payment = new Payment();
-	            payment.setId(rs.getInt("id"));
-	            payment.setLandlordId(rs.getInt("landlord_id"));
-	            payment.setRoomId(rs.getInt("room_id"));
-	            payment.setListingFee(rs.getDouble("listing_fee"));
-	            payment.setListingDate(rs.getTimestamp("listing_date"));
-	        }
-
-	        return payment;
-
-	    } finally {
-	        if (rs != null) {
-	            rs.close();
-	        }
-	        if (ps != null) {
-	            ps.close();
-	        }
-	        if (conn != null) {
-	            conn.close();
-	        }
-	    }
-	}
-
 }

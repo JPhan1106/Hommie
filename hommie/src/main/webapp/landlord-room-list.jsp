@@ -96,6 +96,7 @@
 							<div class="navbar-nav mr-auto py-0">
 								<a href="#" class="nav-item nav-link active">Home</a> <a
 									href="landlordRoomList?TYPE=ALL&landlordId" class="nav-item nav-link">Rooms</a>
+									<a href="paymentHistory?landlordId=${landlordId}" class="nav-item nav-link">Payment History</a> 
 								<div class="nav-item dropdown">
 									<a href="#" class="nav-link dropdown-toggle"
 										data-bs-toggle="dropdown"> ${sessionScope.user.firstName}

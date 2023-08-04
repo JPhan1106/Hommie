@@ -6,14 +6,14 @@ public class Payment {
 	private int id;
 	private int landlordId;
 	private int roomId;
-	private double listingFee;
+	private int listingFee;
 	private Timestamp listingDate;
 	
 	public Payment() {
 		
 	}
 
-	public Payment(int id, int landlordId, int roomId, double listingFee, Timestamp listingDate) {
+	public Payment(int id, int landlordId, int roomId, int listingFee, Timestamp listingDate) {
 		super();
 		this.id = id;
 		this.landlordId = landlordId;
@@ -46,11 +46,11 @@ public class Payment {
 		this.roomId = roomId;
 	}
 
-	public double getListingFee() {
+	public int getListingFee() {
 		return listingFee;
 	}
 
-	public void setListingFee(double listingFee) {
+	public void setListingFee(int listingFee) {
 		this.listingFee = listingFee;
 	}
 
