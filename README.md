@@ -21,8 +21,10 @@
 
 ### Landlord:
 - Upload, update, delete room
-- Receive inspection request via email
+- Receive inspection requests via email
 - View inspection history
+- Payment to upload room on the website
+- View payment history
 
 ## Design
 - UI/UX design inspired by free template Hotelier 
@@ -74,7 +76,7 @@
 ![](https://github.com/JPhan1106/Hommie/blob/main/Update%20room.jpg)
 #### Delete room
 ![](https://github.com/JPhan1106/Hommie/blob/main/Delete%20Room.jpg)
-#### Check inspection history: When a student sends a message or inspection request, the landlord receives an email notification. Additionally, the message or inspection request is saved in the inspection history and displayed in chronological order with the latest time displayed first.
+#### Check inspection history: When a student sends a message or inspection request, the landlord receives an email notification. Additionally, the message or inspection request is saved in the inspection history and displayed in chronological order, with the latest time displayed first.
 ![](https://github.com/JPhan1106/Hommie/blob/main/Inspection%20request%20history.jpg)
 #### View rented room's details and make it available
 ![](https://github.com/JPhan1106/Hommie/blob/main/Rented%20room's%20details.jpg)
