@@ -70,9 +70,9 @@ public class SuccessfulPaymentServlet extends HttpServlet {
 			return;
 		}
 
-		// After successfully fetching and updating room details, redirect to successful
-		// payment page
-		response.sendRedirect(request.getContextPath() + "/successful-payment.jsp");
+		request.setAttribute("room", room);
+		RequestDispatcher rd = request.getRequestDispatcher("successful-payment.jsp");
+		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

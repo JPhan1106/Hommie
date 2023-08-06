@@ -97,6 +97,7 @@
 							<div class="navbar-nav mr-auto py-0">
 								<a href="#" class="nav-item nav-link active">Home</a> <a
 									href="landlordRoomList?TYPE=ALL&landlordId" class="nav-item nav-link">Rooms</a>
+									<a href="paymentHistory?landlordId=${landlordId}" class="nav-item nav-link">Payment History</a> 
 								<div class="nav-item dropdown">
 									<a href="#" class="nav-link dropdown-toggle"
 										data-bs-toggle="dropdown"> ${sessionScope.user.firstName}
@@ -121,7 +122,7 @@
 				data-bs-ride="carousel">
 				<div class="carousel-inner">
 					<div class="carousel-item active">
-						<img class="w-100" src="img/carousel-1a.jpg" alt="Image">
+						<img class="w-100" style="height:600px" src="img/carousel-1a.jpg" alt="Image">
 						<div
 							class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 							<div class="p-3" style="max-width: 700px;">
@@ -131,7 +132,7 @@
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img class="w-100" src="img/carousel-2a.jpg" alt="Image">
+						<img class="w-100" style="height:600px" src="img/carousel-2a.jpg" alt="Image">
 						<div
 							class="carousel-caption d-flex flex-column align-items-center justify-content-center">
 							<div class="p-3" style="max-width: 700px;">
