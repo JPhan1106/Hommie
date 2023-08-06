@@ -44,8 +44,8 @@
 ### Log in: 
 - User role will be checked to be directed to a propriate view
 ![](https://github.com/JPhan1106/Hommie/blob/main/login.jpg)
-### Log in: 
-![](http://localhost:8080/hommie/logout.jsp)
+### Log out: 
+![](https://github.com/JPhan1106/Hommie/blob/main/logout.jpg)
 
 ### Student's view:
 #### Homepage
