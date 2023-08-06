@@ -47,7 +47,7 @@
 
 ### Student's view:
 #### Homepage
-![](https://github.com/JPhan1106/Hommie/blob/main/homepage%20-%20student%20and%20guest.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/homepage-student.jpg)
 #### Search and filter rooms, view room list after search
 ![](https://github.com/JPhan1106/Hommie/blob/main/Search.jpg)
 ![](https://github.com/JPhan1106/Hommie/blob/main/Room%20List.jpg)
