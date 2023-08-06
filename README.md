@@ -50,12 +50,12 @@
 ![](https://github.com/JPhan1106/Hommie/blob/main/homepage-student.jpg)
 #### Search and filter rooms, view room list after search
 ![](https://github.com/JPhan1106/Hommie/blob/main/Search.jpg)
-![](https://github.com/JPhan1106/Hommie/blob/main/Room%20List.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/room-list.jpg)
 #### View details of each room with map and send inspection request to landlord
 ![](https://github.com/JPhan1106/Hommie/blob/main/room%20details.jpg)
 ![](https://github.com/JPhan1106/Hommie/blob/main/Inspection%20sent%20success.jpg)
 #### Add favourite rooms to wishlist and view wishlist
-![](https://github.com/JPhan1106/Hommie/blob/main/wishlist.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/wish-list.jpg)
 ![](https://github.com/JPhan1106/Hommie/blob/main/add%20to%20wishlist.jpg)
 
 ### Guest's view: 
