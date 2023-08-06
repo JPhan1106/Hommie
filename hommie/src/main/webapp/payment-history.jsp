@@ -59,14 +59,14 @@
 		<div class="container-fluid bg-dark px-0">
 			<div class="row gx-0 justify-content-between p-3">
 				<div class="col-lg-3 bg-dark d-none d-lg-block">
-					<a href="home"
+					<a href="landlord-home.jsp"
 						class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
 						<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
 					</a>
 				</div>
 				<div class="col-lg-5 px-5 text-end">
 					<nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-						<a href="home" class="navbar-brand d-block d-lg-none">
+						<a href="landlord-home.jsp" class="navbar-brand d-block d-lg-none">
 							<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
 						</a>
 						<button type="button" class="navbar-toggler"
@@ -76,9 +76,9 @@
 						<div class="collapse navbar-collapse justify-content-between"
 							id="navbarCollapse">
 							<div class="navbar-nav mr-auto py-0">
-								<a href="home" class="nav-item nav-link active">Home</a> <a
-									href="landlordRoomList?TYPE=ALL&landlordId"
-									class="nav-item nav-link">Rooms</a>
+								<a href="landlord-home.jsp" class="nav-item nav-link active">Home</a> <a
+									href="landlordRoomList?TYPE=ALL&landlordId" class="nav-item nav-link">Rooms</a>
+									<a href="paymentHistory?landlordId=${landlordId}" class="nav-item nav-link">Payment History</a> 
 								<div class="nav-item dropdown">
 									<a href="#" class="nav-link dropdown-toggle"
 										data-bs-toggle="dropdown"> ${sessionScope.user.firstName}
