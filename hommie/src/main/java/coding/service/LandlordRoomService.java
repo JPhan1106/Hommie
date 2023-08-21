@@ -195,7 +195,6 @@ public class LandlordRoomService {
 				int capacity = rs.getInt("capacity");
 				int countBed = rs.getInt("count_bed");
 				int countBath = rs.getInt("count_bath");
-				String leaseStartDate = rs.getString("lease_start_date");
 				int landlordId = rs.getInt("landlord_id");
 				int studentId = rs.getInt("student_id");
 				String lat = rs.getString("lat");
@@ -211,7 +210,7 @@ public class LandlordRoomService {
 				String status = rs.getString("status");
 
 				room = new Room(id, title, description, price, bond, squareArea, capacity, countBed, countBath,
-						leaseStartDate, landlordId, studentId, lat, lng, address, state, postcode, image1Url, image2Url,
+						 landlordId, studentId, lat, lng, address, state, postcode, image1Url, image2Url,
 						image3Url, image4Url, mapUrl, status);
 
 //				System.out.println(room.getLeaseStartDate());

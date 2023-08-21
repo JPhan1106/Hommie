@@ -375,7 +375,7 @@
 				<h6 class="section-title text-center text-primary text-uppercase">Home
 					Tour</h6>
 				<h1 class="mb-5">
-					Explore Our <span class="text-primary text-uppercase">Rooms</span>
+					Explore Our <a href="roomList">Rooms</a>
 				</h1>
 			</div>
 

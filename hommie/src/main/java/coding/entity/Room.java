@@ -80,7 +80,7 @@ public class Room {
 	// constructor for getRentedRoomDetails (for landlord view)
 
 	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity,
-			int countBed, int countBath, String leaseStartDate, int landlordId, int studentId, String lat, String lng,
+			int countBed, int countBath, int landlordId, int studentId, String lat, String lng,
 			String address, String state, String postcode, String image1Url, String image2Url, String image3Url,
 			String image4Url, String mapUrl, String status) {
 		super();
@@ -93,7 +93,6 @@ public class Room {
 		this.capacity = capacity;
 		this.countBed = countBed;
 		this.countBath = countBath;
-		this.leaseStartDate = leaseStartDate;
 		this.landlordId = landlordId;
 		this.studentId = studentId;
 		this.mapUrl = mapUrl;
