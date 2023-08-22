@@ -124,45 +124,12 @@
 		<!-- Spinner End -->
 
 		<!-- Header Start -->
-		<div class="container-fluid bg-dark px-0">
-			<div class="row gx-0 justify-content-between p-3">
-				<div class="col-lg-3 bg-dark d-none d-lg-block">
-					<a href="#"
-						class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
-						<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
-					</a>
-				</div>
-				<div class="col-lg-5 px-5 text-end">
-					<nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-						<a href="#" class="navbar-brand d-block d-lg-none">
-							<h1 class="m-0 text-primary text-uppercase">Hommie</h1>
-						</a>
-						<button type="button" class="navbar-toggler"
-							data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-							<span class="navbar-toggler-icon"></span>
-						</button>
-						<div class="collapse navbar-collapse justify-content-between"
-							id="navbarCollapse">
-							<div class="navbar-nav mr-auto py-0">
-								<a href="#" class="nav-item nav-link active">Home</a> <a
-									href="landlordRoomList?TYPE=ALL&landlordId" class="nav-item nav-link">Rooms</a>
-								<div class="nav-item dropdown">
-									<a href="#" class="nav-link dropdown-toggle"
-										data-bs-toggle="dropdown"> ${sessionScope.user.firstName}
-										${sessionScope.user.lastName}</a>
-									<div class="dropdown-menu rounded-0 m-0">
-										<a href="logout" class="dropdown-item">Logout</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</nav>
-				</div>
-			</div>
-		</div>
-
+		<jsp:include page="landlord-header.jsp" >
+		<jsp:param name="landlordId" value="${sessionScope.landlordId}"/>
+		<jsp:param name="firstName" value="${sessionScope.user.firstName}"/>
+		<jsp:param name="lastName" value="${sessionScope.user.lastName}"/>
+		</jsp:include>
 		<!-- Header End -->
-
 
 		<!-- Page Header Start -->
 		<div class="container-fluid page-header mb-5 p-0"

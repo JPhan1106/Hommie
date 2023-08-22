@@ -43,10 +43,17 @@
 </head>
 
 <body>
+		<!-- Header Start -->
+		<jsp:include page="landlord-header.jsp" >
+		<jsp:param name="landlordId" value="${sessionScope.landlordId}"/>
+		<jsp:param name="firstName" value="${sessionScope.user.firstName}"/>
+		<jsp:param name="lastName" value="${sessionScope.user.lastName}"/>
+		</jsp:include>
+		<!-- Header End -->
+		
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
-            <h2 class="text-center text-white mb-4">Hommie</h2>
             <div class="row">
                 <div class="col-md-6 mx-auto">
                     <!-- form card login -->
@@ -72,6 +79,7 @@
     <!--/row-->
 </div>
 <!--/container-->
+
 </body>
 
 </html>
