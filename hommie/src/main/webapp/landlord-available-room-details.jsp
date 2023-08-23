@@ -142,7 +142,7 @@
 						</ol>
 
 						<!-- Wrapper for slides -->
-						<div class="carousel-inner" style="width: 500px; heigth: 950px">
+						<div class="carousel-inner">
 							<div class="item active">
 								<img class="img-fluid" src="${availableRoom.image1Url}"
 									style="width: 500px; height: 500px">>
@@ -172,7 +172,7 @@
 					</div>
 
 				</div>
-				<div class="col-sm-6" style="background-color: rgb(240, 244, 248);">
+				<div class="col-md-6" style="background-color: rgb(240, 244, 248);">
 					<c:if test="${not empty updateRoomSuccessfulMessage}">
 						<p
 							style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">${updateRoomSuccessfulMessage}</p>
@@ -231,14 +231,14 @@
 				<div class="button-container text-center wow fadeInUp row"
 					data-wow-delay="0.1s">
 					<form action="landlordRoom" id="updateRoom"
-						class="col-sm-3" style="margin-bottom: 8px;">
+						class="col-md-3" style="margin-bottom: 8px;">
 						<input type="hidden" name="TYPE" value="UPDATE"> <input
 							type="hidden" name="roomId" value="${availableRoom.id}">
 						<button type="submit" class="update-button">Update this
 							room</button>
 					</form>
 
-					<form action="landlordInspectionView" method="post" id="inspection" class="col-sm-3" style="margin-bottom: 8px;">
+					<form action="landlordInspectionView" method="post" id="inspection" class="col-md-3" style="margin-bottom: 8px;">
 						<input
 							type="hidden" name="roomId" value="${availableRoom.id}">
 						<button type="submit" class="update-button">Check
@@ -259,7 +259,7 @@
 						}
 					</script>
 					<form action="landlordRoom" id="confirmMakeRoomOccupied"
-						 class="col-sm-3" style="margin-bottom: 8px;">
+						 class="col-md-3" style="margin-bottom: 8px;">
 						<input type="hidden" name="TYPE" value="MAKE_OCCUPIED"> <input
 							type="hidden" name="roomId" value="${availableRoom.id}">
 						<button type="submit" onClick="confirmMakeRoomOccupied()"
@@ -280,7 +280,7 @@
 						}
 					</script>
 					<form action="landlordRoom" id="confirmDeleteRoom"
-						 class="col-sm-3" style="margin-bottom: 8px;">
+						 class="col-md-3" style="margin-bottom: 8px;">
 						<input type="hidden" name="TYPE" value="DELETE"> <input
 							type="hidden" name="roomId" value="${availableRoom.id}">
 						<button type="submit" onClick="confirmDeleteRoom()"
