@@ -65,8 +65,7 @@
 
 .button-container a {
 	margin: 10px;
-	margin-bottom: 100px; 
-
+	margin-bottom: 100px;
 }
 </style>
 
@@ -120,14 +119,14 @@
 		</div>
 		<!-- Spinner End -->
 
-				<!-- Header Start -->
-		<jsp:include page="landlord-header.jsp" >
-		<jsp:param name="landlordId" value="${sessionScope.landlordId}"/>
-		<jsp:param name="firstName" value="${sessionScope.user.firstName}"/>
-		<jsp:param name="lastName" value="${sessionScope.user.lastName}"/>
+		<!-- Header Start -->
+		<jsp:include page="landlord-header.jsp">
+			<jsp:param name="landlordId" value="${sessionScope.landlordId}" />
+			<jsp:param name="firstName" value="${sessionScope.user.firstName}" />
+			<jsp:param name="lastName" value="${sessionScope.user.lastName}" />
 		</jsp:include>
 		<!-- Header End -->
-		
+
 		<!-- Room Image Start -->
 		<div class="container-fluid">
 			<div class="row">
@@ -143,20 +142,20 @@
 						</ol>
 
 						<!-- Wrapper for slides -->
-						<div class="carousel-inner" style="width:500px; heigth:950px">
+						<div class="carousel-inner" style="width: 500px; heigth: 950px">
 							<div class="item active">
 								<img class="img-fluid" src="${availableRoom.image1Url}"
-									style="width: 500px;height:500px">>
+									style="width: 500px; height: 500px">>
 							</div>
 
 							<div class="item">
 								<img class="img-fluid" src="${availableRoom.image2Url}"
-									style="width: 500px;height:500px">>
+									style="width: 500px; height: 500px">>
 							</div>
 
 							<div class="item">
 								<img class="img-fluid" src="${availableRoom.image3Url}"
-									style="width: 500px;height:500px">>
+									style="width: 500px; height: 500px">>
 							</div>
 
 						</div>
@@ -171,14 +170,15 @@
 							class="sr-only">Next</span>
 						</a>
 					</div>
-					
+
 				</div>
 				<div class="col-sm-6" style="background-color: rgb(240, 244, 248);">
-				<c:if test="${not empty updateRoomSuccessfulMessage}">
+					<c:if test="${not empty updateRoomSuccessfulMessage}">
 						<p
 							style="color: red; font-weight: bold; text-align: center; margin-top: 20px;">${updateRoomSuccessfulMessage}</p>
 					</c:if>
-					<div class="d-flex justify-content-between mb-3" style="margin-top:30px;">
+					<div class="d-flex justify-content-between mb-3"
+						style="margin-top: 30px;">
 						<h3 class="mb-0">${availableRoom.address}
 							<br>${availableRoom.state} ${availableRoom.postcode}
 						</h3>
@@ -211,6 +211,15 @@
 							allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 					</div>
 				</div>
+				<div class="col-lg-6">
+					<div class="row g-3" style="margin: 30px; margin-left: 50px;">
+						<h3>${availableRoom.title}</h3>
+						<p>${availableRoom.description}</p>
+						<h3>Property features</h3>
+						<p>Room size: ${availableRoom.squareArea} m2</p>
+						<p>Suitable for ${availableRoom.capacity} person(s)</p>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -219,17 +228,17 @@
 		<!-- Buttons For Available Room Start -->
 		<div class="container-xxl py-5" style="margin-bottom: 100px;">
 			<div class="container">
-				<div class="button-container text-center wow fadeInUp"
+				<div class="button-container text-center wow fadeInUp row"
 					data-wow-delay="0.1s">
 					<form action="landlordRoom" id="updateRoom"
-						style="display: inline-block;">
+						class="col-sm-3" style="margin-bottom: 8px;">
 						<input type="hidden" name="TYPE" value="UPDATE"> <input
 							type="hidden" name="roomId" value="${availableRoom.id}">
 						<button type="submit" class="update-button">Update this
 							room</button>
 					</form>
 
-					<form action="landlordInspectionView" method="post" id="inspection style="display: inline-block;">
+					<form action="landlordInspectionView" method="post" id="inspection" class="col-sm-3" style="margin-bottom: 8px;">
 						<input
 							type="hidden" name="roomId" value="${availableRoom.id}">
 						<button type="submit" class="update-button">Check
@@ -237,7 +246,7 @@
 					</form>
 					
 					<script>
-						function confirmMakeRoomOccupied() {
+						function confirmMakeRoomOccupied(event) {
 							const confirmation = window
 									.confirm("Are you sure you want to make this room occupied?");
 							var form = document
@@ -250,7 +259,7 @@
 						}
 					</script>
 					<form action="landlordRoom" id="confirmMakeRoomOccupied"
-						style="display: inline-block;">
+						 class="col-sm-3" style="margin-bottom: 8px;">
 						<input type="hidden" name="TYPE" value="MAKE_OCCUPIED"> <input
 							type="hidden" name="roomId" value="${availableRoom.id}">
 						<button type="submit" onClick="confirmMakeRoomOccupied()"
@@ -258,7 +267,7 @@
 					</form>
 
 					<script>
-						function confirmDeleteRoom() {
+						function confirmDeleteRoom(event) {
 							const confirmation = window
 									.confirm("Are you sure you want to delete this room?");
 							var form = document
@@ -271,7 +280,7 @@
 						}
 					</script>
 					<form action="landlordRoom" id="confirmDeleteRoom"
-						style="display: inline-block;">
+						 class="col-sm-3" style="margin-bottom: 8px;">
 						<input type="hidden" name="TYPE" value="DELETE"> <input
 							type="hidden" name="roomId" value="${availableRoom.id}">
 						<button type="submit" onClick="confirmDeleteRoom()"
@@ -285,6 +294,6 @@
 		<!-- Buttons For Available Room End -->
 
 
-	<!-- Footer Start -->
-<jsp:include page="footer.jsp"></jsp:include>
-	<!-- Footer End -->
+		<!-- Footer Start -->
+		<jsp:include page="footer.jsp"></jsp:include>
+		<!-- Footer End -->

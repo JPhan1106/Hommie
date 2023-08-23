@@ -42,93 +42,18 @@
 <!-- Template Stylesheet -->
 <link href="css/style.css" rel="stylesheet">
 
-<script>
-	function initMap() {
-		var map = new google.maps.Map(document.getElementById('map'), {
-			center : {
-				lat : -33.8688,
-				lng : 151.2195
-			},
-			zoom : 13
-		});
-		var input = document.getElementById('address');
-		map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-		var autocomplete = new google.maps.places.Autocomplete(input);
-		autocomplete.bindTo('bounds', map);
-
-		var infowindow = new google.maps.InfoWindow();
-		var marker = new google.maps.Marker({
-			map : map,
-			anchorPoint : new google.maps.Point(0, -29)
-		});
-
-		autocomplete
-				.addListener(
-						'place_changed',
-						function() {
-							infowindow.close();
-							marker.setVisible(false);
-							var place = autocomplete.getPlace();
-							if (!place.geometry) {
-								window
-										.alert("Autocomplete's returned place contains no geometry");
-								return;
-							}
-
-							// If the place has a geometry, then present it on a map.
-							if (place.geometry.viewport) {
-								map.fitBounds(place.geometry.viewport);
-							} else {
-								map.setCenter(place.geometry.location);
-								map.setZoom(17);
-							}
-							marker.setIcon(({
-								url : place.icon,
-								size : new google.maps.Size(71, 71),
-								origin : new google.maps.Point(0, 0),
-								anchor : new google.maps.Point(17, 34),
-								scaledSize : new google.maps.Size(35, 35)
-							}));
-							marker.setPosition(place.geometry.location);
-							marker.setVisible(true);
-
-							var address = '';
-							if (place.address_components) {
-								address = [
-										(place.address_components[0]
-												&& place.address_components[0].short_name || ''),
-										(place.address_components[1]
-												&& place.address_components[1].short_name || ''),
-										(place.address_components[2]
-												&& place.address_components[2].short_name || '') ]
-										.join(' ');
-							}
-
-							infowindow.setContent('<div><strong>' + place.name
-									+ '</strong><br>' + address);
-							infowindow.open(map, marker);
-
-							// Location details
-							var state = '';
-							for (var i = 0; i < place.address_components.length; i++) {
-								if (place.address_components[i].types[0] === 'administrative_area_level_1') {
-									state = place.address_components[i].long_name;
-								}
-								if (place.address_components[i].types[0] === 'postal_code') {
-									document.getElementById('postcode').value = place.address_components[i].long_name;
-								}
-							}
-
-							document.getElementById('state').value = state;
-							document.getElementById('lat').value = place.geometry.location
-									.lat();
-							document.getElementById('lng').value = place.geometry.location
-									.lng();
-						});
-	}
-</script>
 </head>
+
+<style>
+.image-upload-container {
+	display: flex;
+	align-items: center;
+}
+
+.image-preview {
+	margin-right: 10px;
+}
+</style>
 
 <body>
 	<div class="container-xxl bg-white p-0">
@@ -144,10 +69,10 @@
 
 
 		<!-- Header Start -->
-		<jsp:include page="landlord-header.jsp" >
-		<jsp:param name="landlordId" value="${sessionScope.landlordId}"/>
-		<jsp:param name="firstName" value="${sessionScope.user.firstName}"/>
-		<jsp:param name="lastName" value="${sessionScope.user.lastName}"/>
+		<jsp:include page="landlord-header.jsp">
+			<jsp:param name="landlordId" value="${sessionScope.landlordId}" />
+			<jsp:param name="firstName" value="${sessionScope.user.firstName}" />
+			<jsp:param name="lastName" value="${sessionScope.user.lastName}" />
 		</jsp:include>
 		<!-- Header End -->
 
@@ -170,7 +95,7 @@
 		</c:if>
 
 		<!-- Listing Start -->
-		<div class="container-xxl py-5">
+		<div class="container-xxl py-5" style="margin-bottom: 50px">
 			<div class="container w-50">
 				<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 					<h1 class="mb-5">
@@ -179,10 +104,10 @@
 				</div>
 				<div class="center-form">
 					<form action="updateListing" id="listingForm" method="post"
-						style="align-content: center">
-									<!-- Hidden input field for room.id -->
+						enctype="multipart/form-data" style="align-content: center">
+						<!-- Hidden input field for room.id -->
 						<input type="hidden" id="id" name="id" value="${room.id}">
-						
+
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="text" class="form-control" id="title" name="title"
@@ -192,46 +117,6 @@
 							</div>
 						</div>
 						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="text" class="form-control" id="address"
-									name="address" value="${room.address}" placeholder="Address">
-								<label for="address"><i class="fa fa-location-arrow"
-									aria-hidden="true"></i> Street Address and Suburb</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="text" class="form-control" id="state" name="state"
-									value="${room.state}" placeholder="state"> <label
-									for="state"><i class="fa fa-map-marker"
-									aria-hidden="true"></i> State</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="text" class="form-control" id="postcode"
-									name="postcode" value="${room.postcode}" placeholder="postcode">
-								<label for="address"><i class="fa fa-map-pin"
-									aria-hidden="true"></i> Postcode</label>
-							</div>
-						</div>
-						<br>
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="hidden" class="form-control" id="lat" name="lat"
-									value="${room.lat}" placeholder="latitude">
-							</div>
-						</div>
-
-						<div class="col-md-6 w-100">
-							<div class="form-floating">
-								<input type="hidden" class="form-control" id="lng" name="lng"
-									value="${room.lng}" placeholder="longitude"> 
-							</div>
-						</div>
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="text" class="form-control" id="squareArea"
@@ -302,12 +187,66 @@
 								<label for="message"><i class="fa fa-pencil"
 									aria-hidden="true"></i> Description</label>
 								<textarea class="form-control" id="message" name="description"
-									style="height: 100px">${room.description}</textarea>
+									style="height: 100px"> ${room.description}</textarea>
+							</div>
+						</div>
+						<br>
+						<div class="col-12">
+							<div>
+								<p>
+									<i class="fa fa-file-image-o" aria-hidden="true"></i> Update
+									photos of your listing
+								</p>
+
+								<div class="form-floating image-upload-container"
+									style="margin-bottom: 20px;">
+									<div class="image-preview">
+										<img id="previewImage" src="${room.image1Url}" alt="Image 1"
+											width="100" height="100">
+									</div>
+									<input type="file" class="form-control" id="image1"
+										name="image1" accept="image/*"> <input type="hidden"
+										name="initialImage1" value="${room.image1Url}">
+								</div>
+
+								<div class="form-floating image-upload-container"
+									style="margin-bottom: 20px;">
+									<div class="image-preview">
+										<img id="previewImage" src="${room.image2Url}" alt="Image 2"
+											width="100" height="100">
+									</div>
+									<input type="file" class="form-control" id="image1"
+										name="image2" accept="image/*"> <input type="hidden"
+										name="initialImage2" value="${room.image2Url}">
+								</div>
+
+
+								<div class="form-floating image-upload-container"
+									style="margin-bottom: 20px;">
+									<div class="image-preview">
+										<img id="previewImage" src="${room.image3Url}" alt="Image 3"
+											width="100" height="100">
+									</div>
+									<input type="file" class="form-control" id="image1"
+										name="image3" accept="image/*"> <input type="hidden"
+										name="initialImage3" value="${room.image3Url}">
+								</div>
+
+								<div class="form-floating image-upload-container"
+									style="margin-bottom: 20px;">
+									<div class="image-preview">
+										<img id="previewImage" src="${room.image4Url}" alt="Image 4"
+											width="100" height="100">
+									</div>
+									<input type="file" class="form-control" id="image1"
+										name="image4" accept="image/*"> <input type="hidden"
+										name="initialImage4" value="${room.image4Url}">
+								</div>
 							</div>
 						</div>
 
 						<br>
-						<div class="col-md-6 w-100 pt-4">
+						<div class="col-md-6 w-100 pt-4" style="margin-bottom: 50px">
 							<button class="btn btn-primary w-100 py-3" type="submit">Update
 								Your Room</button>
 						</div>
@@ -315,33 +254,27 @@
 				</div>
 			</div>
 		</div>
-
-
 		<!-- Listing End -->
 
-		<br> <br> <br> <br> <br> <br> <br>
-		<br> <br>
 
+		<!-- Footer Start -->
+		<jsp:include page="footer.jsp"></jsp:include>
+		<!-- Footer End -->
+		<!-- JavaScript Libraries -->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="lib/wow/wow.min.js"></script>
+		<script src="lib/easing/easing.min.js"></script>
+		<script src="lib/waypoints/waypoints.min.js"></script>
+		<script src="lib/counterup/counterup.min.js"></script>
+		<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+		<script src="lib/tempusdominus/js/moment.min.js"></script>
+		<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+		<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-
-	<!-- Footer Start -->
-<jsp:include page="footer.jsp"></jsp:include>
-	<!-- Footer End -->
-	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="lib/wow/wow.min.js"></script>
-	<script src="lib/easing/easing.min.js"></script>
-	<script src="lib/waypoints/waypoints.min.js"></script>
-	<script src="lib/counterup/counterup.min.js"></script>
-	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-	<script src="lib/tempusdominus/js/moment.min.js"></script>
-	<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-	<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-	<!-- Template Javascript -->
-	<script src="js/main.js"></script>
+		<!-- Template Javascript -->
+		<script src="js/main.js"></script>
 </body>
 
 </html>
