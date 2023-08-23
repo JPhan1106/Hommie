@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter({ "/landlordRoomList/", "/landlordRoom", "/landlordViewStudent", "/newListing", "/updateListing",
 		"/landlord-available-room-details.jsp", "/landlord-home.jsp", "/landlord-listing.jsp",
 		"/landlord-listing-management.jsp", "/landlord-rented-room-details.jsp", "/landlord-room-list.jsp",
-		"/landlord-update-listing.jsp", "/landlord-view-student.jsp", })
+		"/landlord-update-listing.jsp", "/landlord-view-student.jsp", "/payment.jsp", "/payment-history.jsp", "/succesful-payment.jsp" })
 public class LandlordAuthenticationFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)

@@ -171,7 +171,7 @@
 						</a>
 					</div>
 				</div>
-				<div class="col-sm-6" style="background-color: rgb(240, 244, 248);">
+				<div class="col-md-6" style="background-color: rgb(240, 244, 248);">
 					<div class="d-flex justify-content-between mb-3" style="margin-top:30px;">
 						<h3 class="mb-0">${rentedRoom.address}
 							<br>${rentedRoom.state} ${rentedRoom.postcode}
@@ -203,8 +203,8 @@
 							allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 					</div>
 				</div>
-								<div class="col-lg-6">
-					<div class="row g-3" style="margin: 30px; margin-left: 50px;">
+				<div class="col-lg-12">
+					<div class="row g-3" style="margin: 30px;">
 						<h3>${rentedRoom.title}</h3>
 						<p>${rentedRoom.description}</p>
 						<h3>Property features</h3>
