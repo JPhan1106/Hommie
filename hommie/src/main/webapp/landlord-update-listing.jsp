@@ -251,30 +251,37 @@
 								Your Room</button>
 						</div>
 					</form>
+					<div class="col-12" style="margin: 50px">
+						<p style="color: orange; font-weight: bold ; ">
+							*Due to our policies, please contact us if you wish you update your address.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Listing End -->
+	</div>
+
+	<!-- Listing End -->
 
 
-		<!-- Footer Start -->
-		<jsp:include page="footer.jsp"></jsp:include>
-		<!-- Footer End -->
-		<!-- JavaScript Libraries -->
-		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-		<script
-			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="lib/wow/wow.min.js"></script>
-		<script src="lib/easing/easing.min.js"></script>
-		<script src="lib/waypoints/waypoints.min.js"></script>
-		<script src="lib/counterup/counterup.min.js"></script>
-		<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-		<script src="lib/tempusdominus/js/moment.min.js"></script>
-		<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-		<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+	<!-- Footer Start -->
+	<jsp:include page="footer.jsp"></jsp:include>
+	<!-- Footer End -->
+	<!-- JavaScript Libraries -->
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="lib/wow/wow.min.js"></script>
+	<script src="lib/easing/easing.min.js"></script>
+	<script src="lib/waypoints/waypoints.min.js"></script>
+	<script src="lib/counterup/counterup.min.js"></script>
+	<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="lib/tempusdominus/js/moment.min.js"></script>
+	<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+	<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-		<!-- Template Javascript -->
-		<script src="js/main.js"></script>
+	<!-- Template Javascript -->
+	<script src="js/main.js"></script>
 </body>
 
 </html>
