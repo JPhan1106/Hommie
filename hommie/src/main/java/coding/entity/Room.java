@@ -170,7 +170,8 @@ public class Room {
 
 //		constructor for updateRoom
 	public Room(int id, String title, String description, int price, int bond, int squareArea, int capacity,
-			int countBed, int countBath, String availableDate, String address, String state, String postcode,String lat, String lng) {
+			int countBed, int countBath, String availableDate, String image1Url, String image2Url, String image3Url, String image4Url){
+
 		super();
 		this.id = id;
 		this.title = title;
@@ -182,11 +183,10 @@ public class Room {
 		this.countBed = countBed;
 		this.countBath = countBath;
 		this.availableDate = availableDate;
-		this.address = address;
-		this.state = state;
-		this.postcode = postcode;
-		this.lat = lat;
-		this.lng = lng;
+		this.image1Url = image1Url;
+		this.image2Url = image2Url;
+		this.image3Url = image3Url;
+		this.image4Url = image4Url;
 		
 	}
 

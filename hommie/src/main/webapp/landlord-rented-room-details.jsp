@@ -203,6 +203,15 @@
 							allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
 					</div>
 				</div>
+								<div class="col-lg-6">
+					<div class="row g-3" style="margin: 30px; margin-left: 50px;">
+						<h3>${rentedRoom.title}</h3>
+						<p>${rentedRoom.description}</p>
+						<h3>Property features</h3>
+						<p>Room size: ${rentedRoom.squareArea} m2</p>
+						<p>Suitable for ${rentedRoom.capacity} person(s)</p>
+					</div>
+				</div>
 			</div>
 		</div>
 

@@ -382,23 +382,23 @@ public class LandlordRoomService {
 		try {
 //			make connection to mySQL
 			conn = DBUtil.makeConnection();
-			ps = conn.prepareStatement("UPDATE `room` SET `title` = ?, `description` = ?, `price` = ?, `bond` = ?, `square_area` = ?, `capacity` = ?, `address` = ?, `state` = ?, `postcode` = ?, `count_bed` = ?, `count_bath` = ?, `available_date` = ?, `lat` = ?, `lng` = ? WHERE `id` = ?");
-
+			ps = conn.prepareStatement("UPDATE `room` SET `title` = ?, `description` = ?, `price` = ?, `bond` = ?, `square_area` = ?, `capacity` = ?, `count_bed` = ?, `count_bath` = ?, `available_date` = ?, `image1_url` = ?, `image2_url` = ?, `image3_url` = ?, `image4_url` = ? WHERE `id` = ?");
+			
 			ps.setString(1, room.getTitle());
 			ps.setString(2, room.getDescription());
 			ps.setInt(3, room.getPrice());
 			ps.setInt(4, room.getBond());
 			ps.setInt(5, room.getSquareArea());
 			ps.setInt(6, room.getCapacity());
-			ps.setString(7, room.getAddress());
-			ps.setString(8, room.getState());
-			ps.setString(9, room.getPostcode());
-			ps.setInt(10, room.getCountBed());
-			ps.setInt(11, room.getCountBath());
-			ps.setString(12, room.getAvailableDate());
-			ps.setString(13, room.getLat());
-			ps.setString(14, room.getLng());
-			ps.setInt(15, room.getId());
+			ps.setInt(7, room.getCountBed());
+			ps.setInt(8, room.getCountBath());
+			ps.setString(9, room.getAvailableDate());
+			ps.setString(10, room.getImage1Url());
+			System.out.println("img1:" + room.getImage1Url() );
+			ps.setString(11, room.getImage2Url());
+			ps.setString(12, room.getImage3Url());
+			ps.setString(13, room.getImage4Url());
+			ps.setInt(14, room.getId());
 
 			ps.execute();
 

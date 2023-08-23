@@ -150,13 +150,13 @@
 		<!-- Spinner End -->
 
 		<!-- Header Start -->
-		<jsp:include page="landlord-header.jsp" >
-		<jsp:param name="landlordId" value="${sessionScope.landlordId}"/>
-		<jsp:param name="firstName" value="${sessionScope.user.firstName}"/>
-		<jsp:param name="lastName" value="${sessionScope.user.lastName}"/>
+		<jsp:include page="landlord-header.jsp">
+			<jsp:param name="landlordId" value="${sessionScope.landlordId}" />
+			<jsp:param name="firstName" value="${sessionScope.user.firstName}" />
+			<jsp:param name="lastName" value="${sessionScope.user.lastName}" />
 		</jsp:include>
 		<!-- Header End -->
-		
+
 		<!-- Page Header Start -->
 		<div class="container-fluid page-header mb-5 p-0"
 			style="background-image: url(https://i.pinimg.com/564x/b0/6b/59/b06b59ae4ce0b72518f5b010100ff46e.jpg);">
@@ -169,10 +169,8 @@
 
 		<!-- Page Header End -->
 
-
-
 		<!-- Listing Start -->
-		<div class="container-xxl py-5">
+		<div class="container-xxl py-5" style="margin-bottom: 50px;">
 			<div class="container w-50">
 				<div class="text-center wow fadeInUp" data-wow-delay="0.1s">
 					<h1 class="mb-5">
@@ -228,7 +226,7 @@
 						<div class="col-md-6 w-100">
 							<div class="form-floating">
 								<input type="hidden" class="form-control" id="lng" name="lng"
-									value="${param.lng}" placeholder="longitude"> 
+									value="${param.lng}" placeholder="longitude">
 							</div>
 						</div>
 						<br>
@@ -341,7 +339,7 @@
 						</div>
 
 						<br>
-						<div class="col-md-6 w-100 pt-4">
+						<div class="col-md-6 w-100 pt-4" style="margin-bottom: 50px">
 							<button class="btn btn-primary w-100 py-3" type="submit">List
 								Your Room</button>
 						</div>
@@ -352,19 +350,9 @@
 
 		<!-- Listing End -->
 
-		<br> <br> <br> <br> <br> <br> <br>
-		<br> <br>
-
-
-
-	<!-- Footer Start -->
-<jsp:include page="footer.jsp"></jsp:include>
-	<!-- Footer End -->
-
-
-		<!-- Back to Top -->
-		<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i
-			class="bi bi-arrow-up"></i></a>
+		<!-- Footer Start -->
+		<jsp:include page="footer.jsp"></jsp:include>
+		<!-- Footer End -->
 	</div>
 
 	<!-- JavaScript Libraries -->

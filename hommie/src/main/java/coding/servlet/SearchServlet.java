@@ -1,10 +1,10 @@
 package coding.servlet;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -53,13 +53,15 @@ public class SearchServlet extends HttpServlet {
 			System.out.println("date: " + availableDateParam);
 			System.out.println("state: " + state);
 
-			String error = "Please select a state.";
+			
 			RoomService roomService = new RoomService();
 			// ask user to select state
 			if (state == null) {
-				RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
-				request.setAttribute("errorMessage", error);
-				rd.forward(request, response);
+				String error = "Please select a state.";
+				String referer = request.getHeader("Referer");
+			    String redirectURL = referer + "?errorMessage=" + URLEncoder.encode(error, "UTF-8");
+			    response.sendRedirect(redirectURL);
+			
 			// not select weekly price
 			} else if (state != null && weeklyPrice == null && !availableDateParam.equals("Available date")) {
 				SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
