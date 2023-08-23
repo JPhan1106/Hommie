@@ -78,12 +78,12 @@
 ![](https://github.com/JPhan1106/Hommie/blob/main/landlord-room-list.jsp.jpg)
 ![](https://github.com/JPhan1106/Hommie/blob/main/rented-room-list.jpg)
 #### View available room's details and functions including: Update, Check inspection history, Make room occupied, Delete
-![](https://github.com/JPhan1106/Hommie/blob/main/Available%20room's%20details.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/available-room-details.jpg)
 #### Update room
-![](https://github.com/JPhan1106/Hommie/blob/main/Update%20room.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/update-room.jpg)
 #### Delete room
 ![](https://github.com/JPhan1106/Hommie/blob/main/Delete%20Room.jpg)
-#### Check inspection history: When a student sends a message or inspection request, the landlord receives an email notification. Additionally, the message or inspection request is saved in the inspection history and displayed in chronological order, with the latest time displayed first.
+#### Check inspection history: When a student sends a message or inspection request, the landlord receives an email notification. Additionally, the message or inspection request is saved in the inspection history and displayed chronologically, with the latest time displayed first.
 ![](https://github.com/JPhan1106/Hommie/blob/main/Inspection%20request%20history.jpg)
 #### View rented room's details and make it available
 ![](https://github.com/JPhan1106/Hommie/blob/main/Rented%20room's%20details.jpg)
