@@ -75,7 +75,8 @@
 #### View payment history
 ![](https://github.com/JPhan1106/Hommie/blob/main/payment-history.jpg)
 #### View all room list, available room list and rented room list 
-![](https://github.com/JPhan1106/Hommie/blob/main/Landlord's%20listings%20.jpg)
+![](https://github.com/JPhan1106/Hommie/blob/main/landlord-room-list.jsp)
+![](https://github.com/JPhan1106/Hommie/blob/main/rented-room-list.jsp)
 #### View available room's details and functions including: Update, Check inspection history, Make room occupied, Delete
 ![](https://github.com/JPhan1106/Hommie/blob/main/Available%20room's%20details.jpg)
 #### Update room
