@@ -42,7 +42,7 @@
 - Password will be encrypted
 ![](https://github.com/JPhan1106/Hommie/blob/main/Register.jpg)
 ### Log in: 
-- User role will be checked to be directed to a propriate view
+- User role will be checked to be directed to a appropriate view
 ![](https://github.com/JPhan1106/Hommie/blob/main/login.jpg)
 ### Log out: 
 ![](https://github.com/JPhan1106/Hommie/blob/main/logout.jpg)
